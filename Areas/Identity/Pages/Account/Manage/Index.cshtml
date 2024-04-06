@@ -1,0 +1,115 @@
+﻿@page
+@model IndexModel
+@using Microsoft.AspNetCore.Identity
+@using ProjectFinal1.Areas.Identity.Data
+@inject SignInManager<AppilcationUser> SignInManager
+@inject UserManager<AppilcationUser> UserManager
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+@if (SignInManager.IsSignedIn(User))
+{
+        if (UserManager.GetUserName(User) == "Admin" || UserManager.GetUserName(User) == "Admin.")
+        {
+        <div class="row">
+            <div class="col-md-6">
+                <form id="profile-form" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
+                        <label asp-for="Username" class="form-label">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.FirstName" class="form-control">
+                        <label asp-for="Input.FirstName" class="form-label">ชื่อ</label>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.LastName" class="form-control">
+                        <label asp-for="Input.LastName" class="form-label">นามสกุล</label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3" hidden>
+                        <input asp-for="Input.InsCode" class="form-control">
+                        <label asp-for="Input.InsCode" class="form-label">รหัสสถาบัน</label>
+                        <span asp-validation-for="Input.InsCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Facebook" class="form-control">
+                        <label asp-for="Input.Facebook" class="form-label">Facebook</label>
+                        <span asp-validation-for="Input.Facebook" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.PhoneNumber" class="form-control" maxlength="12">
+                        <label asp-for="Input.PhoneNumber" class="form-label">เบอร์โทรศัพท์</label>
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3" hidden>
+                        <input asp-for="Input.Status" class="form-control">
+                        <label asp-for="Input.Status" class="form-label">สถานะ</label>
+                        <span asp-validation-for="Input.Status" class="text-danger"></span>
+                    </div>
+                    <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+        }
+        else
+        {
+        <div class="row">
+            <div class="col-md-6">
+                <form id="profile-form" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
+                        <label asp-for="Username" class="form-label">Username</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.FirstName" class="form-control">
+                        <label asp-for="Input.FirstName" class="form-label">ชื่อ</label>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.LastName" class="form-control">
+                        <label asp-for="Input.LastName" class="form-label">นามสกุล</label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.InsCode" class="form-control">
+                        <label asp-for="Input.InsCode" class="form-label">รหัสสถาบัน</label>
+                        <span asp-validation-for="Input.InsCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Codecoursetra" class="form-control">
+                        <label asp-for="Input.Codecoursetra" class="form-label">รหัสสถาบัน</label>
+                        <span asp-validation-for="Input.Codecoursetra" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Facebook" class="form-control">
+                        <label asp-for="Input.Facebook" class="form-label">Facebook</label>
+                        <span asp-validation-for="Input.Facebook" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.PhoneNumber" class="form-control" maxlength="12" placeholder="Please enter your phone number." />
+                        <label asp-for="Input.PhoneNumber" class="form-label">เบอร์โทรศัพท์</label>
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Status" class="form-control" disabled>
+                        <label asp-for="Input.Status" class="form-label">สถานะ</label>
+                        <span asp-validation-for="Input.Status" class="text-danger"></span>
+                    </div>
+                    <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+        }
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

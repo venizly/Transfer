@@ -1,0 +1,40 @@
+﻿@page
+@model ProjectFinal1.Areas.Identity.Pages.Account.ImageModel
+@{
+    ViewData["Title"] = "Image";
+}
+<a button class="col-sm-1 btn btn-danger" type="submit" asp-area="Controller" asp-page="/Home/Index">ย้อนกลับ</a><br/><br/>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Transcode" class="form-control" autocomplete="Transcode" aria-required="true" maxlength="14" placeholder="รหัสนักศึกษา" />
+                <label asp-for="Input.Transcode">รหัสนักศึกษา</label>
+                <span asp-validation-for="Input.Transcode" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3" hidden>
+                <select asp-for="Input.Status" class="form-control" >
+                    <option value="มีไฟล์แล้ว">มีไฟล์แล้ว</option>
+                </select>
+                <label asp-for="Input.Status"></label>
+            </div> 
+
+            <div class="form-group">
+                <label asp-for="FileUpload.FormFile" class="control-label">ไฟล์ทรานสคริปต์</label>
+                <input asp-for="FileUpload.FormFile" class="form-control" />
+                <span asp-validation-for="FileUpload.FormFile" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

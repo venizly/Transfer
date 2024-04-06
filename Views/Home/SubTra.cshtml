@@ -1,0 +1,154 @@
+﻿@* @model IEnumerable<ProjectFinal1.Models.CourseTra>; *@
+<!DOCTYPE html>
+<html lang="en">
+@{
+    ViewData["Title"] = "ตารางวิชาปวส.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataTables Example</title>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Include DataTables CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            color: black;
+            /* background: linear-gradient(to top right, #33cccc 38%, #0000ff 100%); */
+        }
+
+        .w3-bar-block .w3-bar-item {
+            padding: 16px;
+            font-weight: bold;
+        }
+
+        thead {
+            padding: 30px;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
+        <span class="w3-bar-item w3-border-bottom w3-large">User</span>
+        <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+
+        <a class="w3-bar-item w3-button" href="@Url.Action("CourseTra","Home")">ย้อนกลับ</a>
+        <a class="w3-bar-item w3-button w3-pale-blue">ตารางวิชาปวส.</a>
+    </nav>
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+    <div class="w3-main" style="margin-left:250px;">
+
+        <header class="w3-container w3-pale-white" style="padding:64px 32px">
+
+            <center><h1 class="w3-xxxlarge">ตารางวิชาปวส.</h1></center>
+
+        </header>
+
+        <table id="example" class="display">
+                <thead>
+                <tr>
+                        <th>รหัสวิชา</th>
+                        <th>หมวด</th>
+                        <th>กลุ่ม</th>
+                        <th>ประเภท</th>
+                        <th>ชื่อวิชา</th>
+                        <th>หน่วยกิต</th>
+                        <th>คำอธิบายรายวิชา</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var t in Model)
+                {
+                    if (t.CourseTraId == 1)
+                    {
+                        <tr>
+                            <td>@t.CodeSub</td>
+                            <td>@t.Group</td>
+                            <td>@t.Type</td>
+                            <td>@t.Electivesub</td>
+                            <td>@t.NameSub</td>
+                            <td>@t.Credit</td>
+
+                            <td>
+                                <center>
+                                    <a class="btn btn-warning" asp-controller="Home"
+                                    asp-action="Detailcoursetra"
+                                    asp-route-id="@t.CodeSub">Detail</a>
+                                </center>
+                            </td>
+
+                            @* <td>
+                                <a class="btn btn-danger" asp-controller="Home"
+                                   asp-action="DeleteCourseCs"
+                                   asp-route-id="@SubJectCs.CourseCsId" onclick="return confirm('คุณต้องการลบหรือไม่')">ลบ</a>
+                            </td> *@
+                        </tr>
+                    }
+                }
+                
+                </tbody>
+            </table>
+
+    </div>
+
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+
+    // Open and close the sidebar on medium and small screens
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Change style of top container on scroll
+    window.onscroll = function () { myFunction() };
+    function myFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+            document.getElementById("myIntro").classList.add("w3-show-inline-block");
+        } else {
+            document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+            document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+        }
+    }
+
+    // Accordions
+    function myAccordion(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-theme";
+        } else {
+            x.className = x.className.replace("w3-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-theme", "");
+        }
+    }
+
+</script>

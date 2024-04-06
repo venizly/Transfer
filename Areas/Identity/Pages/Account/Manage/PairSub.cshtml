@@ -1,0 +1,640 @@
+﻿@* @page
+@model PairSubModel
+@{
+    ViewData["Title"] = "เทียบโอนวิชา";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a button class="col-sm-1 btn btn-danger" type="submit" asp-area="Controller" asp-page="/Home/Index">ย้อนกลับ</a><br/><br/>
+<h3>@ViewData["Title"]</h3>
+<label style="color:red;">( กรณีที่วิชาเทียบมีไม่ถึงจำนวนที่กำหนดให้ใส่ - ในช่อง )</label><br/>
+<label style="color:red;">( ช่องใส่ชื่อวิชา ตัวอย่าง 3204-2005 การออกแบบและพัฒนาเว็บไซต์ )</label>
+<partial name="_StatusMessage" for="StatusMessage" /><br><br>
+
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            
+                <div class="form-floating mb-3">
+                    <input asp-for="Username" class="form-control" disabled />
+                    <label asp-for="Username" class="form-label"></label>
+                </div>
+            <hr />
+            <div class="row">
+                <label>1. หมวดวิชาศึกษาทั่วไป</label>
+                    <label>1.1 กลุ่มสังคมศาสตร์และมนุษยศาสตร์</label>
+                        <label>1.1.1 วิชาบังคับ</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra1">
+                            <option hidden value=""></option>
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra1" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra1" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra1" class="form-control">
+                        <label asp-for="Input.SubjectTra1" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra1" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs1">
+                            <option hidden value=""></option>
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                        </select>
+                        <label asp-for="Input.CourseCs1" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs1" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">        
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs1" class="form-control">
+                        <label asp-for="Input.SubjectCs1" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs1" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>1.1.2 วิชาเลือก</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra2">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra2" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra2" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra2" class="form-control">
+                        <label asp-for="Input.SubjectTra2" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra2" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs2">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs2" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs2" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">        
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs2" class="form-control">
+                        <label asp-for="Input.SubjectCs2" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs2" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>2.1กลุ่มภาษา</label>
+                    <label>1.2.1 วิชาบังคับ</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra3">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra3" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra3" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra3" class="form-control">
+                        <label asp-for="Input.SubjectTra3" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra3" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs3">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs3" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs3" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs3" class="form-control">
+                        <label asp-for="Input.SubjectCs3" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs3" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra4">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra4" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra4" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra4" class="form-control">
+                        <label asp-for="Input.SubjectTra4" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra4" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs4">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs4" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs4" class="text-danger"></span>
+                    </div>
+                </div> 
+
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs4" class="form-control">
+                        <label asp-for="Input.SubjectCs4" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs4" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>1.2.2 วิชาเลือก</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra5">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra5" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra5" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra5" class="form-control">
+                        <label asp-for="Input.SubjectTra5" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra5" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs5">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs5" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs5" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs5" class="form-control">
+                        <label asp-for="Input.SubjectCs5" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs5" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>1.3 กลุ่มวิทยาศาสตร์และคณิตศาสตร์</label>
+                <label>1.3.1 วิชาบังคับ</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra6">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra6" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra6" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra6" class="form-control">
+                        <label asp-for="Input.SubjectTra6" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra6" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs6">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs6" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs6" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs6" class="form-control">
+                        <label asp-for="Input.SubjectCs6" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs6" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>1.3.2 วิชาเลือก</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra7">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra7" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra7" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra7" class="form-control">
+                        <label asp-for="Input.SubjectTra7" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra7" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs7">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs7" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs7" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs7" class="form-control">
+                        <label asp-for="Input.SubjectCs7" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs7" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>1.4 กลุ่มบูรณาการ</label>
+                <label>1.4.1 วิชาบังคับ</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra8">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra8" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra8" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra8" class="form-control">
+                        <label asp-for="Input.SubjectTra8" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra8" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs8">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs8" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs8" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs8" class="form-control">
+                        <label asp-for="Input.SubjectCs8" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs8" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>1.4.2 วิชาเลือก</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra9">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra9" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra9" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra9" class="form-control">
+                        <label asp-for="Input.SubjectTra9" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra9" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs9">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs9" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs9" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs9" class="form-control">
+                        <label asp-for="Input.SubjectCs9" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs9" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>2. หมวดวิชาเฉพาะ</label>
+                    <label>2.1 กลุ่มวิชาแกน</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra10">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra10" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra10" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra10" class="form-control">
+                        <label asp-for="Input.SubjectTra10" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra10" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs10">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                            <option value="หลักสูตร ปี 2565">หลักสูตร ปี 2565</option>
+                        </select>
+                        <label asp-for="Input.CourseCs10" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs10" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs10" class="form-control">
+                        <label asp-for="Input.SubjectCs10" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs10" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>2.2 กลุ่มวิชาเฉพาะด้าน</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra11">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra11" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra11" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra11" class="form-control">
+                        <label asp-for="Input.SubjectTra11" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra11" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs11">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                        </select>
+                        <label asp-for="Input.CourseCs11" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs11" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs11" class="form-control">
+                        <label asp-for="Input.SubjectCs11" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs11" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>2.3 กลุ่มวิชาเลือก</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra12">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra12" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra12" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra12" class="form-control">
+                        <label asp-for="Input.SubjectTra12" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra12" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs12">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                        </select>
+                        <label asp-for="Input.CourseCs12" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs12" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs12" class="form-control">
+                        <label asp-for="Input.SubjectCs12" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs12" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            <div class="row">
+                <label>3. หมวดวิชาเลือกเสรี</label>
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseTra13">
+                            <option value="-">-</option>
+                            <option value="หลักสูตรสาขาวิชาการบัญชี">หลักสูตรสาขาวิชาการบัญชี</option>
+                            <option value="หลักสูตรสาขาวิชาการตลาด">หลักสูตรสาขาวิชาการตลาด</option>
+                            <option value="หลักสูตรสาขาวิชาเทคนิคเครื่องกล">หลักสูตรสาขาวิชาเทคนิคเครื่องกล</option>
+                        </select>
+                        <label asp-for="Input.CourseTra13" class="form-label">หลักสูตรวิชาปวส.</label>
+                        <span asp-validation-for="Input.CourseTra13" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectTra13" class="form-control">
+                        <label asp-for="Input.SubjectTra13" class="form-label">วิชาปวส.</label>
+                        <span asp-validation-for="Input.SubjectTra13" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <select class="form-control" asp-for="Input.CourseCs13">
+                            <option value="-">-</option>
+                            <option value="หลักสูตร ปี 2560">หลักสูตร ปี 2560</option>
+                        </select>
+                        <label asp-for="Input.CourseCs13" class="form-label">หลักสูตรวิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.CourseCs13" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.SubjectCs13" class="form-control">
+                        <label asp-for="Input.SubjectCs13" class="form-label">วิชาวิทย์คอม</label>
+                        <span asp-validation-for="Input.SubjectCs13" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <button id="update-profile-button" type="submit" class="col-sm-4 btn btn-lg btn-primary">Save</button>
+        </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} *@

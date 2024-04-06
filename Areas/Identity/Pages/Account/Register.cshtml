@@ -1,0 +1,116 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/Identity/Pages/_AccountLayout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-10">
+        <section>
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+            <center><h2>Register</h2></center>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Transcode" class="form-control" autocomplete="Transcode" aria-required="true" maxlength="14" placeholder="รหัสนักศึกษา" />
+                <label asp-for="Input.Transcode">รหัสนักศึกษา(Username)</label>
+                <span asp-validation-for="Input.Transcode" class="text-danger"></span> 
+            </div>
+            <div class="form-floating mb-3">
+                 <input asp-for="Input.Email" class="form-control" autocomplete="Email" aria-required="true" placeholder="name@example.com" />
+                 <label asp-for="Input.Email">Email <label></label></label>
+                 <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.FirstName" class="form-control" autocomplete="FirstName" aria-required="true" placeholder="ชื่อ" />
+                        <label asp-for="Input.FirstName">ชื่อ</label>
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.LastName" class="form-control" autocomplete="LastName" aria-required="true" placeholder="นามสกุล" />
+                        <label asp-for="Input.LastName">นามสกุล</label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+               @*  <input asp-for="Input.InsCode" class="form-control" autocomplete="Inscode" aria-required="true" placeholder="รหัสสถาบัน" /> *@
+               <select asp-for="Input.InsCode" class="form-control" aria-required="true" placeholder="รหัสสถาบัน">
+                        <option hidden value=""></option>
+                        <option value="706">
+                            706-มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก วิทยาเขตบางพระ
+                        </option>
+                        <option value="82200404">
+                            82200404-วิทยาลัยเทคโนโลยีอักษรพัทยา
+                        </option>
+                </select>
+                <label asp-for="Input.InsCode">รหัสสถาบัน</label>
+                <span asp-validation-for="Input.InsCode" class="text-danger"></span>
+            </div>
+             
+            <div class="form-floating mb-3">
+                @* <input asp-for="Input.Codecoursetra" class="form-control" autocomplete="Codecoursetra" aria-required="true" placeholder="รหัสหลักสูตรปวส." /> *@
+                <select asp-for="Input.Codecoursetra" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรปวส.">
+                        <option hidden value=""></option>
+                        <option value="1">
+                            1-สาขาวิชาการบัญชี
+                        </option>
+                        <option value="2">
+                            2-สาขาวิชาการตลาด
+                        </option>
+                        <option value="3">
+                            3-สาขาวิชาการดนตรี
+                        </option>
+                </select>
+                <label asp-for="Input.Codecoursetra">รหัสหลักสูตรปวส.</label>
+                <span asp-validation-for="Input.Codecoursetra" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3" hidden>
+                @* <input asp-for="Input.CourseCs" class="form-control" autocomplete="CourseCs" aria-required="true" placeholder="รหัสหลักสูตรวิทย์คอม" /> *@
+                <select asp-for="Input.CourseCs" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรวิทย์คอม">
+                        <option hidden value=""></option>
+                        <option value="หลักสูตรปี 2565">
+                            หลักสูตรปี 2565
+                        </option>
+                </select>
+                <label asp-for="Input.CourseCs">รหัสหลักสูตรวิทย์คอม(ต้องการเรียนต่อ)</label>
+                <span asp-validation-for="Input.CourseCs" class="text-danger"></span>
+            </div>
+
+             <div class="form-floating mb-3">
+                <input asp-for="Input.Facebook" class="form-control" autocomplete="Facebook" aria-required="true" placeholder="Facebook" />
+                <label asp-for="Input.Facebook">Facebook</label>
+                <span asp-validation-for="Input.Facebook" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3" hidden>
+                    <select asp-for="Input.Status" class="form-control" autocomplete="Status" aria-required="true" placeholder="Status">
+                        <option value="ไม่มีไฟล์ทรานสคริปต์">ไม่มีไฟล์ทรานสคริปต์</option>
+                    </select>
+                <label asp-for="Input.Status">สถานะ <label style="color:red;">(ปกติ ค้างชำระ)</label></label>
+                <span asp-validation-for="Input.Status" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.Password">รหัสผ่าน</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.ConfirmPassword">ยืนยันรหัสผ่าน</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+        </section>
+    </div>
+</div>
+   
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ProjectFinal1.Areas.Identity.Data
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@inject SignInManager<AppilcationUser> SignInManager
+@inject UserManager<AppilcationUser> UserManager
+
+<!DOCTYPE html>
+<title>Transfer</title>
+<meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        color: black;
+        /* background: linear-gradient(to top right, #33cccc 38%, #0000ff 100%); */
+    }
+
+    .w3-bar-block .w3-bar-item {
+        padding: 16px;
+        font-weight: bold;
+    }
+
+    .mySlides {
+        display: none;
+    }
+</style>
+<body>
+    @if(UserManager.GetUserName(User) == "Admin" || UserManager.GetUserName(User) == "Admin.")
+    {
+        <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
+            <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
+            <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+
+            <a class="w3-bar-item w3-button w3-pale-blue">หน้าแรก</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("AddSubCs","Admin")">เพิ่มรายวิชาcs</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("StudyResult","Admin")">ตารางผลเทียบโอน</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("TableData","Admin")">ตารางข้อมูลนักศึกษา</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ตารางข้อมูลทรานสคริปต์</a>
+        </nav>
+
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+        <div class="w3-main" style="margin-left:250px;">
+
+
+            <div class="w3-content w3-section" style="max-width:500px">
+                <label class="mySlides" style="width:100%">1</label>
+                <label class="mySlides" style="width:100%">2</label>
+                <label class="mySlides" style="width:100%">3</label>
+            </div>
+
+    </div>
+    } 
+     else
+    {
+        <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
+            <span class="w3-bar-item w3-border-bottom w3-large">User</span>
+            <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+
+            <a class="w3-bar-item w3-button w3-pale-blue">หน้าแรก</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("CourseCs","Home")">หลักสูตรวิทย์คอม</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("CourseTra","Home")">หลักสูตรปวส.</a>
+            <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Home")">เทียบโอนหลักสูตร</a>
+            <a class="w3-bar-item w3-button" asp-area="Identity" asp-page="/Account/Image">รูปทรานสคริปต์</a>
+            @* <a class="w3-bar-item w3-button" asp-area="Identity" asp-page="/Account/Manage/PairSub">เทียบโอนวิชา</a> *@
+        </nav>
+
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+        <div class="w3-main" style="margin-left:250px;">
+
+            <header class="w3-container w3-pale-white" style="padding:64px 32px">
+                <center><h1 class="w3-xxxlarge">Welcome to System Transfer</h1></center>
+            </header>
+
+            <div class="w3-content w3-section" style="max-width:500px">
+                <label class="mySlides" style="width:100%">1</label>
+                <label class="mySlides" style="width:100%">2</label>
+                <label class="mySlides" style="width:100%">3</label>
+            </div>
+        
+    </div>
+    }
+</body>
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
+
+    // Open and close the sidebar on medium and small screens
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Change style of top container on scroll
+    window.onscroll = function () { myFunction() };
+    function myFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+            document.getElementById("myIntro").classList.add("w3-show-inline-block");
+        } else {
+            document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+            document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+        }
+    }
+
+    // Accordions
+    function myAccordion(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-theme";
+        } else {
+            x.className = x.className.replace("w3-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-theme", "");
+        }
+    }
+
+</script>
