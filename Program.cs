@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjectFinal1.Areas.Identity.Data;
 using ProjectFinal1.Data;
-var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ProjectDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ProjectDbContextConnection' not found.");
+using System.Data.SQLite;
 
-builder.Services.AddDbContext<ProjectDbContext>(options => options.UseSqlServer(connectionString));
+var builder = WebApplication.CreateBuilder(args);
+
+
+var connectionString = new SQLiteConnectionStringBuilder() { DataSource = "./ProjectFinal1DB.db" }.ConnectionString;// builder.Configuration.GetConnectionString("ProjectDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ProjectDbContextConnection' not found.");
+
+builder.Services.AddDbContext<ProjectDbContext>(options => options.UseSqlite(connectionString));
 
 builder.Services.AddDefaultIdentity<AppilcationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ProjectDbContext>();
