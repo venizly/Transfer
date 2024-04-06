@@ -4,6 +4,8 @@ using ProjectFinal1.Areas.Identity.Data;
 using ProjectFinal1.Data;
 using System.Data.SQLite;
 
+//INSTALL below tools for connect SQLLite Database
+//https://marketplace.visualstudio.com/items?itemName=ErikEJ.SQLServerCompactSQLiteToolbox
 var builder = WebApplication.CreateBuilder(args);
 
 
