@@ -28,6 +28,7 @@ public class ProjectDbContext : IdentityDbContext<AppilcationUser>
     public DbSet<V_CourseTra> V_CourseTra { get; set; }
     public DbSet<V_CourseCsTra> V_CourseCsTra { get; set; }
     public DbSet<V_TransferSub> V_TransferSub { get; set; }
+    public DbSet<V_User_Tranfer_Course> V_User_Tranfer_Courses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

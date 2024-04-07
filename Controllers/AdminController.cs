@@ -81,7 +81,7 @@ namespace ProjectFinal1.Controllers
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
         public IActionResult CourseCsAdmin()
         {
             IEnumerable<CsCourse> allTransfer = _db.CsCourse;
@@ -208,10 +208,47 @@ namespace ProjectFinal1.Controllers
             return RedirectToAction("TransferCourse", "Admin");
         }
 
-        public IActionResult StudyResult()
+        public IActionResult StudyResult(string id)
         {
-            IEnumerable<TableTransfer> allTransfer = _db.TableTransfer;
-            return View(allTransfer);
+            var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
+            ViewBag.id=id;
+            //IEnumerable<TableTransfer> allTransfer = _db.TableTransfer;
+            return View(user_tranfer_course);
+        }
+        [HttpPost]
+        public IActionResult StudyResult(string id,List<V_User_Tranfer_Course> saveData)
+        {
+            if(saveData != null && saveData.Any())
+            {
+                int lastId = _db.TableTransfer.Any() ? _db.TableTransfer.Max(a=>a.TransReCode) : 0;
+                foreach (var item in saveData)
+                {
+
+
+                        var tableTransfer = _db.TableTransfer.FirstOrDefault(x => x.TransReCode == item.TransReCode);
+                        if(tableTransfer != null)
+                        {
+                            tableTransfer.GradeTra = item.GradeTra;
+                            _db.Entry(tableTransfer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        }
+                        else
+                        {
+                            lastId++;
+                            tableTransfer = new TableTransfer() { TransReCode = lastId };
+                            tableTransfer.GradeTra = item.GradeTra;
+                            tableTransfer.CodeSubtran = item.CodeSubtrans.Value;
+                            tableTransfer.UserId = id;
+
+                            _db.TableTransfer.Add(tableTransfer);
+                        }
+
+                }
+
+                _db.SaveChanges();
+            }
+            var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
+            ViewBag.id = id;
+            return View(user_tranfer_course); ;
         }
 
         public IActionResult AddSubCs()
@@ -239,7 +276,7 @@ namespace ProjectFinal1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PairSub(TransferSub obje)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 _db.TransferSub.Add(obje);
                 _db.SaveChanges();

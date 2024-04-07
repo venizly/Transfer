@@ -42,7 +42,7 @@
     <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-        
+
         <a class="w3-bar-item w3-button" href="@Url.Action("Index","Home")">หน้าแรก</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
@@ -91,7 +91,7 @@
                             <center>
                             <a class="btn btn-warning" asp-controller="Admin"
                                asp-action="StudyResult"
-                                   asp-route-id="@DataUser.Transcode">เทียบโอน</a>
+                                   asp-route-id="@DataUser.Id">เทียบโอน</a>
                             </center>
                         </td>
 
@@ -100,7 +100,6 @@
                                asp-action="DeleteUser"
                                asp-route-id="@DataUser.Transcode" onclick="return confirm('คุณต้องการจะลบ @DataUser.Transcode @DataUser.FirstName @DataUser.LastName')">ลบ</a>
                         </td>
-    
                     </tr>
                 }
             </tbody>
@@ -150,5 +149,6 @@
                 x.previousElementSibling.className.replace(" w3-theme", "");
         }
     }
+
 
 </script>

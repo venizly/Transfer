@@ -9,9 +9,11 @@ using System.Data.SQLite;
 var builder = WebApplication.CreateBuilder(args);
 
 
-var connectionString = new SQLiteConnectionStringBuilder() { DataSource = "./ProjectFinal1DB.db" }.ConnectionString;// builder.Configuration.GetConnectionString("ProjectDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ProjectDbContextConnection' not found.");
+//var connectionString = new SQLiteConnectionStringBuilder() { DataSource = "./ProjectFinal1DB.db" }.ConnectionString;// builder.Configuration.GetConnectionString("ProjectDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ProjectDbContextConnection' not found.");
+var connectionString =  builder.Configuration.GetConnectionString("ProjectDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ProjectDbContextConnection' not found.");
 
-builder.Services.AddDbContext<ProjectDbContext>(options => options.UseSqlite(connectionString));
+//builder.Services.AddDbContext<ProjectDbContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddDbContext<ProjectDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<AppilcationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ProjectDbContext>();
