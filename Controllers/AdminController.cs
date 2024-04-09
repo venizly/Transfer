@@ -216,6 +216,7 @@ namespace ProjectFinal1.Controllers
             return View(user_tranfer_course);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult StudyResult(string id,List<V_User_Tranfer_Course> saveData)
         {
             if(saveData != null && saveData.Any())
@@ -243,9 +244,9 @@ namespace ProjectFinal1.Controllers
                         }
 
                 }
-
-                _db.SaveChanges();
             }
+            _db.SaveChanges();
+            ModelState.Clear();
             var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
             ViewBag.id = id;
             return View(user_tranfer_course); ;

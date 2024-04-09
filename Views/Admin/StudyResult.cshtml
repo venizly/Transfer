@@ -69,8 +69,7 @@
                     {
                         <tr>
                             <td>
-                                @Model[i].TransReCode
-                                @Html.HiddenFor(x => x[i].TransReCode)
+                                @Html.DisplayFor(x => x[i].TransReCode)
                             </td>
                             <td>@Model[i].UserName</td>
                             <td>@Model[i].CodeCoursetrans</td>
@@ -78,9 +77,9 @@
                                 @Html.TextBoxFor(modelItem => modelItem[i].GradeTra)
                                 @Html.HiddenFor(x => x[i].Id)
                                 @Html.HiddenFor(x => x[i].CodeSubtrans)
+                                @Html.HiddenFor(x => x[i].TransReCode)
                             </td>
                         </tr>
-
                     }
 
                     @* @foreach (var DataUser in Model)
