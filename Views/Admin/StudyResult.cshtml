@@ -60,6 +60,8 @@
                         <th>รหัสผลเทียบโอน</th>
                         <th>รหัสนักศึกษา</th>
                         <th>รหัสเทียบวิชา</th>
+                        <th>วิชา ปวส.</th>
+                        <th>วิชา CS</th>
                         <th>เกรดปวส.</th>
 
                     </tr>
@@ -73,6 +75,8 @@
                             </td>
                             <td>@Model[i].UserName</td>
                             <td>@Model[i].CodeCoursetrans</td>
+                            <td>@Model[i].Namethaitra</td>
+                            <td>@Model[i].Namethaics</td>
                             <td>
                                 @Html.TextBoxFor(modelItem => modelItem[i].GradeTra)
                                 @Html.HiddenFor(x => x[i].Id)

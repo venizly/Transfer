@@ -212,7 +212,6 @@ namespace ProjectFinal1.Controllers
         {
             var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
             ViewBag.id=id;
-            //IEnumerable<TableTransfer> allTransfer = _db.TableTransfer;
             return View(user_tranfer_course);
         }
         [HttpPost]

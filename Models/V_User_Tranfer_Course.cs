@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectFinal1.Models
 {
     [Table("V_User_Tranfer_Course", Schema = "dbo")]
+    [Keyless]
     public class V_User_Tranfer_Course
     {
-        [Key]
         public string Id { get; set; }
         public string UserName { get; set; }
         public int Codecoursetra { get; set; }
