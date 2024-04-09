@@ -69,16 +69,18 @@
                 </div>
 
                 <div class="col-lg-3">
+                    <label asp-for="Codecs">รหัสรายวิชาวิทย์คอม</label>
+                    <input type="text" asp-for="Codecs" class="form-control" required>
+                    <span asp-validation-for="Codecs" class="text-danger"></span>
+                </div>
+
+                <div class="col-lg-3">
                     <label asp-for="Codetra">รหัสรายวิชาปวส.</label>
                     <input type="text" asp-for="Codetra" class="form-control" required>
                     <span asp-validation-for="Codetra" class="text-danger"></span>
                 </div>
 
-                <div class="col-lg-3">
-                    <label asp-for="Codecs">รหัสรายวิชาวิทย์คอม</label>
-                    <input type="text" asp-for="Codecs" class="form-control" required>
-                    <span asp-validation-for="Codecs" class="text-danger"></span>
-                </div>
+                
             </div>
 
             <button type="submit" class="btn btn-primary my-3">เพิ่ม</button>

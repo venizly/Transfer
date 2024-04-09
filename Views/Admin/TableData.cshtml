@@ -47,8 +47,7 @@
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("AddSubCs","Admin")">เพิ่มรายวิชาcs</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนวิชา</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("StudyResult","Admin")">วิชาเทียบโอน</a>
+        <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
         <a class="w3-bar-item w3-button w3-pale-blue">ตารางข้อมูลนักศึกษา</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ตารางข้อมูลทรานสคริปต์</a>
     </nav>
@@ -60,8 +59,8 @@
         <table id="example" class="display">
             <thead>
                 <tr>
-                    <th>ชื่อสถาบัน</th>
-                    <th>ชื่อหลักสูตรปวส.</th>
+                    <th>รหัสสถาบัน</th>
+                    <th>รหัสหลักสูตรปวส.</th>
                     <th>หลักสูตรที่ต้องการเรียนต่อ</th>
                     <th>รหัสนักศึกษา</th>
                     <th>ชื่อ</th>
@@ -78,8 +77,10 @@
                 @foreach (var DataUser in Model)
                 {
                     <tr>
-                        <td>@DataUser.InsName</td>
-                        <td>@DataUser.Namecoursetra</td>
+                        @* <td>@DataUser.InsName</td>
+                        <td>@DataUser.Namecoursetra</td> *@
+                        <td>@DataUser.InsCode</td>
+                        <td>@DataUser.Codecoursetra</td>
                         <td>@DataUser.CourseCs</td>
                         <td>@DataUser.Transcode</td>
                         <td>@DataUser.FirstName</td>
@@ -98,7 +99,7 @@
                         <td>
                             <a class="btn btn-danger" asp-controller="Admin"
                                asp-action="DeleteUser"
-                               asp-route-id="@DataUser.Transcode" onclick="return confirm('คุณต้องการจะลบ @DataUser.Transcode @DataUser.FirstName @DataUser.LastName')">ลบ</a>
+                               asp-route-id="@DataUser.Id" onclick="return confirm('คุณต้องการจะลบ @DataUser.Transcode @DataUser.FirstName @DataUser.LastName')">ลบ</a>
                         </td>
                     </tr>
                 }

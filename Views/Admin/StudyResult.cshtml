@@ -44,14 +44,8 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button" href="@Url.Action("Index","Home")">หน้าแรก</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("AddSubCs","Admin")">เพิ่มรายวิชาcs</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนวิชา</a>
+        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("TableData", "Admin")">ย้อนกลับ</a>
         <a class="w3-bar-item w3-button w3-pale-blue">วิชาเทียบโอน</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("TableData","Admin")">ตารางข้อมูลนักศึกษา</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ตารางข้อมูลทรานสคริปต์</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>

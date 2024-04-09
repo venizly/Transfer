@@ -57,22 +57,22 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("TableData");
         }
-        public IActionResult DeleteUsers(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            //ค้นหาข้อมูล
-            var obj = _db.TableTransfer.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _db.TableTransfer.Remove(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Detailuser");
-        }
+        //public IActionResult DeleteUsers(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //ค้นหาข้อมูล
+        //    var obj = _db.TableTransfer.Find(id);
+        //    if (obj == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _db.TableTransfer.Remove(obj);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("Detailuser");
+        //}
         public IActionResult ViewImage()
         {
             //ดึงรูปออกได้ ที่อยากได้คือให้มันอยู่ตารางเดียวกันหรือใช้ ViewTable
