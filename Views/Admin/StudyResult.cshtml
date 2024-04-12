@@ -54,11 +54,11 @@
         @using (Html.BeginForm("StudyResult", "Admin",new { id=ViewBag.id}, FormMethod.Post))
         {
             <button type="submit" class="btn btn-primary my-3">บันทึก</button>
+            <h4>รหัสนักศึกษา : @Model.FirstOrDefault()?.UserName</h4>
             <table id="example" class="display">
                 <thead>
                     <tr>
-                        <th>รหัสผลเทียบโอน</th>
-                        <th>รหัสนักศึกษา</th>
+                       
                         <th>รหัสเทียบวิชา</th>
                         <th>วิชา ปวส.</th>
                         <th>วิชา CS</th>
@@ -71,11 +71,8 @@
                     @for (int i = 0; i < Model.Count(); i++)
                     {
                         <tr>
-                            <td>
-                                @Html.DisplayFor(x => x[i].TransReCode)
-                            </td>
-                            <td>@Model[i].UserName</td>
-                            <td>@Model[i].CodeSubtrans</td>
+                           
+                            <td>@Model[i].CodeCoursetrans</td>
                             <td>@Model[i].Namethaitra</td>
                             <td>@Model[i].Namethaics</td>
                             <td>
