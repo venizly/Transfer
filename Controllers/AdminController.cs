@@ -25,7 +25,16 @@ namespace ProjectFinal1.Controllers
         }
         public IActionResult TableData()
         {
-            IEnumerable<DataUser> allTransfer = _db.DataUsers;
+            List<DataUser> allTransfer = _db.DataUsers.ToList();
+            foreach (var item in allTransfer)
+            {
+
+                if (_db.V_User_Tranfer_Courses.Any(a => a.GradeTra != null && a.GradeTra != ""
+                && a.UserName == item.UserName && a.CourseCs == item.CourseCs && a.Codecoursetra == item.Codecoursetra))
+                {
+                    item.HaveTranfer = true;
+                }
+            }
             return View(allTransfer);
         }
         //public IActionResult Detailuser(string Id)
@@ -211,36 +220,38 @@ namespace ProjectFinal1.Controllers
         public IActionResult StudyResult(string id)
         {
             var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
-            ViewBag.id=id;
+            ViewBag.id = id;
+            //IEnumerable<TableTransfer> allTransfer = _db.TableTransfer;
             return View(user_tranfer_course);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult StudyResult(string id,List<V_User_Tranfer_Course> saveData)
+        public IActionResult StudyResult(string id, List<V_User_Tranfer_Course> saveData)
         {
-            if(saveData != null && saveData.Any())
+            if (saveData != null && saveData.Any())
             {
-                int lastId = _db.TableTransfer.Any() ? _db.TableTransfer.Max(a=>a.TransReCode) : 0;
+                int lastId = _db.TableTransfer.Any() ? _db.TableTransfer.Max(a => a.TransReCode) : 0;
                 foreach (var item in saveData)
                 {
 
 
-                        var tableTransfer = _db.TableTransfer.FirstOrDefault(x => x.TransReCode == item.TransReCode);
-                        if(tableTransfer != null)
-                        {
-                            tableTransfer.GradeTra = item.GradeTra;
-                            _db.Entry(tableTransfer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                        }
-                        else
-                        {
-                            lastId++;
-                            tableTransfer = new TableTransfer() { TransReCode = lastId };
-                            tableTransfer.GradeTra = item.GradeTra;
-                            tableTransfer.CodeSubtran = item.CodeSubtrans.Value;
-                            tableTransfer.UserId = id;
+                    var tableTransfer = _db.TableTransfer.FirstOrDefault(x => x.TransReCode == item.TransReCode);
+                    if (tableTransfer != null)
+                    {
+                        tableTransfer.GradeTra = item.GradeTra;
+                        _db.Entry(tableTransfer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    }
+                    else
+                    {
+                        lastId++;
+                        tableTransfer = new TableTransfer() { TransReCode = lastId };
+                        tableTransfer.GradeTra = item.GradeTra;
+                        tableTransfer.CodeSubtran = item.CodeSubtrans.Value;
+                        tableTransfer.UserId = id;
 
-                            _db.TableTransfer.Add(tableTransfer);
-                        }
+                        _db.TableTransfer.Add(tableTransfer);
+                    }
+                    tableTransfer.IsHide = item.IsHide;
 
                 }
             }

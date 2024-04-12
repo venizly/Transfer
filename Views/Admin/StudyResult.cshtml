@@ -63,6 +63,7 @@
                         <th>วิชา ปวส.</th>
                         <th>วิชา CS</th>
                         <th>เกรดปวส.</th>
+                        <th>ลบ</th>
 
                     </tr>
                 </thead>
@@ -82,6 +83,9 @@
                                 @Html.HiddenFor(x => x[i].Id)
                                 @Html.HiddenFor(x => x[i].CodeSubtrans)
                                 @Html.HiddenFor(x => x[i].TransReCode)
+                            </td>
+                            <td>
+                                @Html.CheckBoxFor(x => x[i].IsHide)
                             </td>
                         </tr>
                     }
