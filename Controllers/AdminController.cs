@@ -6,6 +6,7 @@ using ProjectFinal1.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore.Sqlite.Query.Internal;
 
 namespace ProjectFinal1.Controllers
 {
@@ -226,9 +227,21 @@ namespace ProjectFinal1.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult StudyResult(string id, List<V_User_Tranfer_Course> saveData)
+        public IActionResult StudyResult(string id, string command, List<V_User_Tranfer_Course> saveData)
         {
-            if (saveData != null && saveData.Any())
+            if (command == "reset")
+            {
+               var resetData= _db.TableTransfer.Where(a => a.UserId == id && a.IsHide == true).ToList();
+                if (resetData != null)
+                {
+                    foreach (var item in resetData)
+                    {
+                        item.IsHide = false;
+                        _db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    }
+                }
+            }
+            else  if (saveData != null && saveData.Any())
             {
                 int lastId = _db.TableTransfer.Any() ? _db.TableTransfer.Max(a => a.TransReCode) : 0;
                 foreach (var item in saveData)
