@@ -46,7 +46,7 @@
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
         <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseTra","Home")">ย้อนกลับ</a>
-        <a class="w3-bar-item w3-button w3-pale-blue">หลักสูตร</a>
+        <a class="w3-bar-item w3-button w3-pale-blue">หลักสูตรปวส.</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -55,7 +55,7 @@
 
         <header class="w3-container w3-pale-white" style="padding:64px 32px">
 
-            <center><h1 class="w3-xxxlarge">หลักสูตรวิทย์คอม</h1></center>
+            <center><h1 class="w3-xxxlarge">หลักสูตรปวส.</h1></center>
 
         </header>
 
@@ -63,9 +63,6 @@
 
             <thead>
                 <tr>
-                    <th>รหัสรายวิชา</th>
-                    <th>รหัสหลักสูตร</th>
-                    <th>ชื่อหลักสูตร</th>
                     <th>รหัสวิชา</th>
                     <th>ชื่อวิชาไทย</th>
                     <th>ชื่อวิชาอังกฤษ</th>
@@ -82,9 +79,6 @@
                 @foreach (var CourseTra in Model)
                 {
                     <tr>
-                        <td>@CourseTra.Codetrasub</td>
-                        <td>@CourseTra.Codecourse</td>
-                        <td>@CourseTra.Namecoursetra</td>
                         <td>@CourseTra.Codesubtra</td>
                         <td>@CourseTra.Namethaitra</td>
                         <td>@CourseTra.Nameengtra</td>
