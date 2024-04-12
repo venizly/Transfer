@@ -53,7 +53,8 @@
     <div class="w3-main" style="margin-left:250px;">
         @using (Html.BeginForm("StudyResult", "Admin",new { id=ViewBag.id}, FormMethod.Post))
         {
-            <button type="submit" class="btn btn-primary my-3">บันทึก</button>
+            <button type="submit" name="command" value="save" class="btn btn-primary my-3">บันทึก</button>
+            <button type="submit" name="command" value="reset" class="btn btn-danger my-3">Reset</button>
             <h4>รหัสนักศึกษา : @Model.FirstOrDefault()?.UserName</h4>
             <table id="example" class="display">
                 <thead>
