@@ -10,5 +10,6 @@ namespace ProjectFinal1.Models
         public int CodeSubtran { get; set; }
         public string? GradeTra {  get; set; }
         public string? UserId { get; set; }
+        public bool? IsHide { get; set; }
     }
 }

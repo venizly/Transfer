@@ -19,5 +19,6 @@ namespace ProjectFinal1.Models
         public int? TransReCode { get; set; }
         public string? GradeTra { get; set; }
         public int? CodeSubtrans { get; set; }
+        public bool IsHide { get; set; }
     }
 }

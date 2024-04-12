@@ -67,6 +67,7 @@
                         <th>รหัสนักศึกษา</th>
                         <th>รหัสเทียบวิชา</th>
                         <th>เกรดปวส.</th>
+                        <th>ลบ</th>
 
                     </tr>
                 </thead>
@@ -80,7 +81,7 @@
 
                             </td>
                             <td>@Model[i].UserName</td>
-                            <td>  @Model[i].CodeCoursetrans</td>
+                            <td>  @Model[i].CodeCoursetrans : @Model[i].Namethaics</td>
                             <td>
 
                                 @Html.HiddenFor(x => x[i].Id)
@@ -89,7 +90,9 @@
                                 @Html.TextBoxFor(modelItem => modelItem[i].GradeTra)
 
                             </td>
-
+                            <td>
+                                @Html.CheckBoxFor(x => x[i].IsHide)
+                            </td>
                         </tr>
                     }
 
