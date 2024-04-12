@@ -48,6 +48,8 @@ namespace ProjectFinal1.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string Status { get; set; }
+        [NotMapped]
+        public bool HaveTranfer { get; set; }
 
     }
 }

@@ -90,7 +90,7 @@
 
                         <td>
                             <center>
-                            <a class="btn btn-warning" asp-controller="Admin"
+                                <a class='btn @(DataUser.HaveTranfer?"btn-success":" btn-warning") ' asp-controller="Admin"
                                asp-action="StudyResult"
                                    asp-route-id="@DataUser.Id">เทียบโอน</a>
                             </center>

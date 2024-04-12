@@ -25,7 +25,16 @@ namespace ProjectFinal1.Controllers
         }
         public IActionResult TableData()
         {
-            IEnumerable<DataUser> allTransfer = _db.DataUsers;
+            List<DataUser> allTransfer = _db.DataUsers.ToList();
+            foreach (var item in allTransfer)
+            {
+
+                if (_db.V_User_Tranfer_Courses.Any(a => a.GradeTra != null && a.GradeTra != ""
+                && a.UserName == item.UserName && a.CourseCs == item.CourseCs && a.Codecoursetra == item.Codecoursetra))
+                {
+                    item.HaveTranfer = true;
+                }
+            }
             return View(allTransfer);
         }
         //public IActionResult Detailuser(string Id)
@@ -217,7 +226,7 @@ namespace ProjectFinal1.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult StudyResult(string id,List<V_User_Tranfer_Course> saveData)
+        public IActionResult StudyResult(string id, List<V_User_Tranfer_Course> saveData)
         {
             if (saveData != null && saveData.Any())
             {
