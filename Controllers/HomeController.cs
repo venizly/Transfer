@@ -77,7 +77,7 @@ namespace ProjectFinal1.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.TraSub.Find(Id);
+            var obj = _db.V_CourseTra.Find(Id);
             if (obj == null)
             {
                 return NotFound();

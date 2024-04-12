@@ -71,14 +71,10 @@
             </div>
 
             <div class="form-floating mb-3" hidden>
-                @* <input asp-for="Input.CourseCs" class="form-control" autocomplete="CourseCs" aria-required="true" placeholder="รหัสหลักสูตรวิทย์คอม" /> *@
-                <select asp-for="Input.CourseCs" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรวิทย์คอม">
-                        <option hidden value=""></option>
-                        <option value="หลักสูตรปี 2565">
-                            หลักสูตรปี 2565
-                        </option>
-                </select>
-                <label asp-for="Input.CourseCs">รหัสหลักสูตรวิทย์คอม(ต้องการเรียนต่อ)</label>
+                    <select asp-for="Input.CourseCs" class="form-control" autocomplete="CourseCs" aria-required="true" placeholder="CourseCs">
+                        <option value="หลักสูตรปี 2565">หลักสูตรปี 2565</option>
+                    </select>
+                <label asp-for="Input.CourseCs">หลักสูตรที่ต้องการจะเรียนต่อ</label>
                 <span asp-validation-for="Input.CourseCs" class="text-danger"></span>
             </div>
 

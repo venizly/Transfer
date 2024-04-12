@@ -57,22 +57,22 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("TableData");
         }
-        public IActionResult DeleteUsers(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            //ค้นหาข้อมูล
-            var obj = _db.TableTransfer.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _db.TableTransfer.Remove(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Detailuser");
-        }
+        //public IActionResult DeleteUsers(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //ค้นหาข้อมูล
+        //    var obj = _db.TableTransfer.Find(id);
+        //    if (obj == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    _db.TableTransfer.Remove(obj);
+        //    _db.SaveChanges();
+        //    return RedirectToAction("Detailuser");
+        //}
         public IActionResult ViewImage()
         {
             //ดึงรูปออกได้ ที่อยากได้คือให้มันอยู่ตารางเดียวกันหรือใช้ ViewTable
@@ -216,7 +216,8 @@ namespace ProjectFinal1.Controllers
             return View(user_tranfer_course);
         }
         [HttpPost]
-        public IActionResult StudyResult(string id, List<V_User_Tranfer_Course> saveData)
+        [ValidateAntiForgeryToken]
+        public IActionResult StudyResult(string id,List<V_User_Tranfer_Course> saveData)
         {
             if (saveData != null && saveData.Any())
             {
@@ -244,9 +245,9 @@ namespace ProjectFinal1.Controllers
                     tableTransfer.IsHide = item.IsHide;
 
                 }
-
-                _db.SaveChanges();
             }
+            _db.SaveChanges();
+            ModelState.Clear();
             var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
             ViewBag.id = id;
             return View(user_tranfer_course); ;

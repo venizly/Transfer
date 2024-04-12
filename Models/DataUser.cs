@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjectFinal1.Models
 {
-    [Table("V_DataUser", Schema = "dbo")]
+    [Table("AspNetUsers", Schema = "dbo")]
     public class DataUser : IdentityUser
     {
         [PersonalData]
@@ -33,13 +33,13 @@ namespace ProjectFinal1.Models
         [ForeignKey("Codecoursetra")]
         public virtual TraCourse TraCourse { get; set; }
 
-        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        public string Namecoursetra { get; set; }
+        //[PersonalData]
+        //[Column(TypeName = "nvarchar(100)")]
+        //public string Namecoursetra { get; set; }
 
-        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        public string InsName { get; set; }
+        //[PersonalData]
+        //[Column(TypeName = "nvarchar(100)")]
+        //public string InsName { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]

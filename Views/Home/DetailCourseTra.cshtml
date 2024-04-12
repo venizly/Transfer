@@ -63,6 +63,7 @@
 
             <thead>
                 <tr>
+                    <th>รหัสรายวิชา</th>
                     <th>รหัสหลักสูตร</th>
                     <th>ชื่อหลักสูตร</th>
                     <th>รหัสวิชา</th>
@@ -81,6 +82,7 @@
                 @foreach (var CourseTra in Model)
                 {
                     <tr>
+                        <td>@CourseTra.Codetrasub</td>
                         <td>@CourseTra.Codecourse</td>
                         <td>@CourseTra.Namecoursetra</td>
                         <td>@CourseTra.Codesubtra</td>
@@ -92,8 +94,8 @@
                         <td>
                             <center>
                                 <a class="btn btn-warning" asp-controller="Home"
-                                   asp-action="DetailSubCs"
-                                   asp-route-id="@CourseTra.Codecourse">Detail</a>
+                                   asp-action="DetailSubTra"
+                                   asp-route-id="@CourseTra.Codetrasub">Detail</a>
                             </center>
                         </td>
 
