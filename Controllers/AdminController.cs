@@ -38,19 +38,6 @@ namespace ProjectFinal1.Controllers
             }
             return View(allTransfer);
         }
-        //public IActionResult Detailuser(string Id)
-        //{
-        //    if (Id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var obj = _db.V_SubCsTra.Where(a => a.Transcode == Id).ToList();
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(obj);
-        //}
         public IActionResult DeleteUser(string id)
         {
             if (id == null)
@@ -67,22 +54,7 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("TableData");
         }
-        //public IActionResult DeleteUsers(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    //ค้นหาข้อมูล
-        //    var obj = _db.TableTransfer.Find(id);
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _db.TableTransfer.Remove(obj);
-        //    _db.SaveChanges();
-        //    return RedirectToAction("Detailuser");
-        //}
+        
         public IActionResult ViewImage()
         {
             //ดึงรูปออกได้ ที่อยากได้คือให้มันอยู่ตารางเดียวกันหรือใช้ ViewTable

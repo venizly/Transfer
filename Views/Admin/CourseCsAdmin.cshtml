@@ -45,7 +45,6 @@
         <a class="w3-bar-item w3-button" href="@Url.Action("Index", "Home")">หน้าแรก</a>
         <a class="w3-bar-item w3-button w3-pale-blue">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("AddSubCs","Admin")">เพิ่มรายวิชาcs</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TableData","Admin")">ตารางข้อมูลนักศึกษา</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ตารางข้อมูลทรานสคริปต์</a>
@@ -59,7 +58,7 @@
             <center><h1 class="w3-xxxlarge">หลักสูตรวิทยาการคอม</h1></center>
         </header>
         <br />
-        <a class="btn btn-group" style="background-color:black;" asp-controller="Admin" asp-action="AddCourseCs"><span style="color:white;">+ เพิ่มหลักสูตรวิทยาการคอม</span></a><br>
+        <a class="btn btn-group" style="background-color:green;" asp-controller="Admin" asp-action="AddCourseCs"><span style="color:white;">+ เพิ่มหลักสูตรวิทยาการคอม</span></a> <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-action="AddSubCs"><span style="color:white;">+ เพิ่มการจับคู่วิชา</span></a><br>
         @if (Model.Count() > 0)
         {
             <br>
