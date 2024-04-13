@@ -56,7 +56,7 @@
     <div class="w3-main" style="margin-left:250px;">
 
         <header class="w3-container" style="padding:26px 32px">
-            <h1 class="w3-xxxlarge">หลักสูตรวิทยาการคอม</h1>
+            <center><h1 class="w3-xxxlarge">หลักสูตรวิทยาการคอม</h1></center>
         </header>
         <br />
         <a class="btn btn-group" style="background-color:black;" asp-controller="Admin" asp-action="AddCourseCs"><span style="color:white;">+ เพิ่มหลักสูตรวิทยาการคอม</span></a><br>
@@ -71,6 +71,8 @@
                         <th>สถานะ</th>
 
                         @* <th>แก้ไข</th> *@
+
+                        <th>รายละเอียด</th>
                         <th>ลบ</th>
                     </tr>
                 </thead>
@@ -82,6 +84,12 @@
                             <td>@CourseCs.Codecoursecs</td>
                             <td>@CourseCs.Namecoursecs</td>
                             <td>@CourseCs.statuscoursecs</td>
+
+                            <td>
+                                <a class="btn btn-warning" asp-controller="Admin"
+                                   asp-action="DetailCourseCs"
+                                   asp-route-id="@CourseCs.Codecoursecs">View</a>
+                            </td>
 
                             @* <td>
                                 <a class="btn btn-warning" asp-controller="Admin"

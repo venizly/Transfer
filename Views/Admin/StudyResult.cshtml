@@ -45,7 +45,7 @@
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
         <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("TableData", "Admin")">ย้อนกลับ</a>
-        <a class="w3-bar-item w3-button w3-pale-blue">วิชาเทียบโอน</a>
+        <a class="w3-bar-item w3-button w3-pale-blue">เทียบโอนวิชา</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -53,9 +53,15 @@
     <div class="w3-main" style="margin-left:250px;">
         @using (Html.BeginForm("StudyResult", "Admin",new { id=ViewBag.id}, FormMethod.Post))
         {
+            <h4>รหัสนักศึกษา : @Model.FirstOrDefault()?.UserName</h4>
+            <h4>ชื่อ : @Model.FirstOrDefault()?.FirstName @Model.FirstOrDefault()?.LastName</h4>
+            <h4>หลักสูตรปวส. : @Model.FirstOrDefault()?.Namecoursetra</h4>
+            <h4>สถาบัน : @Model.FirstOrDefault()?.InsName</h4>
+            <h4>เรียนต่อหลักสูตร : @Model.FirstOrDefault()?.CourseCs</h4>
+
             <button type="submit" name="command" value="save" class="btn btn-primary my-3">บันทึก</button>
             <button type="submit" name="command" value="reset" class="btn btn-danger my-3">Reset</button>
-            <h4>รหัสนักศึกษา : @Model.FirstOrDefault()?.UserName</h4>
+            
             <table id="example" class="display">
                 <thead>
                     <tr>

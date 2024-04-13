@@ -97,6 +97,32 @@ namespace ProjectFinal1.Controllers
             IEnumerable<CsCourse> allTransfer = _db.CsCourse;
             return View(allTransfer);
         }
+        public IActionResult DetailCourseCs(int Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.V_CourseCss.Where(a => a.Codecoursecs == Id).ToList();
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        public IActionResult DetailSubCs(int Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.V_CourseCss.Find(Id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
         public IActionResult AddCourseCs()
         {
             return View();
@@ -134,6 +160,7 @@ namespace ProjectFinal1.Controllers
             IEnumerable<TraCourse> allTransfer = _db.TraCourse;
             return View(allTransfer);
         }
+
         public IActionResult AddCourseTra()
         {
             return View();
