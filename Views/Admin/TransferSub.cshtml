@@ -51,7 +51,7 @@
     <div class="w3-main" style="margin-left:250px;">
 
         <header class="w3-container" style="padding:26px 32px">
-            <h1 class="w3-xxxlarge">เทียบโอนวิชา</h1>
+            <Center><h1>@Model.FirstOrDefault()?.Namecoursecs - @Model.FirstOrDefault()?.Namecoursetra</h1></Center>
         </header>
         <br />
 
@@ -60,7 +60,7 @@
             <thead>
                 <tr>
                     <th>รหัสเทียบวิชา</th>
-                    <th>รหัสเทียบหลักสูตร</th>
+                    @* <th>รหัสเทียบหลักสูตร</th> *@
 
                     <th>ชื่อหลักสูตรวิทย์คอม</th>
                     <th>รหัสรายวิชาวิทย์คอม</th>
@@ -80,7 +80,7 @@
                 {
                     <tr>
                         <td>@TraCs.CodeSubtrans</td>
-                        <td>@TraCs.CodeCoursetran</td>
+                        @* <td>@TraCs.CodeCoursetran</td> *@
 
                         <td>@TraCs.Namecoursecs</td>
                         <td>@TraCs.Codecs</td>
@@ -88,7 +88,7 @@
                         <td>@TraCs.Namethaics</td>
 
 
-                        <td>@TraCs.Namecoursecs</td>
+                        <td>@TraCs.Namecoursetra</td>
                         <td>@TraCs.Codetra</td>
                         <td>@TraCs.Codesubtra</td>
                         <td>@TraCs.Namethaitra</td>
