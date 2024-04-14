@@ -194,7 +194,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 user.Codecoursetra = Input.Codecoursetra;
                 user.CourseCs = "หลักสูตร ปี2565";
                 user.Facebook = Input.Facebook;
-                user.Status = "ไม่มีไฟล์ทรานสคริปต์";
+                user.Status = "ไม่มี";
                 
                 await _userStore.SetUserNameAsync(user, Input.Transcode, CancellationToken.None);
                 //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

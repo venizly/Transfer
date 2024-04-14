@@ -6,8 +6,7 @@ namespace ProjectFinal1.Models
     public class TraSub
     {
         [Key]
-        public int Codesub { get; set; }
-        [Display(Name = "TraCourse")]
+        public int Codetrasub { get; set; }
         public int Codecourse { get; set; }
         [ForeignKey("Codecourse")]
         public virtual TraCourse TraCourse { get; set; }

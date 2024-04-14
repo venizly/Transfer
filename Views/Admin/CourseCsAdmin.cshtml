@@ -98,7 +98,7 @@
                             <td>
                                 <a class="btn btn-danger" asp-controller="Admin"
                                    asp-action="DeleteCourseCs"
-                                   asp-route-id="@CourseCs.Codecoursecs" onclick="return confirm('คุณต้องการจะลบหลักสูตรนี้หรือไม่')">ลบ</a>
+                                   asp-route-id="@CourseCs.Codecoursecs" onclick="return confirm('คุณต้องการจะลบ @CourseCs.Namecoursecs นี้หรือไม่')">ลบ</a>
                             </td>
                         </tr>
                     }

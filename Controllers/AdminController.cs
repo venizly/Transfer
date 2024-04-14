@@ -95,6 +95,22 @@ namespace ProjectFinal1.Controllers
             }
             return View(obj);
         }
+        public IActionResult AddSubCs()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddSubCs(CsCourseStruc obje)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.CsCourseStruc.Add(obje);
+                _db.SaveChanges();
+                return RedirectToAction("AddSubCs");
+            }
+            return View(obje);
+        }
         public IActionResult AddCourseCs()
         {
             return View();
@@ -127,12 +143,56 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("CourseCsAdmin");
         }
+        
+        //////////////////////////////////////////////////////////////////////
+       
         public IActionResult CourseTraAdmin()
         {
             IEnumerable<TraCourse> allTransfer = _db.TraCourse;
             return View(allTransfer);
         }
-
+        public IActionResult DetailCourseTra(int Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var obj = _db.V_CourseTra.Where(a => a.Codecourse == Id).ToList();
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        public IActionResult DetailSubTra(int Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.V_CourseTra.Find(Id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        public IActionResult AddSubTra()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddSubTra(TraSub obje)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.TraSub.Add(obje);
+                _db.SaveChanges();
+                return RedirectToAction("AddSubTra");
+            }
+            return View(obje);
+        }
         public IActionResult AddCourseTra()
         {
             return View();
@@ -165,6 +225,9 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("CourseTraAdmin");
         }
+
+        //////////////////////////////////////////////////////////////////////////////
+
         public IActionResult TransferCourse()
         {
             IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra;
@@ -274,22 +337,7 @@ namespace ProjectFinal1.Controllers
             return View(user_tranfer_course); ;
         }
 
-        public IActionResult AddSubCs()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult AddSubCs(CsCourseStruc obje)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.CsCourseStruc.Add(obje);
-                _db.SaveChanges();
-                return RedirectToAction("AddSubCs");
-            }
-            return View(obje);
-        }
+        
 
         public IActionResult PairSub()
         {
@@ -307,6 +355,7 @@ namespace ProjectFinal1.Controllers
             }
             return View(obje);
         }
+
         //public IActionResult EditCourse(int id)
         //{
         //    var user = _db.CsCourse.Find(id);
