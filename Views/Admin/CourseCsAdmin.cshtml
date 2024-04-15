@@ -47,7 +47,7 @@
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TableData","Admin")">ตารางข้อมูลนักศึกษา</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ตารางข้อมูลทรานสคริปต์</a>
+        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ทรานสคริปต์</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -105,7 +105,11 @@
                 </tbody>
             </table>
         }
-
+        else
+        {
+            <br />
+            <div class="alert alert-secondary">ไม่มีข้อมูลในระบบ</div>
+        }
     </div>
 
     <script>

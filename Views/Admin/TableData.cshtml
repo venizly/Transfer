@@ -48,13 +48,17 @@
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
         <a class="w3-bar-item w3-button w3-pale-blue">ตารางข้อมูลนักศึกษา</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ตารางข้อมูลทรานสคริปต์</a>
+        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ทรานสคริปต์</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
     <div class="w3-main" style="margin-left:250px;">
 
+        <header class="w3-container" style="padding:26px 32px">
+            <center><h1 class="w3-xxxlarge">ตารางข้อมูลนักศึกษา</h1></center>
+        </header>
+       
         <table id="example" class="display">
             <thead>
                 <tr>

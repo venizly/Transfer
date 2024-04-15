@@ -5,7 +5,7 @@
 <ul class="nav nav-pills flex-column">
     <li class="nav-item"><a class="nav-link" asp-area="Controller" asp-page="/Home/Index" id="profile" asp-page="./Index">Back</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+    @* <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li> *@
     <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">ChangePassword</a></li>
     @* <li class="nav-item"><a class="nav-link @ManageNavPages.PairSubNavClass(ViewContext)" asp-area="Identity" asp-page="/Account/Manage/PairSub" id="PairSub">เทียบโอนวิชา</a></li> *@
     @if (hasExternalLogins)

@@ -35,6 +35,9 @@ namespace ProjectFinal1.Controllers
         {
             return View();
         }
+
+        ///////////////////////////////////////////////////////////////////////
+
         public IActionResult CourseCs()
         {
             IEnumerable<CsCourse> cs = _db.CsCourse;
@@ -66,6 +69,9 @@ namespace ProjectFinal1.Controllers
             }
             return View(obj);
         }
+
+        ///////////////////////////////////////////////////////////////////////
+        
         public IActionResult CourseTra()
         {
             IEnumerable<TraCourse> tra = _db.TraCourse;
@@ -97,6 +103,9 @@ namespace ProjectFinal1.Controllers
             }
             return View(obj);
         }
+
+        ///////////////////////////////////////////////////////////////////////
+
         public IActionResult TransferCourse()
         {
             IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra;

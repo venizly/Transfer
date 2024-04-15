@@ -27,7 +27,7 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseCsAdmin", "Home")">ย้อนกลับ</a>
+        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseCsAdmin", "Admin")">ย้อนกลับ</a>
         <a class="w3-bar-item w3-button w3-pale-blue">เพิ่มรายวิชาวิทย์คอม</a>
 
     </nav>
@@ -36,8 +36,8 @@
 
     <div class="w3-main" style="margin-left:250px;">
 
-        <header class="w3-container" style="padding:64px 32px">
-            <h1 class="w3-xxxlarge">เพิ่มรายวิชาวิทย์คอม</h1>
+        <header class="w3-container" style="padding:26px 32px">
+            <center><h1 class="w3-xxxlarge">เพิ่มรายวิชาวิทย์คอม</h1></center>
         </header>
         <br />
         <form asp-controller="Admin" asp-action="AddSubCs" method="post">
