@@ -33,6 +33,11 @@
         thead {
             padding: 30px;
         }
+
+        .a {
+            border: white;
+            font-size: xx-large;
+        }
     </style>
 
 </head>
@@ -41,7 +46,7 @@
         <span class="w3-bar-item w3-border-bottom w3-large w3-white">User</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("SubTra", "Home")">ย้อนกลับ</a>
+        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseTra", "Home")">ย้อนกลับ</a>
         <a class="w3-bar-item w3-button w3-pale-blue">คำอธิบายรายวิชา</a>
 
     </nav>
@@ -51,15 +56,13 @@
     <div class="w3-main" style="margin-left:250px;">
 
         <header class="w3-container" style="padding:26px 32px">
-            <center><h1 class="w3-xxxlarge">คำอธิบายรายวิชา</h1></center>
+            <textarea rows="1" cols="50" asp-for="Namethaitra" class="a"></textarea>
         </header>
-        <br>
         <form id="profile-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
             <hr />
             <div class="row">
-                <label asp-for="Subdestra" class="form-label"></label>
                 <p></p>
                 <textarea rows="5" cols="50" asp-for="Subdestra" class="form-control-lg"></textarea>
             </div>

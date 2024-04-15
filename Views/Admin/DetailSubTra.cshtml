@@ -1,14 +1,12 @@
-﻿@model IEnumerable<ProjectFinal1.Models.V_CourseTra>;
-<!DOCTYPE html>
-<html lang="en">
+﻿@model V_CourseTra;
 @{
-    ViewData["Title"] = "DetailCourseTra";
+    ViewData["Title"] = "DetailSubTra";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTables Example</title>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -25,7 +23,6 @@
         body {
             font-family: "Roboto", sans-serif;
             color: black;
-            /* background: linear-gradient(to top right, #33cccc 38%, #0000ff 100%); */
         }
 
         .w3-bar-block .w3-bar-item {
@@ -33,79 +30,48 @@
             font-weight: bold;
         }
 
-        tr {
-            padding: 100px;
+        thead {
+            padding: 30px;
+        }
+
+        .a {
+            border: white;
+            font-size: xx-large;
         }
     </style>
 
 </head>
-
 <body>
-    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
-        <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:235px;background:white;" id="mySidebar">
+        <span class="w3-bar-item w3-border-bottom w3-large w3-white">User</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseTraAdmin","Admin")">ย้อนกลับ</a>
-        <a class="w3-bar-item w3-button w3-pale-blue">@Model.FirstOrDefault()?.Namecoursetra</a>
+        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseTraAdmin", "Admin")">ย้อนกลับ</a>
+        <a class="w3-bar-item w3-button w3-pale-blue">คำอธิบายรายวิชา</a>
+
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
     <div class="w3-main" style="margin-left:250px;">
 
-        <header class="w3-container w3-pale-white" style="padding:26px 32px">
-
-            <Center><h1>@Model.FirstOrDefault()?.Namecoursetra</h1></Center>
-
+        <header class="col-lg-auto" style="padding:26px 32px">
+            <textarea rows="1" cols="50" asp-for="Namethaitra" class="a"></textarea>
         </header>
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
-        <table id="example" class="display">
+            <hr />
+            <div class="row">
+                <p></p>
+                <textarea rows="5" cols="50" asp-for="Subdestra" class="form-control-lg"></textarea>
+            </div>
 
-            <thead>
-                <tr>
-                    <th>รหัสวิชา</th>
-                    <th>ชื่อวิชาไทย</th>
-                    <th>ชื่อวิชาอังกฤษ</th>
-                    <th>หน่วยกิต</th>
-                    <th>สถานะ</th>
-
-
-                    <th>คำอธิบายรายวิชา</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var CourseTra in Model)
-                {
-                    <tr>
-                        <td>@CourseTra.Codesubtra</td>
-                        <td>@CourseTra.Namethaitra</td>
-                        <td>@CourseTra.Nameengtra</td>
-                        <td>@CourseTra.Credittra</td>
-                        <td>@CourseTra.Status</td>
-
-                        <td>
-                            <center>
-                                <a class="btn btn-warning" asp-controller="Admin"
-                                   asp-action="DetailSubTra"
-                                   asp-route-id="@CourseTra.Codetrasub">Detail</a>
-                            </center>
-                        </td>
-
-                    </tr>
-                }
-            </tbody>
-        </table>
+        </form>
     </div>
 
 </body>
-</html>
 <script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-
     // Open and close the sidebar on medium and small screens
     function w3_open() {
         document.getElementById("mySidebar").style.display = "block";
@@ -143,5 +109,3 @@
     }
 
 </script>
-
-
