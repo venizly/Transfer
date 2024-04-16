@@ -54,7 +54,6 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("TableData");
         }
-        
         public IActionResult ViewImage()
         {
             //ดึงรูปออกได้ ที่อยากได้คือให้มันอยู่ตารางเดียวกันหรือใช้ ViewTable
@@ -70,6 +69,19 @@ namespace ProjectFinal1.Controllers
             return View(allTransfer);
         }
         public IActionResult DetailCourseCs(int Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.V_CourseCss.Where(a => a.Codecoursecs == Id).ToList();
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        public IActionResult FullCourseCs(int Id)
         {
             if (Id == null || Id == 0)
             {
@@ -233,7 +245,6 @@ namespace ProjectFinal1.Controllers
             IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra;
             return View(allTransfer);
         }
-
         public IActionResult TransferSub(int Id)
         {
             if (Id == null || Id == 0)
@@ -279,7 +290,6 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("TransferCourse", "Admin");
         }
-
         public IActionResult StudyResult(string id)
         {
             var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
