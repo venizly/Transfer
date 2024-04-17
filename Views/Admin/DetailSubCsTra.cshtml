@@ -1,10 +1,9 @@
-﻿ @model IEnumerable<ProjectFinal1.Models.V_CourseCss>;
-<!DOCTYPE html>
-<html lang="en">
+﻿@model V_TransferSub;
 @{
-    ViewData["Title"] = "DetailCourseCs";
+    ViewData["Title"] = "DetailSubCsTra";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,87 +30,51 @@
             font-weight: bold;
         }
 
-        tr {
-            padding: 100px;
+        thead {
+            padding: 30px;
+        }
+
+        .a {
+            border: white;
+            font-size: xx-large;
         }
     </style>
 
 </head>
-
 <body>
-    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
-        <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:235px;background:white;" id="mySidebar">
+        <span class="w3-bar-item w3-border-bottom w3-large w3-white">User</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseCsAdmin","Admin")">ย้อนกลับ</a>
-        <a class="w3-bar-item w3-button w3-pale-blue">@Model.FirstOrDefault()?.Namecoursecs</a>
+        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("TransferCourse", "Admin")">ย้อนกลับ</a>
+        <a class="w3-bar-item w3-button w3-pale-blue">คำอธิบายรายวิชา</a>
+
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
     <div class="w3-main" style="margin-left:250px;">
 
-        <header class="w3-container w3-pale-white" style="padding:26px 32px">
-
-            <Center><h1 class="w3-xxxlarge">@Model.FirstOrDefault()?.Namecoursecs</h1></Center>
-
+        <header class="w3-container" style="padding:26px 32px">
+            <textarea rows="1" cols="50" asp-for="Namethaics" class="a"></textarea><textarea rows="1" cols="50" asp-for="Namethaitra" class="a"></textarea>
         </header>
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <hr />
+            <div class="row">
+                <p></p>
+                <textarea rows="5" cols="50" asp-for="Subdescs" class="form-control-lg" disabled></textarea>
+            </div>
+            <div class="row">
+                <p></p>
+                <textarea rows="5" cols="50" asp-for="Subdestra" class="form-control-lg" disabled></textarea>
+            </div>
 
-        <table id="example" class="display">
-
-            <thead>
-                <tr>
-                    <th>รหัสรายวิชา</th>
-                    <th>รหัสกลุ่มวิชา</th>
-                    <th>ชื่อกลุ่มวิชา</th>
-                    <th>รหัสวิชา</th>
-                    <th>ชื่อวิชาไทย</th>
-                    <th>ชื่อวิชาอังกฤษ</th>
-                    <th>หน่วยกิต</th>
-                    <th>สถานะ</th>
-
-
-                    <th>คำอธิบายรายวิชา</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var CourseCs in Model)
-                {
-                    <tr>
-                        <td>@CourseCs.Codecssub</td>
-                        <td>@CourseCs.Namesubgroup</td>
-                        <td>@CourseCs.Namesubtype</td>
-                        <td>@CourseCs.Codesubcs</td>
-                        <td>@CourseCs.Namethaics</td>
-                        <td>@CourseCs.Nameengcs</td>
-                        <td>@CourseCs.Credits</td>
-                        <td>@CourseCs.Status</td>
-
-                        <td>
-                            <center>
-                                <a class="btn btn-warning" asp-controller="Admin"
-                                   asp-action="DetailSubCs"
-                                   asp-route-id="@CourseCs.Codecssub">Detail</a>
-                            </center>
-                        </td>
-
-                    </tr>
-                }
-
-
-            </tbody>
-        </table>
+        </form>
     </div>
 
 </body>
-</html>
 <script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-    });
-
     // Open and close the sidebar on medium and small screens
     function w3_open() {
         document.getElementById("mySidebar").style.display = "block";
@@ -149,4 +112,3 @@
     }
 
 </script>
-

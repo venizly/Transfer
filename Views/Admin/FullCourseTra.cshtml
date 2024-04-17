@@ -1,8 +1,8 @@
-﻿ @model IEnumerable<ProjectFinal1.Models.V_CourseCss>;
+﻿ @model IEnumerable<ProjectFinal1.Models.V_CourseTra>;
 <!DOCTYPE html>
 <html lang="en">
 @{
-    ViewData["Title"] = "DetailCourseCs";
+    ViewData["Title"] = "FullCourseTra";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <head>
@@ -43,8 +43,8 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseCsAdmin","Admin")">ย้อนกลับ</a>
-        <a class="w3-bar-item w3-button w3-pale-blue">@Model.FirstOrDefault()?.Namecoursecs</a>
+        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseTraAdmin","Admin")">ย้อนกลับ</a>
+        <a class="w3-bar-item w3-button w3-pale-blue">@Model.FirstOrDefault()?.Namecoursetra</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -53,56 +53,24 @@
 
         <header class="w3-container w3-pale-white" style="padding:26px 32px">
 
-            <Center><h1 class="w3-xxxlarge">@Model.FirstOrDefault()?.Namecoursecs</h1></Center>
+            <Center><h1 class="w3-xxxlarge">@Model.FirstOrDefault()?.Namecoursetra</h1></Center>
 
         </header>
 
-        <table id="example" class="display">
+        @foreach (var CourseCs in Model)
+        {
+            <tr>
+                <label style="color:#cc0000; font-size:large;"><td>@CourseCs.Codesubtra</td></label>
+                <p></p>
+                <td>@CourseCs.Namethaitra</td>
+                <td>@CourseCs.Nameengtra</td>
+                <td>@CourseCs.Credittra</td>
+                <p></p>
+                <td>@CourseCs.Subdestra</td>
+                <p></p>
+            </tr>
+        }
 
-            <thead>
-                <tr>
-                    <th>รหัสรายวิชา</th>
-                    <th>รหัสกลุ่มวิชา</th>
-                    <th>ชื่อกลุ่มวิชา</th>
-                    <th>รหัสวิชา</th>
-                    <th>ชื่อวิชาไทย</th>
-                    <th>ชื่อวิชาอังกฤษ</th>
-                    <th>หน่วยกิต</th>
-                    <th>สถานะ</th>
-
-
-                    <th>คำอธิบายรายวิชา</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var CourseCs in Model)
-                {
-                    <tr>
-                        <td>@CourseCs.Codecssub</td>
-                        <td>@CourseCs.Namesubgroup</td>
-                        <td>@CourseCs.Namesubtype</td>
-                        <td>@CourseCs.Codesubcs</td>
-                        <td>@CourseCs.Namethaics</td>
-                        <td>@CourseCs.Nameengcs</td>
-                        <td>@CourseCs.Credits</td>
-                        <td>@CourseCs.Status</td>
-
-                        <td>
-                            <center>
-                                <a class="btn btn-warning" asp-controller="Admin"
-                                   asp-action="DetailSubCs"
-                                   asp-route-id="@CourseCs.Codecssub">Detail</a>
-                            </center>
-                        </td>
-
-                    </tr>
-                }
-
-
-            </tbody>
-        </table>
     </div>
 
 </body>

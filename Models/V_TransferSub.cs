@@ -18,11 +18,14 @@ namespace ProjectFinal1.Models
         public int Codecs { get; set; }
         public string Codesubcs { get; set; }
         public string Namethaics { get; set; }
+        public string Subdescs { get; set; }
+
 
         public int Coursetra { get; set; }
         public string Namecoursetra { get; set; }
         public int Codetra { get; set; }
         public string Codesubtra { get; set; }
         public string Namethaitra { get; set; }
+        public string Subdestra { get; set; }
     }
 }

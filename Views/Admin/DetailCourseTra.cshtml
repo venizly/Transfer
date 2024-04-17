@@ -63,6 +63,7 @@
 
             <thead>
                 <tr>
+                    <th>รหัสรายวิชา</th>
                     <th>รหัสวิชา</th>
                     <th>ชื่อวิชาไทย</th>
                     <th>ชื่อวิชาอังกฤษ</th>
@@ -79,6 +80,7 @@
                 @foreach (var CourseTra in Model)
                 {
                     <tr>
+                        <td>@CourseTra.Codetrasub</td>
                         <td>@CourseTra.Codesubtra</td>
                         <td>@CourseTra.Namethaitra</td>
                         <td>@CourseTra.Nameengtra</td>

@@ -71,6 +71,7 @@
 
                         @* <th>แก้ไข</th> *@
                         <th>รายละเอียด</th>
+                        <th>เล่มหลักสูตร</th>
                         <th>ลบ</th>
                     </tr>
                 </thead>
@@ -89,11 +90,19 @@
                                    asp-action="DetailCourseTra"
                                    asp-route-id="@CourseTra.Codecoursetra">View</a>
                             </td>
+
+                            <td>
+                                <a class="btn btn-warning" asp-controller="Admin"
+                                   asp-action="FullCourseTra"
+                                   asp-route-id="@CourseTra.Codecoursetra">Full</a>
+                            </td>
+
                             @* <td>
                                 <a class="btn btn-warning" asp-controller="Admin"
                                    asp-action="EditCourseTra"
                                    asp-route-id="@CourseTra.Codecoursetra">แก้ไข</a>
                             </td> *@
+
                             <td>
                                 <a class="btn btn-danger" asp-controller="Admin"
                                    asp-action="DeleteCourseTra"

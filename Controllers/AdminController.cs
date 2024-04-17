@@ -176,6 +176,19 @@ namespace ProjectFinal1.Controllers
             }
             return View(obj);
         }
+        public IActionResult FullCourseTra(int Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.V_CourseTra.Where(a => a.Codecourse == Id).ToList();
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
         public IActionResult DetailSubTra(int Id)
         {
             if (Id == null || Id == 0)
@@ -252,6 +265,19 @@ namespace ProjectFinal1.Controllers
                 return NotFound();
             }
             var obj = _db.V_TransferSub.Where(a => a.CodeCoursetran == Id).ToList();
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+        public IActionResult DetailSubCsTra(int Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+            var obj = _db.V_TransferSub.Find(Id);
             if (obj == null)
             {
                 return NotFound();
