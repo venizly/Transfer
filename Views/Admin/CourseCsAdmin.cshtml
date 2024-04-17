@@ -58,7 +58,8 @@
             <center><h1 class="w3-xxxlarge">หลักสูตรวิทยาการคอม</h1></center>
         </header>
         <br />
-        <a class="btn btn-group" style="background-color:green;" asp-controller="Admin" asp-action="AddCourseCs"><span style="color:white;">+ เพิ่มหลักสูตรวิทยาการคอม</span></a> <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-action="AddSubCs"><span style="color:white;">+ เพิ่มการจับคู่วิชา</span></a><br>
+        <a class="btn btn-group" style="background-color:green;" asp-controller="Admin" asp-action="AddCourseCs"><span style="color:white;">+ เพิ่มหลักสูตรวิทยาการคอม</span></a>
+        <br />
         @if (Model.Count() > 0)
         {
             <br>
@@ -88,13 +89,13 @@
                             <td>
                                 <a class="btn btn-warning" asp-controller="Admin"
                                    asp-action="DetailCourseCs"
-                                   asp-route-id="@CourseCs.Codecoursecs">View</a>
+                                   asp-route-id="@CourseCs.Codecoursecs">ดูข้อมูล</a>
                             </td>
 
                             <td>
                                 <a class="btn btn-warning" asp-controller="Admin"
                                    asp-action="FullCourseCs"
-                                   asp-route-id="@CourseCs.Codecoursecs">Full</a>
+                                   asp-route-id="@CourseCs.Codecoursecs">ดูข้อมูล</a>
                             </td>
 
                             @* <td>

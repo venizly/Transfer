@@ -56,10 +56,25 @@
             <Center><h1 class="w3-xxxlarge">@Model.FirstOrDefault()?.Namecoursecs</h1></Center>
 
         </header>
-
+                @* var a = ""
+                var b = "" *@
                 @foreach (var CourseCs in Model)
                 {
                     <tr>
+
+                    @* @if(a != CourseCs.Namesubtype)
+                    {
+                        <label style="color:#cc0000; font-size:large;"><td>@CourseCs.Namesubtype</td></label>
+                        <p></p>
+                        a = CourseCs.Namesubtype; 
+                    }
+                    @if(b != CourseCs.Namesubgroup)
+                    {
+                        <label style="color:#4d88ff;"><td>@CourseCs.Namesubgroup</td></label>
+                        <p></p>
+                        b = CourseCs.Namesubgroup;
+                    } *@
+
                         <label style="color:#cc0000; font-size:large;"><td>@CourseCs.Namesubtype</td></label>
                         <p></p>
                         <label style="color:#4d88ff;"><td>@CourseCs.Namesubgroup</td></label>

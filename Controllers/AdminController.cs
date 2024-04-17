@@ -5,8 +5,6 @@ using ProjectFinal1.Data;
 using ProjectFinal1.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
-using Newtonsoft.Json;
-using Microsoft.EntityFrameworkCore.Sqlite.Query.Internal;
 
 namespace ProjectFinal1.Controllers
 {

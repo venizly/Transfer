@@ -93,6 +93,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             }
             using (var memoryStream = new MemoryStream())
             {
+
                 await FileUpload.FormFile.CopyToAsync(memoryStream);
                 var id = new Random().Next(0, 1000000);
                 if (memoryStream.Length < 10495849)

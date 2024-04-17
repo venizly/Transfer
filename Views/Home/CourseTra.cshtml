@@ -44,9 +44,9 @@
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
         <a class="w3-bar-item w3-button" href="@Url.Action("Index","Home")">หน้าแรก</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("CourseCs","Home")">หลักสูตรวิทย์คอม</a>
+        <a class="w3-bar-item w3-button" href="@Url.Action("FullCourseCs","Home")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button w3-pale-blue">หลักสูตรปวส.</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Home")">เทียบโอนหลักสูตร</a>
+        <a class="w3-bar-item w3-button" href="@Url.Action("TransResult","Home")">ผลการเทียบโอน</a>
         <a class="w3-bar-item w3-button" asp-area="Identity" asp-page="/Account/Image">รูปทรานสคริปต์</a>
     </nav>
 
@@ -66,6 +66,7 @@
                     <th>สถานะ</th>
 
                     <th>รายละเอียด</th>
+                    <th>เล่มหลักสูตร</th>
 
 
                 </tr>
@@ -82,6 +83,11 @@
                                 <a class="btn btn-warning" asp-controller="Home"
                                 asp-action="DetailCourseTra"
                                 asp-route-id="@courseTra.Codecoursetra">View</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" asp-controller="Home"
+                                   asp-action="FullCourseTra"
+                                   asp-route-id="@courseTra.Codecoursetra">Full</a>
                             </td>
                     </tr>
                 }

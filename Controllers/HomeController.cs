@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using ProjectFinal1.Areas.Identity.Data;
+using ProjectFinal1.Data;
 using ProjectFinal1.Models;
 using System.Diagnostics;
-using ProjectFinal1.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
-using Newtonsoft.Json;
-using ProjectFinal1.Data;
-using System.ComponentModel.DataAnnotations;
 
 namespace ProjectFinal1.Controllers
 {
@@ -22,7 +20,6 @@ namespace ProjectFinal1.Controllers
         {
             _db = Db;
             this._userManager = userManager;
-            _userManager = userManager;
             this._signManager = signManager;
         }
 
@@ -38,40 +35,45 @@ namespace ProjectFinal1.Controllers
 
         ///////////////////////////////////////////////////////////////////////
 
-        public IActionResult CourseCs()
+        //public IActionResult CourseCs()
+        //{
+        //    IEnumerable<CsCourse> cs = _db.CsCourse;
+        //    return View(cs);
+        //}
+        //public IActionResult DetailSubCs(int Id)
+        //{
+        //    if (Id == null || Id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var obj = _db.V_CourseCss.Find(Id);
+        //    if (obj == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(obj);
+        //}
+        //public IActionResult DetailCourseCs(int Id)
+        //{
+        //    if (Id == null || Id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var obj = _db.V_CourseCss.Where(a=>a.Codecoursecs==Id).ToList();
+        //    if (obj == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(obj);
+        //}
+        public IActionResult FullCourseCs()
         {
-            IEnumerable<CsCourse> cs = _db.CsCourse;
-            return View(cs);
-        }
-        public IActionResult DetailSubCs(int Id)
-        {
-            if (Id == null || Id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _db.V_CourseCss.Find(Id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
-        }
-        public IActionResult DetailCourseCs(int Id)
-        {
-            if (Id == null || Id == 0)
-            {
-                return NotFound();
-            }
-            var obj = _db.V_CourseCss.Where(a=>a.Codecoursecs==Id).ToList();
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
+            IEnumerable<V_CourseCss> tra = _db.V_CourseCss;
+            return View(tra);
         }
 
         ///////////////////////////////////////////////////////////////////////
-        
+
         public IActionResult CourseTra()
         {
             IEnumerable<TraCourse> tra = _db.TraCourse;
@@ -103,26 +105,26 @@ namespace ProjectFinal1.Controllers
             }
             return View(obj);
         }
-
-        ///////////////////////////////////////////////////////////////////////
-
-        public IActionResult TransferCourse()
-        {
-            IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra;
-            return View(allTransfer);
-        }
-        public IActionResult TransferSub(int Id)
+        public IActionResult FullCourseTra(int Id)
         {
             if (Id == null || Id == 0)
             {
                 return NotFound();
             }
-            var obj = _db.V_TransferSub.Where(a => a.CodeCoursetran == Id).ToList();
+            var obj = _db.V_CourseTra.Where(a => a.Codecourse == Id).ToList();
             if (obj == null)
             {
                 return NotFound();
             }
             return View(obj);
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+
+        public IActionResult TransResult()
+        {
+            IEnumerable<TableTransfer> Re = _db.TableTransfer;
+            return View(Re);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

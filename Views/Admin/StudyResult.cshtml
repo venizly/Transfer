@@ -79,7 +79,7 @@
                     {
                         <tr>
                            
-                            <td>@Model[i].CodeCoursetrans</td>
+                            <td>@Model[i].CodeSubtrans</td>
                             <td>@Model[i].Namethaitra</td>
                             <td>@Model[i].Namethaics</td>
                             <td>
@@ -94,27 +94,6 @@
                         </tr>
                     }
 
-                    @* @foreach (var DataUser in Model)
-                {
-                <tr>
-                <td>@DataUser.Transcode</td>
-                <td>@DataUser.Id</td>
-                <td>@DataUser.Codetrasub</td>
-                <td>@DataUser.Codesubtra</td>
-                <td>@DataUser.Namethaitra</td>
-                <td>@DataUser.GradeTra</td>
-                <td>@DataUser.Codecssub</td>
-                <td>@DataUser.Codesubcs</td>
-                <td>@DataUser.Namethaics</td>
-
-                <td>
-                <a class="btn btn-danger" asp-controller="Admin"
-                asp-action="DeleteUser"
-                asp-route-id="@DataUser.Id" onclick="return confirm('คุณต้องการจะลบ @DataUser.Transcode @DataUser.FirstName @DataUser.LastName')">Delete</a>
-                </td>
-
-                </tr>
-                } *@
                 </tbody>
             </table>
         }
