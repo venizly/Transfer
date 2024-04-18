@@ -41,9 +41,6 @@
                @*  <input asp-for="Input.InsCode" class="form-control" autocomplete="Inscode" aria-required="true" placeholder="รหัสสถาบัน" /> *@
                <select asp-for="Input.InsCode" class="form-control" aria-required="true" placeholder="รหัสสถาบัน">
                         <option hidden value=""></option>
-                        <option value="706">
-                            706-มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก วิทยาเขตบางพระ
-                        </option>
                         <option value="82200404">
                             82200404-วิทยาลัยเทคโนโลยีอักษรพัทยา
                         </option>
@@ -85,9 +82,9 @@
             </div>
             <div class="form-floating mb-3" hidden>
                     <select asp-for="Input.Status" class="form-control" autocomplete="Status" aria-required="true" placeholder="Status">
-                        <option value="ไม่มีไฟล์ทรานสคริปต์">ไม่มีไฟล์ทรานสคริปต์</option>
+                        <option value="ไม่มี">ไม่มี</option>
                     </select>
-                <label asp-for="Input.Status">สถานะ <label style="color:red;">(ปกติ ค้างชำระ)</label></label>
+                <label asp-for="Input.Status">สถานะ</label>
                 <span asp-validation-for="Input.Status" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
