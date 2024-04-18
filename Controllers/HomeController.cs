@@ -123,7 +123,7 @@ namespace ProjectFinal1.Controllers
 
         public IActionResult TransResult()
         {
-            IEnumerable<TableTransfer> Re = _db.TableTransfer;
+            IEnumerable<V_User_Tranfer_Course> Re = _db.V_User_Tranfer_Courses.Where(a => a.UserName == User.Identity.Name && !a.IsHide && a.GradeTra != null);
             return View(Re);
         }
 

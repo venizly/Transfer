@@ -33,14 +33,6 @@ namespace ProjectFinal1.Models
         [ForeignKey("Codecoursetra")]
         public virtual TraCourse TraCourse { get; set; }
 
-        //[PersonalData]
-        //[Column(TypeName = "nvarchar(100)")]
-        //public string Namecoursetra { get; set; }
-
-        //[PersonalData]
-        //[Column(TypeName = "nvarchar(100)")]
-        //public string InsName { get; set; }
-
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string Facebook { get; set; }
@@ -50,6 +42,10 @@ namespace ProjectFinal1.Models
         public string Status { get; set; }
         [NotMapped]
         public bool HaveTranfer { get; set; }
+        [PersonalData]
+        public string? FileName { get; set; }
+        [PersonalData]
+        public byte[]? FileContent { get; set; }
 
     }
 }

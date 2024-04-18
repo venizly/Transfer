@@ -6,6 +6,7 @@ namespace ProjectFinal1.Models
     public class TransferSub
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CodeSubtrans { get; set; }
         public int CodeCoursetran { get; set; }
         public int Codecs { get; set; }

@@ -47,5 +47,9 @@ public class AppilcationUser : IdentityUser
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
     public string Status { get; set; }
+    [PersonalData]
+    public string? FileName { get; set; }
+    [PersonalData]
+    public byte[]? FileContent { get; set; }
 }
 
