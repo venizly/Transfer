@@ -44,20 +44,17 @@
             <div class="row">
 
                 <div class="col-lg-3">
-                    <label asp-for="Codecoursetra">รหัสหลักสูตร</label>
-                    <input type="text" asp-for="Codecoursetra" class="form-control">
-                    <span asp-validation-for="Codecoursetra" class="text-danger"></span>
-                </div>
-
-                <div class="col-lg-3">
-                    <label asp-for="Namecoursetra">ชื่อหลักสูตร</label>
+                    <label asp-for="Namecoursetra">ชื่อหลักสูตรปวส.</label>
                     <input type="text" asp-for="Namecoursetra" class="form-control">
                     <span asp-validation-for="Namecoursetra" class="text-danger"></span>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-3" hidden>
                     <label asp-for="statuscoursetra">สถานะ</label>
-                    <input type="text" asp-for="statuscoursetra" class="form-control">
+                    @* <input type="text" asp-for="statuscoursetra" class="form-control"> *@
+                    <select asp-for="statuscoursetra" class="form-control" autocomplete="statuscoursetra" aria-required="true" placeholder="statuscoursetra">
+                        <option value="เปิดใช้งาน">เปิดใช้งาน</option>
+                    </select>
                     <span asp-validation-for="statuscoursetra" class="text-danger"></span>
                 </div>
 

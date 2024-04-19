@@ -54,12 +54,10 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button" href="@Url.Action("Index","Home")">หน้าแรก</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
         <a class="w3-bar-item w3-button w3-pale-blue">ตารางข้อมูลนักศึกษา</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ทรานสคริปต์</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -76,7 +74,8 @@
                     <th>รหัสนักศึกษา</th>
                     <th>ชื่อ</th>
                     <th>นามสกุล</th>
-                    <th>อิเมล</th>
+                    <th>อีเมล</th>
+                    <th>สถานะรูป</th>
                     <th>ทรานสคริปต์</th>
 
                     <th>เทียบโอนวิชา</th>
@@ -92,6 +91,7 @@
                         <td>@DataUser.FirstName</td>
                         <td>@DataUser.LastName</td>
                         <td>@DataUser.Email</td>
+                        <td>@DataUser.Status</td>
                         <td>
                             @if (DataUser.FileContent != null && DataUser.FileContent.Length > 0)
                             {

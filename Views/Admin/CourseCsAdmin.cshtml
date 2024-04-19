@@ -42,12 +42,12 @@
     <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("Index", "Home")">หน้าแรก</a>
+        
         <a class="w3-bar-item w3-button w3-pale-blue">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TableData","Admin")">ตารางข้อมูลนักศึกษา</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ทรานสคริปต์</a>
+
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -55,10 +55,10 @@
     <div class="w3-main" style="margin-left:250px;">
 
         <header class="w3-container" style="padding:26px 32px">
-            <center><h1 class="w3-xxxlarge">หลักสูตรวิทยาการคอม</h1></center>
+            <center><h1 class="w3-xxxlarge">หลักสูตรวิทย์คอม</h1></center>
         </header>
         <br />
-        <a class="btn btn-group" style="background-color:green;" asp-controller="Admin" asp-action="AddCourseCs"><span style="color:white;">+ เพิ่มหลักสูตรวิทยาการคอม</span></a>
+        <a class="btn btn-group" style="background-color:green;" asp-controller="Admin" asp-action="AddCourseCs"><span style="color:white;">+ เพิ่มหลักสูตรวิทย์คอม</span></a> <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-action="AddSubCs"><span style="color:white;">+ เพิ่มรหัสรายวิชาวิทย์คอม</span></a><br>
         <br />
         @if (Model.Count() > 0)
         {

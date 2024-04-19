@@ -24,6 +24,8 @@ namespace ProjectFinal1.Models
         public string InsName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Codesubcs { get; set; }
+        public string Codesubtra { get; set; }
 
     }
 }
