@@ -1,4 +1,5 @@
-﻿@model TransferCourse;
+﻿@using ProjectFinal1.DTOs
+@model PaireCoursePageDTO;
 @{
     ViewData["Title"] = "PairCourse";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -57,20 +58,59 @@
         <form method="POST" asp-controller="Admin" asp-action="PairCourse">
             <div class="row">
                 <div class="col-lg-3">
-                    <label asp-for="CodeCoursetrans">รหัสเทียบหลักสูตร</label>
-                    <input type="text" asp-for="CodeCoursetrans" class="form-control" required>
-                    <span asp-validation-for="CodeCoursetrans" class="text-danger"></span>
+                    <label asp-for="Data.CodeCoursetrans">รหัสเทียบหลักสูตร</label>
+                    <select asp-for="Data.CodeCoursetrans" class="form-control" aria-required="true" placeholder="รหัสเทียบหลักสูตร">
+                        <option hidden value=""></option>
+                        @foreach (var item in Model.CourseCsTr)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
+                       
+                    
+                    </select>
+                    <span asp-validation-for="Data.CodeCoursetrans" class="text-danger"></span>
                 </div>
                 <div class="col-lg-3">
-                    <label asp-for="Coursetra">รหัสหลักสูตรปวส.</label>
-                    <input type="text" asp-for="Coursetra" class="form-control" required>
-                    <span asp-validation-for="Coursetra" class="text-danger"></span>
+                    
+
+
+                    <label asp-for="Data.Coursetra">รหัสหลักสูตรปวส</label>
+                    <select asp-for="Data.Coursetra" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรปวส">
+                        <option hidden value=""></option>
+                        @foreach (var item in Model.TraCourse)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
+
+
+                    </select>
+                    <span asp-validation-for="Data.Coursetra" class="text-danger"></span>
+
+
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Coursecs">รหัสหลักสูตรวิทย์คอม</label>
-                    <input type="text" asp-for="Coursecs" class="form-control" required>
-                    <span asp-validation-for="Coursecs" class="text-danger"></span>
+              
+
+
+                    <label asp-for="Data.Coursecs">รหัสหลักสูตรวิทย์คอม</label>
+                    <select asp-for="Data.Coursecs" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรวิทย์คอม">
+                        <option hidden value=""></option>
+                        @foreach (var item in Model.CsCourse)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
+
+
+                    </select>
+                    <span asp-validation-for="Data.Coursecs" class="text-danger"></span>
+
                 </div>
             </div>
 

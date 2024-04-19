@@ -5,6 +5,8 @@ using ProjectFinal1.Data;
 using ProjectFinal1.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using ProjectFinal1.DTOs;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ProjectFinal1.Controllers
 {
@@ -25,15 +27,7 @@ namespace ProjectFinal1.Controllers
         public IActionResult TableData()
         {
             List<DataUser> allTransfer = _db.DataUsers.ToList();
-            foreach (var item in allTransfer)
-            {
 
-                if (_db.V_User_Tranfer_Courses.Any(a => a.GradeTra != null && a.GradeTra != ""
-                && a.UserName == item.UserName && a.CourseCs == item.CourseCs && a.Codecoursetra == item.Codecoursetra))
-                {
-                    item.HaveTranfer = true;
-                }
-            }
             return View(allTransfer);
         }
         public IActionResult DeleteUser(string id)
@@ -153,9 +147,9 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("CourseCsAdmin");
         }
-        
+
         //////////////////////////////////////////////////////////////////////
-       
+
         public IActionResult CourseTraAdmin()
         {
             IEnumerable<TraCourse> allTransfer = _db.TraCourse;
@@ -284,19 +278,45 @@ namespace ProjectFinal1.Controllers
         }
         public IActionResult PairCourse()
         {
-            return View();
+
+
+            return View(getPairPageModel());
+        }
+        PaireCoursePageDTO getPairPageModel()
+        {
+
+            PaireCoursePageDTO pageModel = new PaireCoursePageDTO();
+            IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra.ToList();
+            var cs = _db.CsCourse.ToList();
+            var tran = _db.TraCourse.ToList();
+            pageModel.CsCourse = cs.Select(a => new SelectListItem()
+            {
+                Text = a.Namecoursecs,
+                Value = $"{a.Codecoursecs}"
+            }).ToList();
+            pageModel.TraCourse = tran.Select(a => new SelectListItem()
+            {
+                Value = $"{a.Codecoursetra}",
+                Text = a.Namecoursetra
+            }).ToList();
+            pageModel.CourseCsTr = allTransfer.Select(a => new SelectListItem()
+            {
+                Text = $"{a.Namecoursecs}({a.Namecoursetra})"
+            ,
+                Value = $"{a.CodeCoursetrans}"
+            }).ToList();
+            return pageModel;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult PairCourse(TransferCourse obje)
+        public IActionResult PairCourse(PaireCoursePageDTO obje)
         {
-            if (ModelState.IsValid)
-            {
-                _db.TransferCourse.Add(obje);
+ 
+                _db.TransferCourse.Add(obje.Data);
                 _db.SaveChanges();
                 return RedirectToAction("TransferCourse");
-            }
-            return View(obje);
+
+           
         }
         public IActionResult DeleteCourse(int? id)
         {
@@ -327,7 +347,7 @@ namespace ProjectFinal1.Controllers
         {
             if (command == "reset")
             {
-               var resetData= _db.TableTransfer.Where(a => a.UserId == id && a.IsHide == true).ToList();
+                var resetData = _db.TableTransfer.Where(a => a.UserId == id && a.IsHide == true).ToList();
                 if (resetData != null)
                 {
                     foreach (var item in resetData)
@@ -337,7 +357,7 @@ namespace ProjectFinal1.Controllers
                     }
                 }
             }
-            else  if (saveData != null && saveData.Any())
+            else if (saveData != null && saveData.Any())
             {
                 int lastId = _db.TableTransfer.Any() ? _db.TableTransfer.Max(a => a.TransReCode) : 0;
                 foreach (var item in saveData)
@@ -371,7 +391,7 @@ namespace ProjectFinal1.Controllers
             return View(user_tranfer_course); ;
         }
 
-        
+
 
         public IActionResult PairSub()
         {

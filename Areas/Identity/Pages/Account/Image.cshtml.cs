@@ -93,18 +93,21 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             }
             using (var memoryStream = new MemoryStream())
             {
-
+                var updateUser = _context.Users.FirstOrDefault(a=>a.UserName==user.UserName);
                 await FileUpload.FormFile.CopyToAsync(memoryStream);
                 //var id = new Random().Next(0, 1000000);
                 if (memoryStream.Length < 10495849)
                 {
-                    var file = new AppFile()
-                    {
-                        Transcode = Input.Transcode,
-                        FileName = FileUpload.FormFile.FileName,
-                        Content = memoryStream.ToArray()
-                    };
-                    _context.File.Add(file);
+                    //var file = new AppFile()
+                    //{
+                    //    Transcode = Input.Transcode,
+                    //    FileName = FileUpload.FormFile.FileName,
+                    //    Content = memoryStream.ToArray()
+                    //};
+
+                    updateUser.FileName = FileUpload.FormFile.FileName;
+                    updateUser.FileContent = memoryStream.ToArray();
+                    _context.Entry(updateUser).State=EntityState.Modified;
 
                     await _context.SaveChangesAsync();
                 }

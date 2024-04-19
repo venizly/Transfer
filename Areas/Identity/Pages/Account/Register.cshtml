@@ -39,29 +39,29 @@
             </div>
             <div class="form-floating mb-3">
                @*  <input asp-for="Input.InsCode" class="form-control" autocomplete="Inscode" aria-required="true" placeholder="รหัสสถาบัน" /> *@
-               <select asp-for="Input.InsCode" class="form-control" aria-required="true" placeholder="รหัสสถาบัน">
+                    <select asp-for="Input.InsCode" class="form-control" aria-required="true" placeholder="รหัสสถาบัน">
                         <option hidden value=""></option>
-                        <option value="82200404">
-                            82200404-วิทยาลัยเทคโนโลยีอักษรพัทยา
-                        </option>
-                </select>
-                <label asp-for="Input.InsCode">รหัสสถาบัน</label>
-                <span asp-validation-for="Input.InsCode" class="text-danger"></span>
+                        @foreach (var item in Model.Ins)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
+                    </select>
+                    <label asp-for="Input.InsCode">รหัสสถาบัน</label>
+                    <span asp-validation-for="Input.InsCode" class="text-danger"></span>
             </div>
              
             <div class="form-floating mb-3">
                 @* <input asp-for="Input.Codecoursetra" class="form-control" autocomplete="Codecoursetra" aria-required="true" placeholder="รหัสหลักสูตรปวส." /> *@
                 <select asp-for="Input.Codecoursetra" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรปวส.">
                         <option hidden value=""></option>
-                        <option value="1">
-                            1-สาขาวิชาการบัญชี
-                        </option>
-                        <option value="2">
-                            2-สาขาวิชาการตลาด
-                        </option>
-                        <option value="3">
-                            3-สาขาวิชาการดนตรี
-                        </option>
+                        @foreach (var item in Model.TraCourse)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
                 </select>
                 <label asp-for="Input.Codecoursetra">รหัสหลักสูตรปวส.</label>
                 <span asp-validation-for="Input.Codecoursetra" class="text-danger"></span>

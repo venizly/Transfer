@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
@@ -38,7 +39,8 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly IWebHostEnvironment _hostenvironment;
         private readonly ProjectFinal1.Data.ProjectDbContext _context;
-
+        public List<SelectListItem> TraCourse { get; set; }
+        public List<SelectListItem> Ins { get; set; }
         public RegisterModel(
             UserManager<AppilcationUser> userManager,
             IUserStore<AppilcationUser> userStore,
@@ -57,9 +59,20 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _hostenvironment = webHostEnvironment;
             _context = context;
+            TraCourse = _context.TraCourse.ToList().Select(a => new SelectListItem()
+            {
+                Text = a.Namecoursetra,
+                Value = $"{a.Codecoursetra}"
+            }).ToList();
+
+            Ins = _context.Ins.ToList().Select(a => new SelectListItem()
+            {
+                Text = a.InsName,
+                Value = $"{a.InsCode}"
+            }).ToList();
         }
 
-        
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -100,7 +113,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             [DataType(DataType.Text)]
             [Display(Name = "InsCode")]
             public int InsCode { get; set; }
-            
+
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "CourseCs")]
@@ -110,7 +123,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             [DataType(DataType.Text)]
             [Display(Name = "Facebook")]
             public string Facebook { get; set; }
-            
+
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Codecoursetra")]
@@ -149,7 +162,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            
+
         }
 
 
@@ -166,7 +179,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            
+
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
@@ -182,20 +195,20 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                         Transcode = Input.Transcode,
                     };
                 }
-                
+
 
                 var user = CreateUser();
 
                 user.Email = Input.Email;
                 user.Transcode = Input.Transcode;
-                user.FirstName = Input.FirstName; 
+                user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.InsCode = Input.InsCode;
                 user.Codecoursetra = Input.Codecoursetra;
                 user.CourseCs = "หลักสูตร ปี2565";
                 user.Facebook = Input.Facebook;
                 user.Status = "ไม่มี";
-                
+
                 await _userStore.SetUserNameAsync(user, Input.Transcode, CancellationToken.None);
                 //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -231,7 +244,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-            
+
 
             // If we got this far, something failed, redisplay form
             return Page();
