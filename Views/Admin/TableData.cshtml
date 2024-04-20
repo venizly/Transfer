@@ -77,6 +77,7 @@
                     <th>อีเมล</th>
                     <th>สถานะรูป</th>
                     <th>ทรานสคริปต์</th>
+                    <th>เล่มหลักสูตร</th>
 
                     <th>เทียบโอนวิชา</th>
                     <th>ลบ</th>
@@ -100,9 +101,11 @@
                                 <br />
 
                             }
+                        </td>
+                        <td>
                             @if (DataUser.FileContent2 != null && DataUser.FileContent2.Length > 0)
                             {
-                                <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">ทรานสคริปต์: @DataUser.FileName2</a>
+                                <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">หลักสูตร: @DataUser.FileName2</a>
 
                             }
                         </td>
