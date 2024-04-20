@@ -18,7 +18,6 @@ public class ProjectDbContext : IdentityDbContext<AppilcationUser>
     public DbSet<CsCourseStruc> CsCourseStruc { get; set; }
     public DbSet<CsSubgroup> CsSubgroup { get; set; }
     public DbSet<CsSubtype> CsSubtype { get; set; }
-    public DbSet<Ins> Ins { get; set; }
     public DbSet<TraCourse> TraCourse { get; set; }
     public DbSet<TraSub> TraSub { get; set; }
     public DbSet<TransferSub> TransferSub { get; set; }

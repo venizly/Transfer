@@ -37,8 +37,8 @@
                     </div>
                 </div>
             </div>
-            <div class="form-floating mb-3">
-               @*  <input asp-for="Input.InsCode" class="form-control" autocomplete="Inscode" aria-required="true" placeholder="รหัสสถาบัน" /> *@
+            @* <div class="form-floating mb-3">
+                    <input asp-for="Input.InsCode" class="form-control" autocomplete="Inscode" aria-required="true" placeholder="รหัสสถาบัน" />
                     <select asp-for="Input.InsCode" class="form-control" aria-required="true" placeholder="รหัสสถาบัน">
                         <option hidden value=""></option>
                         @foreach (var item in Model.Ins)
@@ -50,7 +50,7 @@
                     </select>
                     <label asp-for="Input.InsCode">รหัสสถาบัน</label>
                     <span asp-validation-for="Input.InsCode" class="text-danger"></span>
-            </div>
+            </div> *@
              
             <div class="form-floating mb-3">
                 @* <input asp-for="Input.Codecoursetra" class="form-control" autocomplete="Codecoursetra" aria-required="true" placeholder="รหัสหลักสูตรปวส." /> *@

@@ -40,7 +40,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         private readonly IWebHostEnvironment _hostenvironment;
         private readonly ProjectFinal1.Data.ProjectDbContext _context;
         public List<SelectListItem> TraCourse { get; set; }
-        public List<SelectListItem> Ins { get; set; }
+        //public List<SelectListItem> Ins { get; set; }
         public RegisterModel(
             UserManager<AppilcationUser> userManager,
             IUserStore<AppilcationUser> userStore,
@@ -65,11 +65,11 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 Value = $"{a.Codecoursetra}"
             }).ToList();
 
-            Ins = _context.Ins.ToList().Select(a => new SelectListItem()
-            {
-                Text = a.InsName,
-                Value = $"{a.InsCode}"
-            }).ToList();
+            //Ins = _context.Ins.ToList().Select(a => new SelectListItem()
+            //{
+            //    Text = a.InsName,
+            //    Value = $"{a.InsCode}"
+            //}).ToList();
         }
 
 
@@ -109,10 +109,10 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             [Display(Name = "Transcode")]
             public string Transcode { get; set; }
 
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "InsCode")]
-            public int InsCode { get; set; }
+            //[Required]
+            //[DataType(DataType.Text)]
+            //[Display(Name = "InsCode")]
+            //public int InsCode { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
@@ -203,7 +203,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 user.Transcode = Input.Transcode;
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.InsCode = Input.InsCode;
+                //user.InsCode = Input.InsCode;
                 user.Codecoursetra = Input.Codecoursetra;
                 user.CourseCs = "หลักสูตร ปี2565";
                 user.Facebook = Input.Facebook;

@@ -23,11 +23,6 @@ namespace ProjectFinal1.Models
         public string CourseCs { get; set; }
 
         [PersonalData]
-        [Display(Name = "Ins")]
-        public int InsCode { get; set; }
-        [ForeignKey("InsCode")]
-        public virtual Ins Ins { get; set; }
-        [PersonalData]
         [Display(Name = "TraCourse")]
         public int Codecoursetra { get; set; }
         [ForeignKey("Codecoursetra")]

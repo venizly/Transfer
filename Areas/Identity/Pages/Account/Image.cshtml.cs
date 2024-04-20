@@ -98,13 +98,6 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 //var id = new Random().Next(0, 1000000);
                 if (memoryStream.Length < 10495849)
                 {
-                    //var file = new AppFile()
-                    //{
-                    //    Transcode = Input.Transcode,
-                    //    FileName = FileUpload.FormFile.FileName,
-                    //    Content = memoryStream.ToArray()
-                    //};
-
                     updateUser.FileName = FileUpload.FormFile.FileName;
                     updateUser.FileContent = memoryStream.ToArray();
                     _context.Entry(updateUser).State=EntityState.Modified;
