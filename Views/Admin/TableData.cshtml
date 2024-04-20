@@ -95,7 +95,14 @@
                         <td>
                             @if (DataUser.FileContent != null && DataUser.FileContent.Length > 0)
                             {
-                                <img class="zoom" src="data:@DataUser.FileName;base64,@Convert.ToBase64String(DataUser.FileContent)" style="width:100px;height:100px;" ALIGN="middle" />
+                                <a href="/admin/PdfView?fileName=@DataUser.FileName&userName=@DataUser.UserName" target="_blank">ทรานสคริปต์: @DataUser.FileName</a>
+
+                                <br />
+
+                            }
+                            @if (DataUser.FileContent2 != null && DataUser.FileContent2.Length > 0)
+                            {
+                                <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">ทรานสคริปต์: @DataUser.FileName2</a>
 
                             }
                         </td>

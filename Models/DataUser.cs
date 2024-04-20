@@ -22,11 +22,11 @@ namespace ProjectFinal1.Models
         [Column(TypeName = "nvarchar(100)")]
         public string CourseCs { get; set; }
 
-        [PersonalData]
-        [Display(Name = "Ins")]
-        public int InsCode { get; set; }
-        [ForeignKey("InsCode")]
-        public virtual Ins Ins { get; set; }
+        //[PersonalData]
+        //[Display(Name = "Ins")]
+        //public int InsCode { get; set; }
+        //[ForeignKey("InsCode")]
+        //public virtual Ins Ins { get; set; }
         [PersonalData]
         [Display(Name = "TraCourse")]
         public int Codecoursetra { get; set; }
@@ -46,6 +46,11 @@ namespace ProjectFinal1.Models
         public string? FileName { get; set; }
         [PersonalData]
         public byte[]? FileContent { get; set; }
+
+        [PersonalData]
+        public string? FileName2 { get; set; }
+        [PersonalData]
+        public byte[]? FileContent2 { get; set; }
 
     }
 }

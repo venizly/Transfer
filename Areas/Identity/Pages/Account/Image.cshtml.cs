@@ -15,8 +15,8 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         private readonly ProjectFinal1.Data.ProjectDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public ImageModel(SignInManager<AppilcationUser> signInManager, ProjectFinal1.Data.ProjectDbContext context, 
-            UserManager<AppilcationUser> userInManager,IWebHostEnvironment hostEnvironment
+        public ImageModel(SignInManager<AppilcationUser> signInManager, ProjectFinal1.Data.ProjectDbContext context,
+            UserManager<AppilcationUser> userInManager, IWebHostEnvironment hostEnvironment
             )
         {
             _signInManager = signInManager;
@@ -64,6 +64,9 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         [BindProperty]
         public FileViewModel FileUpload { get; set; }
 
+        [BindProperty]
+        public FileViewModel FileUpload2 { get; set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userInManager.GetUserAsync(User);
@@ -84,40 +87,70 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 StatusMessage = "ä¿ÅìÃÙ»ÀÒ¾äÁè¶Ù¡µéÍ§";
                 return RedirectToPage();
             }
-            if(FileUpload.FormFile.Length > 0)
+            var updateUser = _context.Users.FirstOrDefault(a => a.UserName == user.UserName);
+
+            if (FileUpload.FormFile != null && FileUpload.FormFile.Length > 0)
             {
-                using (var stream = new FileStream(Path.Combine(_hostEnvironment.WebRootPath, "uploadfiles", FileUpload.FormFile.FileName), FileMode.Create))
+                using (var memoryStream = new MemoryStream())
                 {
-                    await FileUpload.FormFile.CopyToAsync(stream);
+
+                    await FileUpload.FormFile.CopyToAsync(memoryStream);
+                    //var id = new Random().Next(0, 1000000);
+                    if (memoryStream.Length < 10495849)
+                    {
+                        //var file = new AppFile()
+                        //{
+                        //    Transcode = Input.Transcode,
+                        //    FileName = FileUpload.FormFile.FileName,
+                        //    Content = memoryStream.ToArray()
+                        //};
+
+                        updateUser.FileName = FileUpload.FormFile.FileName;
+                        updateUser.FileContent = memoryStream.ToArray();
+
+                    }
+                    else
+                    {
+                        StatusMessage = "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»";
+                        ModelState.AddModelError("File", "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»");
+                        return RedirectToPage();
+                    }
+
+
+
                 }
             }
-            using (var memoryStream = new MemoryStream())
+
+
+            if (FileUpload2.FormFile != null && FileUpload2.FormFile.Length > 0)
             {
-                var updateUser = _context.Users.FirstOrDefault(a=>a.UserName==user.UserName);
-                await FileUpload.FormFile.CopyToAsync(memoryStream);
-                //var id = new Random().Next(0, 1000000);
-                if (memoryStream.Length < 10495849)
+                using (var memoryStream = new MemoryStream())
                 {
-                    //var file = new AppFile()
-                    //{
-                    //    Transcode = Input.Transcode,
-                    //    FileName = FileUpload.FormFile.FileName,
-                    //    Content = memoryStream.ToArray()
-                    //};
 
-                    updateUser.FileName = FileUpload.FormFile.FileName;
-                    updateUser.FileContent = memoryStream.ToArray();
-                    _context.Entry(updateUser).State=EntityState.Modified;
+                    await FileUpload2.FormFile.CopyToAsync(memoryStream);
+                    //var id = new Random().Next(0, 1000000);
+                    if (memoryStream.Length < 10495849)
+                    {
+                       
+                        updateUser.FileName2 = FileUpload2.FormFile.FileName;
+                        updateUser.FileContent2 = memoryStream.ToArray();
 
-                    await _context.SaveChangesAsync();
-                }
-                else
-                {
-                    StatusMessage = "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»";
-                    ModelState.AddModelError("File", "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»");
-                    return RedirectToPage();
+                    }
+                    else
+                    {
+                        StatusMessage = "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»";
+                        ModelState.AddModelError("File", "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»");
+                        return RedirectToPage();
+                    }
+
+
+
                 }
             }
+
+
+            _context.Entry(updateUser).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
             StatusMessage = "¤Ø³ä´éÊè§ä¿ÅìÃÙ»ÀÒ¾ÊÓàÃç¨";
             return RedirectToPage();
         }

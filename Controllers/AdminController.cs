@@ -7,6 +7,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using ProjectFinal1.DTOs;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.IO;
+using System.Collections;
+using Microsoft.CodeAnalysis.Differencing;
 
 namespace ProjectFinal1.Controllers
 {
@@ -29,6 +32,20 @@ namespace ProjectFinal1.Controllers
             List<DataUser> allTransfer = _db.DataUsers.ToList();
 
             return View(allTransfer);
+        }
+        [HttpGet]
+        public FileContentResult PdfView(string fileName,string userName)
+        {
+            var user =_db.Users.FirstOrDefault(a => a.UserName == userName);
+            if(user.FileName== fileName)
+            {
+                return new FileContentResult(user.FileContent, "application/pdf");
+            }
+            else
+            {
+                return new FileContentResult(user.FileContent2, "application/pdf");
+            }
+            
         }
         public IActionResult DeleteUser(string id)
         {

@@ -65,11 +65,11 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 Value = $"{a.Codecoursetra}"
             }).ToList();
 
-            Ins = _context.Ins.ToList().Select(a => new SelectListItem()
-            {
-                Text = a.InsName,
-                Value = $"{a.InsCode}"
-            }).ToList();
+            //Ins = _context.Ins.ToList().Select(a => new SelectListItem()
+            //{
+            //    Text = a.InsName,
+            //    Value = $"{a.InsCode}"
+            //}).ToList();
         }
 
 
@@ -203,7 +203,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 user.Transcode = Input.Transcode;
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-                user.InsCode = Input.InsCode;
+               // user.InsCode = Input.InsCode;
                 user.Codecoursetra = Input.Codecoursetra;
                 user.CourseCs = "หลักสูตร ปี2565";
                 user.Facebook = Input.Facebook;
