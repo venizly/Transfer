@@ -43,12 +43,10 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button" href="@Url.Action("Index", "Home")">หน้าแรก</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button w3-pale-blue">เทียบโอนหลักสูตร</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TableData","Admin")">ตารางข้อมูลนักศึกษา</a>
-        <a class="w3-bar-item w3-button" href="@Url.Action("ViewImage","Admin")">ทรานสคริปต์</a>
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -59,17 +57,16 @@
             <center><h1 class="w3-xxxlarge">เทียบโอนหลักสูตร</h1></center>
         </header>
         <br />
-        <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-action="PairCourse"><span style="color:white;">+ เพิ่มการจับคู่หลักสูตร</span></a> 
+        <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-action="PairCourse"><span style="color:white;">+ เพิ่มการจับคู่หลักสูตร</span></a> <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-action="PairSub"><span style="color:white;">+ เพิ่มการจับคู่วิชา</span></a>
         <br>
-        
-            <br>
+        <br>
             <table id="example" class="display">
                 <thead>
                     <tr>
                         <th>รหัสเทียบหลักสูตร</th>
-                        <th>รหัสหลักสูตรวิทย์คอม</th>
+                        @* <th>รหัสหลักสูตรวิทย์คอม</th> *@
                         <th>ชื่อหลักสูตรวิทย์คอม</th>
-                        <th>รหัสหลักสูตรปวส.</th>
+                        @* <th>รหัสหลักสูตรปวส.</th> *@
                         <th>ชื่อหลักสูตรปวส.</th>
 
                         @* <th>แก้ไข</th> *@
@@ -83,9 +80,9 @@
                     {
                         <tr>
                             <td>@TraCs.CodeCoursetrans</td> 
-                            <td>@TraCs.CourseCs</td>
+                            @* <td>@TraCs.CourseCs</td> *@
                             <td>@TraCs.Namecoursecs</td>
-                            <td>@TraCs.CourseTra</td>
+                            @* <td>@TraCs.CourseTra</td> *@
                             <td>@TraCs.Namecoursetra</td>
 
                             @* <td><a class="btn btn-warning" asp-controller="Admin" asp-action="EditCourseCsTra" asp-route-id="@TraCs.Id">แก้ไข</a></td> *@

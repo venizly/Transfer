@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Transcode" class="form-control" autocomplete="Transcode" aria-required="true" maxlength="14" placeholder="รหัสนักศึกษา" />
-                <label asp-for="Input.Transcode">รหัสนักศึกษา(Username)</label>
+                <label asp-for="Input.Transcode">รหัสนักศึกษา</label>
                 <span asp-validation-for="Input.Transcode" class="text-danger"></span> 
             </div>
             <div class="form-floating mb-3">
@@ -37,8 +37,8 @@
                     </div>
                 </div>
             </div>
-            <div class="form-floating mb-3">
-               @*  <input asp-for="Input.InsCode" class="form-control" autocomplete="Inscode" aria-required="true" placeholder="รหัสสถาบัน" /> *@
+            @* <div class="form-floating mb-3">
+                    <input asp-for="Input.InsCode" class="form-control" autocomplete="Inscode" aria-required="true" placeholder="รหัสสถาบัน" />
                     <select asp-for="Input.InsCode" class="form-control" aria-required="true" placeholder="รหัสสถาบัน">
                         <option hidden value=""></option>
                         @foreach (var item in Model.Ins)
@@ -50,7 +50,7 @@
                     </select>
                     <label asp-for="Input.InsCode">รหัสสถาบัน</label>
                     <span asp-validation-for="Input.InsCode" class="text-danger"></span>
-            </div>
+            </div> *@
              
             <div class="form-floating mb-3">
                 @* <input asp-for="Input.Codecoursetra" class="form-control" autocomplete="Codecoursetra" aria-required="true" placeholder="รหัสหลักสูตรปวส." /> *@
@@ -87,6 +87,7 @@
                 <label asp-for="Input.Status">สถานะ</label>
                 <span asp-validation-for="Input.Status" class="text-danger"></span>
             </div>
+            <label style="color:red;">(ต้องมีอักษรพิเศษอย่างน้อย1ตัว)</label><br />
             <div class="form-floating mb-3">
                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.Password">รหัสผ่าน</label>

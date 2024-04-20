@@ -5,6 +5,7 @@ using ProjectFinal1.Data;
 using ProjectFinal1.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using System.Reflection.PortableExecutable;
 
 namespace ProjectFinal1.Controllers
 {
@@ -22,7 +23,6 @@ namespace ProjectFinal1.Controllers
             this._userManager = userManager;
             this._signManager = signManager;
         }
-
         public IActionResult Index()
         {
             //ViewData["User"] = _userManager.GetUserName(this.User);
@@ -32,40 +32,6 @@ namespace ProjectFinal1.Controllers
         {
             return View();
         }
-
-        ///////////////////////////////////////////////////////////////////////
-
-        //public IActionResult CourseCs()
-        //{
-        //    IEnumerable<CsCourse> cs = _db.CsCourse;
-        //    return View(cs);
-        //}
-        //public IActionResult DetailSubCs(int Id)
-        //{
-        //    if (Id == null || Id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var obj = _db.V_CourseCss.Find(Id);
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(obj);
-        //}
-        //public IActionResult DetailCourseCs(int Id)
-        //{
-        //    if (Id == null || Id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var obj = _db.V_CourseCss.Where(a=>a.Codecoursecs==Id).ToList();
-        //    if (obj == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(obj);
-        //}
         public IActionResult FullCourseCs()
         {
             IEnumerable<V_CourseCss> tra = _db.V_CourseCss;

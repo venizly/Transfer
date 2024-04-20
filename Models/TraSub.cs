@@ -6,6 +6,7 @@ namespace ProjectFinal1.Models
     public class TraSub
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Codetrasub { get; set; }
         public int Codecourse { get; set; }
         public string Codesubtra { get; set; }

@@ -7,6 +7,7 @@ namespace ProjectFinal1.Models
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Codecssub { get; set; }
         public int Codecoursecs { get; set; }
         public int Codesubgroup { get; set; }

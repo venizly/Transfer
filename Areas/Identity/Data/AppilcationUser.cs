@@ -14,11 +14,6 @@ namespace ProjectFinal1.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the AppilcationUser class
 public class AppilcationUser : IdentityUser
 {
-  //  public int InsCode { get; set; }
-    //[ForeignKey("InsCode")]
-//    public virtual Ins Ins { get; set; }
-
-
     public int Codecoursetra { get; set; }
     [ForeignKey("Codecoursetra")]
     public virtual TraCourse TraCourse { get; set; }

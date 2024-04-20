@@ -40,14 +40,14 @@
 </head>
 <body>
     <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:240px;background:white;" id="mySidebar">
-        <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
+        <span class="w3-bar-item w3-border-bottom w3-large">User</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button" href="@Url.Action("Index","Home")">หน้าแรก</a>
+        <a class="w3-bar-item w3-button" asp-area="Identity" asp-page="/Account/Image">ทรานสคริปต์</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("FullCourseCs","Home")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTra","Home")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button w3-pale-blue">ผลการเทียบโอน</a>
-        <a class="w3-bar-item w3-button" asp-area="Identity" asp-page="/Account/Image">รูปทรานสคริปต์</a>
+        
     </nav>
 
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
@@ -61,8 +61,12 @@
                 <table id="example" class="display">
                     <thead>
                         <tr>
-                            <th>ชื่อวิชาcs</th>
-                            <th>ชื่อวิชาปวส.</th>
+
+                            <th>รหัสวิชาวิทย์คอม</th>
+                            <th>วิชาวิทย์คอม</th>
+                            <th>รหัสวิชาปวส.</th>
+                            <th>วิชาปวส.</th>
+                            <th>เกรดปวส.</th>
 
                         </tr>
                     </thead>
@@ -71,7 +75,10 @@
                         {
                             <tr>
 
-                                <td>@DataUser.CodeSubtrans</td>
+                                <td>@DataUser.Codesubcs</td>
+                                <td>@DataUser.Namethaics</td>
+                                <td>@DataUser.Codesubtra</td>
+                                <td>@DataUser.Namethaitra</td>
                                 <td>@DataUser.GradeTra</td>
 
                             </tr>

@@ -67,9 +67,6 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
-            [Display(Name = "InsCode")]
-            public int InsCode { get; set; }
-
             [Display(Name = "Codecoursetra")]
             public int Codecoursetra { get; set; }
 
@@ -98,7 +95,6 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account.Manage
                 Codecoursetra = user.Codecoursetra,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                //InsCode = user.InsCode,
                 Facebook = user.Facebook,
                 Status = user.Status,
             };
@@ -160,11 +156,6 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account.Manage
             {
                 user.Codecoursetra = Input.Codecoursetra;
             }
-
-            //if (Input.InsCode != user.InsCode)
-            //{
-            //    user.InsCode = Input.InsCode;
-            //}
 
             if (Input.Facebook != user.Facebook)
             {

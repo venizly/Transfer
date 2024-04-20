@@ -21,9 +21,10 @@ namespace ProjectFinal1.Models
         public string? GradeTra { get; set; }
         public int? CodeSubtrans { get; set; }
         public bool IsHide { get; set; }
-      //  public string InsName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Codesubcs { get; set; }
+        public string Codesubtra { get; set; }
 
     }
 }

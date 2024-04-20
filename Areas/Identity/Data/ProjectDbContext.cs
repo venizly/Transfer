@@ -12,13 +12,12 @@ public class ProjectDbContext : IdentityDbContext<AppilcationUser>
         : base(options)
     {
     }
-    public DbSet<DataUser> DataUsers { get; set; }
     public DbSet<AppFile> File { get; set; }
+    public DbSet<DataUser> DataUsers { get; set; }
     public DbSet<CsCourse> CsCourse { get; set; }
     public DbSet<CsCourseStruc> CsCourseStruc { get; set; }
     public DbSet<CsSubgroup> CsSubgroup { get; set; }
     public DbSet<CsSubtype> CsSubtype { get; set; }
-    public DbSet<Ins> Ins { get; set; }
     public DbSet<TraCourse> TraCourse { get; set; }
     public DbSet<TraSub> TraSub { get; set; }
     public DbSet<TransferSub> TransferSub { get; set; }

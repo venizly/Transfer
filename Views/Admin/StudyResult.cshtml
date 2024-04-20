@@ -56,7 +56,6 @@
             <h4>รหัสนักศึกษา : @Model.FirstOrDefault()?.UserName</h4>
             <h4>ชื่อ : @Model.FirstOrDefault()?.FirstName @Model.FirstOrDefault()?.LastName</h4>
             <h4>หลักสูตรปวส. : @Model.FirstOrDefault()?.Namecoursetra</h4>
-            
             <h4>เรียนต่อหลักสูตร : @Model.FirstOrDefault()?.CourseCs</h4>
 
             <button type="submit" name="command" value="save" class="btn btn-primary my-3">บันทึก</button>
@@ -67,8 +66,10 @@
                     <tr>
                        
                         <th>รหัสเทียบวิชา</th>
-                        <th>วิชา ปวส.</th>
-                        <th>วิชา CS</th>
+                        <th>รหัสวิชาวิทย์คอม</th>
+                        <th>วิชาวิทย์คอม</th>
+                        <th>รหัสวิชาปวส.</th>
+                        <th>วิชาปวส.</th>
                         <th>เกรดปวส.</th>
                         <th>ลบ</th>
 
@@ -80,8 +81,10 @@
                         <tr>
                            
                             <td>@Model[i].CodeSubtrans</td>
-                            <td>@Model[i].Namethaitra</td>
+                            <td>@Model[i].Codesubcs</td>
                             <td>@Model[i].Namethaics</td>
+                            <td>@Model[i].Codesubtra</td>
+                            <td>@Model[i].Namethaitra</td>
                             <td>
                                 @Html.TextBoxFor(modelItem => modelItem[i].GradeTra)
                                 @Html.HiddenFor(x => x[i].Id)

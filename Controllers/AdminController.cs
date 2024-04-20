@@ -63,12 +63,6 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("TableData");
         }
-        public IActionResult ViewImage()
-        {
-            //ดึงรูปออกได้ ที่อยากได้คือให้มันอยู่ตารางเดียวกันหรือใช้ ViewTable
-            IEnumerable<AppFile> allTransfer = _db.File;
-            return View(allTransfer);
-        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -316,12 +310,12 @@ namespace ProjectFinal1.Controllers
                 Value = $"{a.Codecoursetra}",
                 Text = a.Namecoursetra
             }).ToList();
-            pageModel.CourseCsTr = allTransfer.Select(a => new SelectListItem()
-            {
-                Text = $"{a.Namecoursecs}({a.Namecoursetra})"
-            ,
-                Value = $"{a.CodeCoursetrans}"
-            }).ToList();
+            //pageModel.CourseCsTr = allTransfer.Select(a => new SelectListItem()
+            //{
+            //    Text = $"{a.Namecoursecs}({a.Namecoursetra})"
+            //,
+            //    Value = $"{a.CodeCoursetrans}"
+            //}).ToList();
             return pageModel;
         }
         [HttpPost]
@@ -412,19 +406,41 @@ namespace ProjectFinal1.Controllers
 
         public IActionResult PairSub()
         {
-            return View();
+            return View(getPairePageModel());
+        }
+        PaireSubPageDTO getPairePageModel()
+        {
+
+            PaireSubPageDTO pageModel = new PaireSubPageDTO();
+            IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra.ToList();
+            var cs = _db.CsCourseStruc.ToList();
+            var tran = _db.TraSub.ToList();
+            pageModel.TransferCourse = allTransfer.Select(a => new SelectListItem()
+            {
+                Text = $"{a.Namecoursecs}-({a.Namecoursetra})"
+            ,
+                Value = $"{a.CodeCoursetrans}"
+            }).ToList();
+            pageModel.CsCourseStruc = cs.Select(a => new SelectListItem()
+            {
+                Text = $"{a.Codesubcs}({a.Namethaics})",
+                Value = $"{a.Codecssub}"
+            }).ToList();
+            pageModel.TraSub = tran.Select(a => new SelectListItem()
+            {
+                Text = $"{a.Codesubtra}({a.Namethaitra})",
+                Value = $"{a.Codetrasub}"
+            }).ToList();
+            
+            return pageModel;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult PairSub(TransferSub obje)
+        public IActionResult PairSub(PaireSubPageDTO obje)
         {
-            if (ModelState.IsValid)
-            {
-                _db.TransferSub.Add(obje);
+                _db.TransferSub.Add(obje.Data);
                 _db.SaveChanges();
                 return RedirectToAction("PairSub");
-            }
-            return View(obje);
         }
 
         //public IActionResult EditCourse(int id)
