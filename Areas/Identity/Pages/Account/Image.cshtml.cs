@@ -24,18 +24,18 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             _hostEnvironment = hostEnvironment;
             _context = context;
         }
-        public string Username { get; set; }
-        [BindProperty]
-        public InputModel Input { get; set; }
+        //public string? Username { get; set; }
+        //[BindProperty]
+        //public InputModel? Input { get; set; }
         [TempData]
         public string StatusMessage { get; set; }
-        public class InputModel
-        {
-            [Display(Name = "Transcode")]
-            public string Transcode { get; set; }
+        //public class InputModel
+        //{
+        //    [Display(Name = "Transcode")]
+        //    public string Transcode { get; set; }
 
-            public string Status { get; set; }
-        }
+        //    public string Status { get; set; }
+        //}
         public async Task<IActionResult> OnGet()
         {
             var user = await _userInManager.GetUserAsync(User);
@@ -52,20 +52,16 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         {
             var userName = await _userInManager.GetUserNameAsync(user);
 
-            Username = userName;
+            //Username = userName;
 
-            Input = new InputModel
-            {
-                Transcode = user.Transcode,
-                Status = user.Status,
-            };
+            //Input = new InputModel
+            //{
+            //    Transcode = user.Transcode,
+            //    Status = user.Status,
+            //};
         }
 
-        [BindProperty]
-        public FileViewModel FileUpload { get; set; }
-
-        [BindProperty]
-        public FileViewModel FileUpload2 { get; set; }
+ 
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -74,27 +70,27 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             {
                 return NotFound($"ไม่สามารถโหลดข้อมูลของผู้ใช้ที่ไม่มี ID ได้ '{_userInManager.GetUserId(User)}'.");
             }
-            if (Input.Transcode != user.Transcode)
-            {
-                user.Transcode = Input.Transcode;
-            }
-            if (Input.Status != user.Status)
-            {
-                user.Status = Input.Status;
-            }
+            //if (Input.Transcode != user.Transcode)
+            //{
+            //    user.Transcode = Input.Transcode;
+            //}
+            //if (Input.Status != user.Status)
+            //{
+            //    user.Status = Input.Status;
+            //}
             if (!ModelState.IsValid)
             {
                 StatusMessage = "ไฟล์รูปภาพไม่ถูกต้อง";
                 return RedirectToPage();
             }
             var updateUser = _context.Users.FirstOrDefault(a => a.UserName == user.UserName);
-
-            if (FileUpload.FormFile != null && FileUpload.FormFile.Length > 0)
+            
+            if (Request.Form.Files != null && Request.Form.Files.Count == 1)
             {
                 using (var memoryStream = new MemoryStream())
                 {
 
-                    await FileUpload.FormFile.CopyToAsync(memoryStream);
+                    await Request.Form.Files[0].CopyToAsync(memoryStream);
                     //var id = new Random().Next(0, 1000000);
                     if (memoryStream.Length < 10495849)
                     {
@@ -105,7 +101,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                         //    Content = memoryStream.ToArray()
                         //};
 
-                        updateUser.FileName = FileUpload.FormFile.FileName;
+                        updateUser.FileName = Request.Form.Files[0].FileName;
                         updateUser.FileContent = memoryStream.ToArray();
 
                     }
@@ -120,19 +116,20 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
 
                 }
             }
+           
 
 
-            if (FileUpload2.FormFile != null && FileUpload2.FormFile.Length > 0)
+            if (Request.Form.Files != null && Request.Form.Files.Count == 2)
             {
                 using (var memoryStream = new MemoryStream())
                 {
 
-                    await FileUpload2.FormFile.CopyToAsync(memoryStream);
+                    await Request.Form.Files[1].CopyToAsync(memoryStream);
                     //var id = new Random().Next(0, 1000000);
                     if (memoryStream.Length < 10495849)
                     {
                        
-                        updateUser.FileName2 = FileUpload2.FormFile.FileName;
+                        updateUser.FileName2 = Request.Form.Files[1].FileName;
                         updateUser.FileContent2 = memoryStream.ToArray();
 
                     }
@@ -147,11 +144,11 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
 
                 }
             }
-
+             
 
             _context.Entry(updateUser).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            StatusMessage = "คุณได้ส่งไฟล์รูปภาพสำเร็จ";
+        //    StatusMessage = "คุณได้ส่งไฟล์รูปภาพสำเร็จ";
             return RedirectToPage();
         }
     }
