@@ -119,6 +119,22 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 using (var memoryStream = new MemoryStream())
                 {
 
+                    await Request.Form.Files[0].CopyToAsync(memoryStream);
+                    //var id = new Random().Next(0, 1000000);
+                    if (memoryStream.Length < 10495849)
+                    {
+                        //var file = new AppFile()
+                        //{
+                        //    Transcode = Input.Transcode,
+                        //    FileName = FileUpload.FormFile.FileName,
+                        //    Content = memoryStream.ToArray()
+                        //};
+
+                        updateUser.FileName = Request.Form.Files[0].FileName;
+                        updateUser.FileContent = memoryStream.ToArray();
+
+                    }
+
                     await Request.Form.Files[1].CopyToAsync(memoryStream);
                     //var id = new Random().Next(0, 1000000);
                     if (memoryStream.Length < 10495849)
