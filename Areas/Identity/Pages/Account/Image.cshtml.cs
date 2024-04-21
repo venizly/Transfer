@@ -26,21 +26,12 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         }
         [TempData]
         public string? Username { get; set; }
-        //[BindProperty]
-        //public InputModel? Input { get; set; }
         [TempData]
         public string StatusMessage { get; set; }
         [TempData]
         public string FileName1 { get; set; }
         [TempData]
         public string FileName2 { get; set; }
-        //public class InputModel
-        //{
-        //    [Display(Name = "Transcode")]
-        //    public string Transcode { get; set; }
-
-        //    public string Status { get; set; }
-        //}
         public async Task<IActionResult> OnGet()
         {
             if (User == null)
@@ -65,14 +56,6 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             {
                 return NotFound($"ไม่สามารถโหลดข้อมูลของผู้ใช้ที่ไม่มี ID ได้ '{_userInManager.GetUserId(User)}'.");
             }
-            //if (Input.Transcode != user.Transcode)
-            //{
-            //    user.Transcode = Input.Transcode;
-            //}
-            //if (Input.Status != user.Status)
-            //{
-            //    user.Status = Input.Status;
-            //}
             if (!ModelState.IsValid)
             {
                 StatusMessage = "ไฟล์รูปภาพไม่ถูกต้อง";
@@ -86,15 +69,8 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 {
 
                     await Request.Form.Files[0].CopyToAsync(memoryStream);
-                    //var id = new Random().Next(0, 1000000);
                     if (memoryStream.Length < 10495849)
                     {
-                        //var file = new AppFile()
-                        //{
-                        //    Transcode = Input.Transcode,
-                        //    FileName = FileUpload.FormFile.FileName,
-                        //    Content = memoryStream.ToArray()
-                        //};
 
                         updateUser.FileName = Request.Form.Files[0].FileName;
                         updateUser.FileContent = memoryStream.ToArray();
@@ -120,16 +96,8 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 {
 
                     await Request.Form.Files[0].CopyToAsync(memoryStream);
-                    //var id = new Random().Next(0, 1000000);
                     if (memoryStream.Length < 10495849)
                     {
-                        //var file = new AppFile()
-                        //{
-                        //    Transcode = Input.Transcode,
-                        //    FileName = FileUpload.FormFile.FileName,
-                        //    Content = memoryStream.ToArray()
-                        //};
-
                         updateUser.FileName = Request.Form.Files[0].FileName;
                         updateUser.FileContent = memoryStream.ToArray();
 

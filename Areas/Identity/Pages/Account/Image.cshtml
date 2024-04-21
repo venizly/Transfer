@@ -34,6 +34,9 @@
         thead {
             padding: 30px;
         }
+        .form-control{
+            text-align:left;
+        }
     </style>
 
 </head>
@@ -63,23 +66,26 @@
 
                     @if (!string.IsNullOrEmpty(Model.FileName1))
                     {
-                        <a href="/admin/PdfView?fileName=@Model.FileName1&userName=@Model.Username" target="_blank">ทรานสคริปต์: @Model.FileName1</a>
+                        <a class="form-control" href="/admin/PdfView?fileName=@Model.FileName1&userName=@Model.Username" target="_blank">ทรานสคริปต์: @Model.FileName1</a>
 
                         <br />
                     }
                     @if (!string.IsNullOrEmpty(Model.FileName2))
                     {
-                        <a href="/admin/PdfView?fileName=@Model.FileName2&userName=@Model.Username" target="_blank">ทรานสคริปต์: @Model.FileName2</a>
+                        <a class="form-control" href="/admin/PdfView?fileName=@Model.FileName2&userName=@Model.Username" target="_blank">เล่มหลักสูตรที่จบ: @Model.FileName2</a>
 
                         <br />
                     }
                 
                      
                     <div class="form-group">
-                        <input type="file" name="file1" id="file1" class="custom-file-input" accept="application/pdf" />
-                    </div>
+                        <label class="control-label">ไฟล์ทรานสคริปต์</label><br><br>
+                        <input type="file" name="file1" id="file1" class="custom-file-input form-control" accept="application/pdf" />
+                    </div><br>
+
                     <div class="form-group">
-                        <input type="file" name="file2" id="file2" class="custom-file-input" accept="application/pdf" />
+                        <label class="control-label">เล่มหลักสูตรที่จบ</label><br><br>
+                        <input type="file" name="file2" id="file2" class="custom-file-input form-control" accept="application/pdf" />
                     </div>
                     <br />
                     <div class="form-group">
@@ -87,8 +93,9 @@
                     </div>
                 </form>
             </div>
+        </center>
     </div>
-    </center>
+    
 </body>
 </html>
 @section Scripts {
