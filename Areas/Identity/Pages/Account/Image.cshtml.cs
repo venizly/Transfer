@@ -24,11 +24,16 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             _hostEnvironment = hostEnvironment;
             _context = context;
         }
-        //public string? Username { get; set; }
+        [TempData]
+        public string? Username { get; set; }
         //[BindProperty]
         //public InputModel? Input { get; set; }
         [TempData]
         public string StatusMessage { get; set; }
+        [TempData]
+        public string FileName1 { get; set; }
+        [TempData]
+        public string FileName2 { get; set; }
         //public class InputModel
         //{
         //    [Display(Name = "Transcode")]
@@ -38,29 +43,19 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         //}
         public async Task<IActionResult> OnGet()
         {
-            var user = await _userInManager.GetUserAsync(User);
-            if (user == null)
+            if (User == null)
             {
                 return NotFound($"ไม่สามารถโหลดข้อมูลของผู้ใช้ที่ไม่มี ID ได้ '{_userInManager.GetUserId(User)}'.");
             }
 
-            await LoadAsync(user);
+            var user = await _userInManager.GetUserAsync(User);
+            Username = user.UserName;
+            FileName1 = user.FileName;
+            FileName2 = user.FileName2;
             return Page();
         }
 
-        private async Task LoadAsync(AppilcationUser user)
-        {
-            var userName = await _userInManager.GetUserNameAsync(user);
-
-            //Username = userName;
-
-            //Input = new InputModel
-            //{
-            //    Transcode = user.Transcode,
-            //    Status = user.Status,
-            //};
-        }
-
+      
  
 
         public async Task<IActionResult> OnPostAsync()

@@ -51,39 +51,44 @@
     <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
     <div class="w3-main" style="margin-left:250px;">
-<center>
-    <header class="w3-container" style="padding:26px 32px">
-        <h1 class="w3-xxlarge">ทรานสคริปต์</h1>
-    </header>
-     
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
-            
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating mb-3">
-              
-            </div>
+        <center>
+            <header class="w3-container" style="padding:26px 32px">
+                <h1 class="w3-xxlarge">ทรานสคริปต์</h1>
+            </header>
 
-            <div class="form-floating mb-3" hidden>
-               
-            </div> 
+            <div class="col-md-4">
+                <form method="post" enctype="multipart/form-data">
 
-            <div class="form-group">
-                      
-           <input type="file" name="file1" value="" />
-            </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    @if (!string.IsNullOrEmpty(Model.FileName1))
+                    {
+                        <a href="/admin/PdfView?fileName=@Model.FileName1&userName=@Model.Username" target="_blank">ทรานสคริปต์: @Model.FileName1</a>
+
+                        <br />
+                    }
+                    @if (!string.IsNullOrEmpty(Model.FileName2))
+                    {
+                        <a href="/admin/PdfView?fileName=@Model.FileName2&userName=@Model.Username" target="_blank">ทรานสคริปต์: @Model.FileName2</a>
+
+                        <br />
+                    }
+                
+                     
                     <div class="form-group">
-
-                        <input type="file" name="file2" value="" />
+                        <input type="file" name="file1" id="file1" class="custom-file-input" accept="application/pdf" />
                     </div>
-            <br />
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                    <div class="form-group">
+                        <input type="file" name="file2" id="file2" class="custom-file-input" accept="application/pdf" />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-        </form>
     </div>
-</div>
-</center>
+    </center>
 </body>
 </html>
 @section Scripts {
