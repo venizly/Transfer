@@ -68,14 +68,19 @@
             </div>
 
             <div class="form-floating mb-3" hidden>
-                    <select asp-for="Input.CourseCs" class="form-control" autocomplete="CourseCs" aria-required="true" placeholder="CourseCs">
-                        <option value="หลักสูตรปี 2565">หลักสูตรปี 2565</option>
+                    <select asp-for="Input.CourseCs" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรวิทยาการคอม">
+                        @foreach (var item in Model.CsCourse)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
                     </select>
                 <label asp-for="Input.CourseCs">หลักสูตรที่ต้องการจะเรียนต่อ</label>
                 <span asp-validation-for="Input.CourseCs" class="text-danger"></span>
             </div>
 
-             <div class="form-floating mb-3">
+             <div class="form-floating mb-3" hidden>
                 <input asp-for="Input.Facebook" class="form-control" autocomplete="Facebook" aria-required="true" placeholder="Facebook" />
                 <label asp-for="Input.Facebook">Facebook</label>
                 <span asp-validation-for="Input.Facebook" class="text-danger"></span>

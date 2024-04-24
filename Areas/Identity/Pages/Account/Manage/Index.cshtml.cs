@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectFinal1.Areas.Identity.Data;
 
 namespace ProjectFinal1.Areas.Identity.Pages.Account.Manage
@@ -18,13 +19,21 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<AppilcationUser> _userManager;
         private readonly SignInManager<AppilcationUser> _signInManager;
-
+        private readonly ProjectFinal1.Data.ProjectDbContext _context;
+        public List<SelectListItem> TraCourse { get; set; }
         public IndexModel(
             UserManager<AppilcationUser> userManager,
-            SignInManager<AppilcationUser> signInManager)
+            SignInManager<AppilcationUser> signInManager,
+            ProjectFinal1.Data.ProjectDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
+            TraCourse = _context.TraCourse.ToList().Select(a => new SelectListItem()
+            {
+                Text = a.Namecoursetra,
+                Value = $"{a.Codecoursetra}"
+            }).ToList();
         }
 
         /// <summary>

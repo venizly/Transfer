@@ -54,12 +54,12 @@ namespace ProjectFinal1.Controllers
                 return NotFound();
             }
             //ค้นหาข้อมูล
-            var obj = _db.DataUsers.Find(id);
-            if (obj == null)
+            var obje = _db.DataUsers.Find(id);
+            if (obje == null)
             {
                 return NotFound();
             }
-            _db.DataUsers.Remove(obj);
+            _db.DataUsers.Remove(obje);
             _db.SaveChanges();
             return RedirectToAction("TableData");
         }

@@ -40,6 +40,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
         private readonly IWebHostEnvironment _hostenvironment;
         private readonly ProjectFinal1.Data.ProjectDbContext _context;
         public List<SelectListItem> TraCourse { get; set; }
+        public List<SelectListItem> CsCourse { get; set; }
         //public List<SelectListItem> Ins { get; set; }
         public RegisterModel(
             UserManager<AppilcationUser> userManager,
@@ -63,6 +64,11 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             {
                 Text = a.Namecoursetra,
                 Value = $"{a.Codecoursetra}"
+            }).ToList();
+            CsCourse = _context.CsCourse.ToList().Select(a => new SelectListItem()
+            {
+                Text = a.Namecoursecs,
+                Value = $"{a.Namecoursecs}"
             }).ToList();
 
             //Ins = _context.Ins.ToList().Select(a => new SelectListItem()
@@ -108,11 +114,6 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             [DataType(DataType.Text)]
             [Display(Name = "Transcode")]
             public string Transcode { get; set; }
-
-            //[Required]
-            //[DataType(DataType.Text)]
-            //[Display(Name = "InsCode")]
-            //public int InsCode { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
@@ -203,10 +204,9 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 user.Transcode = Input.Transcode;
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
-               // user.InsCode = Input.InsCode;
                 user.Codecoursetra = Input.Codecoursetra;
-                user.CourseCs = "หลักสูตร ปี2565";
-                user.Facebook = Input.Facebook;
+                user.CourseCs = Input.CourseCs;
+                user.Facebook = "";
                 user.Status = "ไม่มี";
 
                 await _userStore.SetUserNameAsync(user, Input.Transcode, CancellationToken.None);
