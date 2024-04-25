@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using System.Collections;
 using Microsoft.CodeAnalysis.Differencing;
+using System.Data.Entity;
 
 namespace ProjectFinal1.Controllers
 {
@@ -54,19 +55,19 @@ namespace ProjectFinal1.Controllers
                 return NotFound();
             }
             //ค้นหาข้อมูล
-            var obje = _db.DataUsers.Find(id);
-            if (obje == null)
-            {
-                return NotFound();
-            }
-            var tran =_db.TableTransfer.Where(a => a.UserId == id).ToList();
+          
+            var tran =_db.TableTransfer.Include(a=>a.User).Where(a => a.UserId == id).ToList();
             if(tran!=null && tran.Any())
             {
                 _db.TableTransfer.RemoveRange(tran);
+                _db.SaveChanges();
+            }
+            else
+            {
+                return NotFound();
             }
     
-            _db.DataUsers.Remove(obje);
-            _db.SaveChanges();
+         
             return RedirectToAction("TableData");
         }
 
