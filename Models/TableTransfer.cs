@@ -14,5 +14,7 @@ namespace ProjectFinal1.Models
         public bool? IsHide { get; set; }
         [ForeignKey("UserId")]
         public virtual DataUser User { get; set; }
+
+
     }
 }

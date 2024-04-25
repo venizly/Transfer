@@ -55,19 +55,15 @@ namespace ProjectFinal1.Controllers
                 return NotFound();
             }
             //ค้นหาข้อมูล
-          
-            var tran =_db.TableTransfer.Include(a=>a.User).Where(a => a.UserId == id).ToList();
-            if(tran!=null && tran.Any())
-            {
-                _db.TableTransfer.RemoveRange(tran);
-                _db.SaveChanges();
-            }
-            else
+            var obje = _db.DataUsers.Include(a=>a.Tranfers).FirstOrDefault(a=>a.Id==id);
+            if (obje == null)
             {
                 return NotFound();
             }
+          
     
-         
+            _db.DataUsers.Remove(obje);
+            _db.SaveChanges();
             return RedirectToAction("TableData");
         }
 
