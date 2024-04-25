@@ -55,10 +55,18 @@ namespace ProjectFinal1.Controllers
                 return NotFound();
             }
             //ค้นหาข้อมูล
-            var obje = _db.DataUsers.Include(a=>a.Tranfers).FirstOrDefault(a=>a.Id==id);
+            var obje = _db.DataUsers.FirstOrDefault(a=>a.Id==id);
             if (obje == null)
             {
                 return NotFound();
+            }
+            var tranfer = _db.TableTransfer.Where(a => a.UserId == id).ToList();
+            if(tranfer!=null && tranfer.Any())
+            {
+                foreach (var item in tranfer)
+                {
+                    _db.Entry(item).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+                }
             }
 
             _db.Entry(obje).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
