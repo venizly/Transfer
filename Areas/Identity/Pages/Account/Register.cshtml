@@ -68,7 +68,7 @@
             </div>
 
             <div class="form-floating mb-3" hidden>
-                    <select asp-for="Input.CourseCs" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรวิทยาการคอม">
+                    <select asp-for="Input.CourseCsId" class="form-control" aria-required="true" placeholder="รหัสหลักสูตรวิทยาการคอม">
                         @foreach (var item in Model.CsCourse)
                         {
                             <option value="@item.Value">
@@ -76,8 +76,8 @@
                             </option>
                         }
                     </select>
-                <label asp-for="Input.CourseCs">หลักสูตรที่ต้องการจะเรียนต่อ</label>
-                <span asp-validation-for="Input.CourseCs" class="text-danger"></span>
+                <label asp-for="Input.CourseCsId">หลักสูตรที่ต้องการจะเรียนต่อ</label>
+                <span asp-validation-for="Input.CourseCsId" class="text-danger"></span>
             </div>
 
              <div class="form-floating mb-3" hidden>

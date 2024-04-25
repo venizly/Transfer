@@ -68,7 +68,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             CsCourse = _context.CsCourse.ToList().Select(a => new SelectListItem()
             {
                 Text = a.Namecoursecs,
-                Value = $"{a.Namecoursecs}"
+                Value = $"{a.Codecoursecs}"
             }).ToList();
 
             //Ins = _context.Ins.ToList().Select(a => new SelectListItem()
@@ -115,15 +115,17 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             [Display(Name = "Transcode")]
             public string Transcode { get; set; }
 
-            [Required]
             [DataType(DataType.Text)]
             [Display(Name = "CourseCs")]
-            public string CourseCs { get; set; }
-
+            public string? CourseCs { get; set; }
+            
             [Required]
+            [Display(Name = "CourseCsId")]
+            public int? CourseCsId { get; set; }
+
             [DataType(DataType.Text)]
             [Display(Name = "Facebook")]
-            public string Facebook { get; set; }
+            public string? Facebook { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
@@ -205,7 +207,8 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.Codecoursetra = Input.Codecoursetra;
-                user.CourseCs = Input.CourseCs;
+                //user.CourseCs = Input.CourseCs;
+                user.CourseCsId = Input.CourseCsId;
                 user.Facebook = "";
                 user.Status = "ไม่มี";
 

@@ -18,9 +18,11 @@ namespace ProjectFinal1.Models
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; }
         
+        //[PersonalData]
+        //[Column(TypeName = "nvarchar(100)")]
+        //public string CourseCs { get; set; }
         [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        public string CourseCs { get; set; }
+        public int? CourseCsId { get; set; }
 
         [PersonalData]
         [Display(Name = "TraCourse")]

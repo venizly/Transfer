@@ -19,9 +19,11 @@ public class AppilcationUser : IdentityUser
     public virtual TraCourse TraCourse { get; set; }
 
 
+    //[PersonalData]
+    //[Column(TypeName = "nvarchar(100)")]
+    //public string CourseCs { get; set; }
     [PersonalData]
-    [Column(TypeName = "nvarchar(100)")]
-    public string CourseCs { get; set; }
+    public int? CourseCsId { get; set; }
 
     [PersonalData]
     [Column(TypeName = "nvarchar(100)")]
