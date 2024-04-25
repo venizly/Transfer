@@ -73,7 +73,6 @@
                 <tr>
                     <th>รหัสนักศึกษา</th>
                     <th>ชื่อ</th>
-                    <th>นามสกุล</th>
                     <th>อีเมล</th>
                     <th>สถานะรูป</th>
                     <th>ทรานสคริปต์</th>
@@ -89,8 +88,7 @@
                 {
                     <tr>
                         <td>@DataUser.Transcode</td>
-                        <td>@DataUser.FirstName</td>
-                        <td>@DataUser.LastName</td>
+                        <td>@DataUser.FirstName     @DataUser.LastName</td>
                         <td>@DataUser.Email</td>
                         <td>@DataUser.Status</td>
                         <td>
