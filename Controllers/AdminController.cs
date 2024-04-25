@@ -60,9 +60,8 @@ namespace ProjectFinal1.Controllers
             {
                 return NotFound();
             }
-          
-    
-            _db.DataUsers.Remove(obje);
+
+            _db.Entry(obje).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
             _db.SaveChanges();
             return RedirectToAction("TableData");
         }
