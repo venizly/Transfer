@@ -47,5 +47,7 @@ namespace ProjectFinal1.Models
         [PersonalData]
         public byte[]? FileContent2 { get; set; }
 
+        public ICollection<TableTransfer> Tranfers { get; set; }
+
     }
 }
