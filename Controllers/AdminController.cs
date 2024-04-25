@@ -59,8 +59,8 @@ namespace ProjectFinal1.Controllers
             {
                 return NotFound();
             }
-            var tran =_db.TableTransfer.FirstOrDefault(a => a.UserId == id);
-            _db.TableTransfer.Remove(tran);
+            var tran =_db.TableTransfer.Where(a => a.UserId == id);
+            _db.TableTransfer.RemoveRange(tran);
             _db.DataUsers.Remove(obje);
             _db.SaveChanges();
             return RedirectToAction("TableData");
