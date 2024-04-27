@@ -1,6 +1,6 @@
-﻿@* @* @model CsCourse;
+﻿@* @model DataUser;
 @{
-    ViewData["Title"] = "EditCourse";
+    ViewData["Title"] = "EditUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!DOCTYPE html>
@@ -27,8 +27,8 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("CourseCsAdmin", "Admin")">ย้อนกลับ</a>
-        <a class="w3-bar-item w3-button w3-pale-blue">แก้ไขหลักสูตร</a>
+        <a class="w3-bar-item w3-button w3-pale-red" href="@Url.Action("TableData", "Admin")">ย้อนกลับ</a>
+        <a class="w3-bar-item w3-button w3-pale-blue">แก้ไขข้อมูลนักศึกษา</a>
 
     </nav>
 
@@ -37,29 +37,29 @@
     <div class="w3-main" style="margin-left:250px;">
 
         <header class="w3-container" style="padding:26px 32px">
-            <h1 class="w3-xxxlarge">แก้ไขหลักสูตร</h1>
+            <h1 class="w3-xxxlarge"></h1>
         </header>
         <br />
-        <form asp-controller="Admin" asp-action="EditCourse" method="post">
+        <form asp-controller="Admin" asp-action="EditUser" method="post">
             <div class="row">
 
                 <div class="col-lg-3">
-                    <label asp-for="Codecoursecs">รหัสหลักสูตร</label>
-                    <input type="text" asp-for="Codecoursecs" class="form-control">
-                    <span asp-validation-for="Codecoursecs" class="text-danger"></span>
+                    <label asp-for="FirstName">ชื่อ</label>
+                    <input type="text" asp-for="FirstName" class="form-control">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Namecoursecs">ชื่อหลักสูตร</label>
-                    <input type="text" asp-for="Namecoursecs" class="form-control">
-                    <span asp-validation-for="Namecoursecs" class="text-danger"></span>
+                    <label asp-for="LastName">นามสกุล</label>
+                    <input type="text" asp-for="LastName" class="form-control">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
 
-                <div class="col-lg-3">
-                    <label asp-for="statuscoursecs">สถานะ</label>
+                 <div class="col-lg-3">
+                    <label asp-for="">สถานะ</label>
                     <input type="text" asp-for="statuscoursecs" class="form-control">
                     <span asp-validation-for="statuscoursecs" class="text-danger"></span>
-                </div>
+                </div> 
 
             </div>
             <br>
@@ -109,4 +109,4 @@
 </script>
 
 
- *@ 
+  *@

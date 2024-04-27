@@ -13,7 +13,7 @@ public class ProjectDbContext : IdentityDbContext<AppilcationUser>
         : base(options)
     {
     }
-    //public DbSet<AppFile> File { get; set; }
+    public DbSet<AppilcationUser> AspNetUsers { get; set; }
     public DbSet<DataUser> DataUsers { get; set; }
     public DbSet<CsCourse> CsCourse { get; set; }
     public DbSet<CsCourseStruc> CsCourseStruc { get; set; }

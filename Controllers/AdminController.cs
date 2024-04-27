@@ -477,19 +477,19 @@ namespace ProjectFinal1.Controllers
                 return RedirectToAction("PairSub");
         }
 
-        //public IActionResult EditCourse(int id)
+        //public IActionResult EditUser(string id)
         //{
-        //    var user = _db.CsCourse.Find(id);
+        //    var user = _db.DataUsers.Find(id);
         //    return View(user);
         //}
         //[HttpPost]
-        //public IActionResult EditCourse(CsCourse user)
+        //public IActionResult EditUser(DataUser user)
         //{
         //    if (ModelState.IsValid)
         //    {
         //        _db.Update(user);
         //        _db.SaveChanges();
-        //        return RedirectToAction("CourseCsAdmin", "Admin");
+        //        return RedirectToAction("TableData", "Admin");
         //    }
         //    return View(user);
         //}
