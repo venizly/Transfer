@@ -1,4 +1,5 @@
-﻿@model TraSub;
+﻿@using ProjectFinal1.DTOs
+@model AddSubTraPageDTO;
 @{
     ViewData["Title"] = "AddSubTra";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -44,45 +45,53 @@
             <div class="row">
 
                 <div class="col-lg-3">
-                    <label asp-for="Codecourse">รหัสหลักสูตรปวส.</label>
-                    <input type="text" asp-for="Codecourse" class="form-control">
-                    <span asp-validation-for="Codecourse" class="text-danger"></span>
+                    <label asp-for="Data.Codecourse">หลักสูตรปวส.</label>
+                    <select asp-for="Data.Codecourse" class="form-control" aria-required="true" placeholder="รหัสเทียบหลักสูตร">
+                        <option hidden value=""></option>
+                        @foreach (var item in Model.TraCourse)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="Data.Codecourse" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Codesubtra">รหัสวิชาปวส.</label>
-                    <input type="text" asp-for="Codesubtra" class="form-control">
-                    <span asp-validation-for="Codesubtra" class="text-danger"></span>
+                    <label asp-for="Data.Codesubtra">รหัสวิชาปวส.</label>
+                    <input type="text" asp-for="Data.Codesubtra" class="form-control">
+                    <span asp-validation-for="Data.Codesubtra" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Namethaitra">ชื่อวิชาภาษาไทย</label>
-                    <input type="text" asp-for="Namethaitra" class="form-control">
-                    <span asp-validation-for="Namethaitra" class="text-danger"></span>
+                    <label asp-for="Data.Namethaitra">ชื่อวิชาภาษาไทย</label>
+                    <input type="text" asp-for="Data.Namethaitra" class="form-control">
+                    <span asp-validation-for="Data.Namethaitra" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Nameengtra">ชื่อวิชาภาษาอังกฤษ</label>
-                    <input type="text" asp-for="Nameengtra" class="form-control">
-                    <span asp-validation-for="Nameengtra" class="text-danger"></span>
+                    <label asp-for="Data.Nameengtra">ชื่อวิชาภาษาอังกฤษ</label>
+                    <input type="text" asp-for="Data.Nameengtra" class="form-control">
+                    <span asp-validation-for="Data.Nameengtra" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Credittra">หน่วยกิต</label>
-                    <input type="text" asp-for="Credittra" class="form-control">
-                    <span asp-validation-for="Credittra" class="text-danger"></span>
+                    <label asp-for="Data.Credittra">หน่วยกิต</label>
+                    <input type="text" asp-for="Data.Credittra" class="form-control">
+                    <span asp-validation-for="Data.Credittra" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Subdestra">คำอธิบายรายวิชา</label>
-                    <input type="text" asp-for="Subdestra" class="form-control">
-                    <span asp-validation-for="Subdestra" class="text-danger"></span>
+                    <label asp-for="Data.Subdestra">คำอธิบายรายวิชา</label>
+                    <input type="text" asp-for="Data.Subdestra" class="form-control">
+                    <span asp-validation-for="Data.Subdestra" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Status">สถานะ</label>
-                    <input type="text" asp-for="Status" class="form-control">
-                    <span asp-validation-for="Status" class="text-danger"></span>
+                    <label asp-for="Data.Status">สถานะ</label>
+                    <input type="text" asp-for="Data.Status" class="form-control">
+                    <span asp-validation-for="Data.Status" class="text-danger"></span>
                 </div>
 
             </div>

@@ -1,4 +1,5 @@
-﻿@model CsCourseStruc;
+﻿@using ProjectFinal1.DTOs
+@model AddSubCsPageDTO;
 @{
     ViewData["Title"] = "AddSubCs";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -44,51 +45,67 @@
             <div class="row">
 
                 <div class="col-lg-3">
-                    <label asp-for="Codecoursecs">รหัสหลักสูตรวิทย์คอม</label>
-                    <input type="text" asp-for="Codecoursecs" class="form-control">
-                    <span asp-validation-for="Codecoursecs" class="text-danger"></span>
+                    <label asp-for="Data.Codecoursecs">หลักสูตรวิทย์คอม</label>
+                    <select asp-for="Data.Codecoursecs" class="form-control" aria-required="true" placeholder="รหัสเทียบหลักสูตร">
+                        <option hidden value=""></option>
+                        @foreach (var item in Model.CsCourse)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="Data.Codecoursecs" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Codesubgroup">รหัสกลุ่มวิชาวิทย์คอม</label>
-                    <input type="text" asp-for="Codesubgroup" class="form-control">
-                    <span asp-validation-for="Codesubgroup" class="text-danger"></span>
+                    <label asp-for="Data.Codesubgroup">กลุ่มวิชาวิทย์คอม</label>
+                    <select asp-for="Data.Codesubgroup" class="form-control" aria-required="true" placeholder="รหัสเทียบหลักสูตร">
+                        <option hidden value=""></option>
+                        @foreach (var item in Model.CsSubgroup)
+                        {
+                            <option value="@item.Value">
+                                @item.Text
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="Data.Codesubgroup" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Codesubcs">รหัสวิชาวิทย์คอม</label>
-                    <input type="text" asp-for="Codesubcs" class="form-control">
-                    <span asp-validation-for="Codesubcs" class="text-danger"></span>
+                    <label asp-for="Data.Codesubcs">รหัสวิชาวิทย์คอม</label>
+                    <input type="text" asp-for="Data.Codesubcs" class="form-control">
+                    <span asp-validation-for="Data.Codesubcs" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Namethaics">ชื่อวิชาภาษาไทย</label>
-                    <input type="text" asp-for="Namethaics" class="form-control">
-                    <span asp-validation-for="Namethaics" class="text-danger"></span>
+                    <label asp-for="Data.Namethaics">ชื่อวิชาภาษาไทย</label>
+                    <input type="text" asp-for="Data.Namethaics" class="form-control">
+                    <span asp-validation-for="Data.Namethaics" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Nameengcs">ชื่อวิชาภาษาอังกฤษ</label>
-                    <input type="text" asp-for="Nameengcs" class="form-control">
-                    <span asp-validation-for="Nameengcs" class="text-danger"></span>
+                    <label asp-for="Data.Nameengcs">ชื่อวิชาภาษาอังกฤษ</label>
+                    <input type="text" asp-for="Data.Nameengcs" class="form-control">
+                    <span asp-validation-for="Data.Nameengcs" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Credits">หน่วยกิต</label>
-                    <input type="text" asp-for="Credits" class="form-control">
-                    <span asp-validation-for="Credits" class="text-danger"></span>
+                    <label asp-for="Data.Credits">หน่วยกิต</label>
+                    <input type="text" asp-for="Data.Credits" class="form-control">
+                    <span asp-validation-for="Data.Credits" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Subdescs">คำอธิบายรายวิชา</label>
-                    <input type="text" asp-for="Subdescs" class="form-control">
-                    <span asp-validation-for="Subdescs" class="text-danger"></span>
+                    <label asp-for="Data.Subdescs">คำอธิบายรายวิชา</label>
+                    <input type="text" asp-for="Data.Subdescs" class="form-control">
+                    <span asp-validation-for="Data.Subdescs" class="text-danger"></span>
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Status">สถานะ</label>
-                    <input type="text" asp-for="Status" class="form-control">
-                    <span asp-validation-for="Status" class="text-danger"></span>
+                    <label asp-for="Data.Status">สถานะ</label>
+                    <input type="text" asp-for="Data.Status" class="form-control">
+                    <span asp-validation-for="Data.Status" class="text-danger"></span>
                 </div>
 
             </div>

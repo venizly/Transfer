@@ -122,19 +122,34 @@ namespace ProjectFinal1.Controllers
         }
         public IActionResult AddSubCs()
         {
-            return View();
+            return View(getCsPageModel());
+        }
+        AddSubCsPageDTO getCsPageModel()
+        {
+
+            AddSubCsPageDTO pageModel = new AddSubCsPageDTO();
+            IEnumerable<TraSub> allTransfer = _db.TraSub.ToList();
+            var course = _db.CsCourse.ToList();
+            var group = _db.CsSubgroup.ToList();
+            pageModel.CsCourse = course.Select(a => new SelectListItem()
+            {
+                Value = $"{a.Codecoursecs}",
+                Text = a.Namecoursecs
+            }).ToList();
+            pageModel.CsSubgroup = group.Select(a => new SelectListItem()
+            {
+                Value = $"{a.Codesubgroup}",
+                Text = a.Namesubgroup
+            }).ToList();
+            return pageModel;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddSubCs(CsCourseStruc obje)
+        public IActionResult AddSubCs(AddSubCsPageDTO obje)
         {
-            if (ModelState.IsValid)
-            {
-                _db.CsCourseStruc.Add(obje);
-                _db.SaveChanges();
-                return RedirectToAction("AddSubCs");
-            }
-            return View(obje);
+            _db.CsCourseStruc.Add(obje.Data);
+            _db.SaveChanges();
+            return RedirectToAction("AddSubCs");
         }
         public IActionResult AddCourseCs()
         {
@@ -217,19 +232,28 @@ namespace ProjectFinal1.Controllers
         }
         public IActionResult AddSubTra()
         {
-            return View();
+            return View(getTraPageModel());
+        }
+        AddSubTraPageDTO getTraPageModel()
+        {
+
+            AddSubTraPageDTO pageModel = new AddSubTraPageDTO();
+            IEnumerable<TraSub> allTransfer = _db.TraSub.ToList();
+            var tran = _db.TraCourse.ToList();
+            pageModel.TraCourse = tran.Select(a => new SelectListItem()
+            {
+                Value = $"{a.Codecoursetra}",
+                Text = a.Namecoursetra
+            }).ToList();
+            return pageModel;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddSubTra(TraSub obje)
+        public IActionResult AddSubTra(AddSubTraPageDTO obje)
         {
-            if (ModelState.IsValid)
-            {
-                _db.TraSub.Add(obje);
-                _db.SaveChanges();
-                return RedirectToAction("AddSubTra");
-            }
-            return View(obje);
+            _db.TraSub.Add(obje.Data);
+            _db.SaveChanges();
+            return RedirectToAction("AddSubTra");
         }
         public IActionResult AddCourseTra()
         {
