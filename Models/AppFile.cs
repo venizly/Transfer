@@ -5,12 +5,12 @@ namespace ProjectFinal1.Models
 {
     public class AppFile
     {
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //public int Id { get; set; }
-        //public string FileName { get; set; }
-        //public string Transcode { get; set; }
-        //public byte[] Content { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        public string FileName { get; set; }
+        public string Transcode { get; set; }
+        public byte[] Content { get; set; }
 
     }
     public class FileViewModel

@@ -64,13 +64,10 @@
             <table id="example" class="display">
                 <thead>
                     <tr>
-                        <th>รหัสเทียบหลักสูตร</th>
-                        @* <th>รหัสหลักสูตรวิทย์คอม</th> *@
+                        @* <th>รหัสเทียบหลักสูตร</th> *@
                         <th>ชื่อหลักสูตรวิทย์คอม</th>
-                        @* <th>รหัสหลักสูตรปวส.</th> *@
                         <th>ชื่อหลักสูตรปวส.</th>
 
-                        @* <th>แก้ไข</th> *@
                         <th>รายละเอียด</th>
                         <th>ลบ</th>
                     </tr>
@@ -80,13 +77,10 @@
                     @foreach (var TraCs in Model)
                     {
                         <tr>
-                            <td>@TraCs.CodeCoursetrans</td> 
-                            @* <td>@TraCs.CourseCs</td> *@
+                            @* <td>@TraCs.CodeCoursetrans</td>  *@
                             <td>@TraCs.Namecoursecs</td>
-                            @* <td>@TraCs.CourseTra</td> *@
                             <td>@TraCs.Namecoursetra</td>
 
-                            @* <td><a class="btn btn-warning" asp-controller="Admin" asp-action="EditCourseCsTra" asp-route-id="@TraCs.Id">แก้ไข</a></td> *@
                         <td><a class="btn btn-warning" asp-controller="Admin" asp-action="TransferSub" asp-route-id="@TraCs.CodeCoursetrans">ดูข้อมูล</a></td>
                         <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCourse" asp-route-id="@TraCs.CodeCoursetrans" onclick="return confirm('คุณต้องการลบหรือไม่')">ลบ</a></td>
                         </tr>

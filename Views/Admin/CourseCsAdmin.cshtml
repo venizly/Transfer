@@ -67,11 +67,9 @@
             <table id="example" class="display">
                 <thead>
                     <tr>
-                        <th>รหัสหลักสูตร</th>
+                        @* <th>รหัสหลักสูตร</th> *@
                         <th>ชื่อหลักสูตร</th>
                         <th>สถานะ</th>
-
-                        @* <th>แก้ไข</th> *@
 
                         <th>รายละเอียด</th>
                         <th>เล่มหลักสูตร</th>
@@ -83,7 +81,7 @@
                     @foreach (var CourseCs in Model)
                     {
                         <tr>
-                            <td>@CourseCs.Codecoursecs</td>
+                            @* <td>@CourseCs.Codecoursecs</td> *@
                             <td>@CourseCs.Namecoursecs</td>
                             <td>@CourseCs.statuscoursecs</td>
 
@@ -98,12 +96,6 @@
                                    asp-action="FullCourseCs"
                                    asp-route-id="@CourseCs.Codecoursecs">ดูข้อมูล</a>
                             </td>
-
-                            @* <td>
-                                <a class="btn btn-warning" asp-controller="Admin"
-                                   asp-action="EditCourse"
-                                   asp-route-id="@CourseCs.Codecoursecs">แก้ไข</a>
-                            </td> *@
 
                             <td>
                                 <a class="btn btn-danger" asp-controller="Admin"

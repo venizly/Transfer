@@ -76,8 +76,8 @@
                     <th>ชื่อ</th>
                     <th>อีเมล</th>
                     <th>สถานะรูป</th>
-                    <th>ทรานสคริปต์</th>
-                    <th>เล่มหลักสูตร</th>
+                    <th>ทรานสคริปต์-เล่มหลักสูตร</th>
+                    @* <th>เล่มหลักสูตร</th> *@
 
                     <th>เทียบโอนวิชา</th>
                     <th>ลบ</th>
@@ -93,6 +93,7 @@
                         <td>@DataUser.Email</td>
                         <td>@DataUser.Status</td>
                         <td>
+                            <center>
                             @if (DataUser.FileContent != null && DataUser.FileContent.Length > 0)
                             {
                                 <a href="/admin/PdfView?fileName=@DataUser.FileName&userName=@DataUser.UserName" target="_blank">ดาวน์โหลดไฟล์</a>
@@ -100,13 +101,12 @@
                                 <br />
 
                             }
-                        </td>
-                        <td>
                             @if (DataUser.FileContent2 != null && DataUser.FileContent2.Length > 0)
                             {
                                 <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">ดาวน์โหลดไฟล์</a>
 
                             }
+                            </center>
                         </td>
 
                         <td>
@@ -116,12 +116,6 @@
                                    asp-route-id="@DataUser.Id">เทียบโอน</a>
                             </center>
                         </td>
-
-                        @* <td>
-                            <a class="btn btn-warning" asp-controller="Admin"
-                               asp-action="EditUser"
-                               asp-route-id="@DataUser.Transcode">แก้ไข</a>
-                        </td> *@
 
                         <td>
                             <a class="btn btn-danger" asp-controller="Admin"
