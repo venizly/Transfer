@@ -31,7 +31,15 @@ namespace ProjectFinal1.Controllers
         public IActionResult TableData()
         {
             List<DataUser> allTransfer = _db.DataUsers.ToList();
+            foreach (var item in allTransfer)
+            {
 
+                if (_db.V_User_Tranfer_Courses.Any(a => a.GradeTra != null && a.GradeTra != ""
+                && a.UserName == item.UserName && a.CourseCsId == item.CourseCsId && a.Codecoursetra == item.Codecoursetra))
+                {
+                    item.HaveTranfer = true;
+                }
+            }
             return View(allTransfer);
         }
         [HttpGet]

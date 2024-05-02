@@ -13,6 +13,7 @@ namespace ProjectFinal1.Models
         public int Codecoursetra { get; set; }
         public string Namecoursetra { get; set; }
         public string CourseCs { get; set; }
+        public int CourseCsId { get; set; }
         public int CodeCoursetrans { get; set; }
         public string Namethaitra { get; set; }
         public string Namethaics { get; set; }
