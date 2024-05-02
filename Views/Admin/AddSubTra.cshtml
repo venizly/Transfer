@@ -83,16 +83,18 @@
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Data.Subdestra">คำอธิบายรายวิชา</label>
-                    <textarea rows="5" cols="70" asp-for="Data.Subdestra" class="form-control-lg" disabled></textarea>
-                    <span asp-validation-for="Data.Subdestra" class="text-danger"></span>
-                </div>
-
-                <div class="col-lg-3">
                     <label asp-for="Data.Status">สถานะ</label>
                     <input type="text" asp-for="Data.Status" class="form-control">
                     <span asp-validation-for="Data.Status" class="text-danger"></span>
                 </div>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <label asp-for="Data.Subdestra">คำอธิบายรายวิชา</label>
+                    <textarea rows="5" cols="70" asp-for="Data.Subdestra" class="form-control-lg"></textarea>
+                    <span asp-validation-for="Data.Subdestra" class="text-danger"></span>
+                </div>
+            </div>
 
             </div>
             <button type="submit" class="btn btn-primary my-3 col-lg-3">เพิ่ม</button>

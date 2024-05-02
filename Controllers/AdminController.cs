@@ -191,6 +191,22 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("CourseCsAdmin");
         }
+        public IActionResult DeleteSubCs(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            //ต้นหาข้อมูล
+            var obje = _db.CsCourseStruc.Find(id);
+            if (obje == null)
+            {
+                return NotFound();
+            }
+            _db.CsCourseStruc.Remove(obje);
+            _db.SaveChanges();
+            return RedirectToAction("CourseCsAdmin");
+        }
 
         //////////////////////////////////////////////////////////////////////
 
@@ -295,6 +311,22 @@ namespace ProjectFinal1.Controllers
             _db.SaveChanges();
             return RedirectToAction("CourseTraAdmin");
         }
+        public IActionResult DeleteSubTra(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            //ต้นหาข้อมูล
+            var obje = _db.TraSub.Find(id);
+            if (obje == null)
+            {
+                return NotFound();
+            }
+            _db.TraSub.Remove(obje);
+            _db.SaveChanges();
+            return RedirectToAction("CourseTraAdmin");
+        }
 
         //////////////////////////////////////////////////////////////////////////////
 
@@ -371,7 +403,7 @@ namespace ProjectFinal1.Controllers
 
            
         }
-        public IActionResult DeleteCourse(int? id)
+        public IActionResult DeleteCourseTrans(int? id)
         {
             if (id == null || id == 0)
             {
@@ -384,6 +416,22 @@ namespace ProjectFinal1.Controllers
                 return NotFound();
             }
             _db.TransferCourse.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("TransferCourse", "Admin");
+        }
+        public IActionResult DeleteSubTrans(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            //ต้นหาข้อมูล
+            var obj = _db.TransferSub.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.TransferSub.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("TransferCourse", "Admin");
         }

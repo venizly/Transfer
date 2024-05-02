@@ -60,7 +60,7 @@
 
             <thead>
                 <tr>
-                    <th>รหัสรายวิชา</th>
+                    @* <th>รหัสรายวิชา</th> *@
                     <th>รหัสกลุ่มวิชา</th>
                     <th>ชื่อกลุ่มวิชา</th>
                     <th>รหัสวิชา</th>
@@ -71,6 +71,8 @@
 
 
                     <th>คำอธิบายรายวิชา</th>
+                    <th>ลบ</th>
+
 
                 </tr>
             </thead>
@@ -78,7 +80,7 @@
                 @foreach (var CourseCs in Model)
                 {
                     <tr>
-                        <td>@CourseCs.Codecssub</td>
+                        @* <td>@CourseCs.Codecssub</td> *@
                         <td>@CourseCs.Namesubgroup</td>
                         <td>@CourseCs.Namesubtype</td>
                         <td>@CourseCs.Codesubcs</td>
@@ -93,6 +95,12 @@
                                    asp-action="DetailSubCs"
                                    asp-route-id="@CourseCs.Codecssub">ดูข้อมูล</a>
                             </center>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Admin"
+                               asp-action="DeleteSubCs"
+                               asp-route-id="@CourseCs.Codecssub" onclick="return confirm('คุณต้องการจะลบ @CourseCs.Namethaics หรือไม่')">ลบ</a>
                         </td>
 
                     </tr>

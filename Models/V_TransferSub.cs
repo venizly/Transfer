@@ -19,6 +19,7 @@ namespace ProjectFinal1.Models
         public string Codesubcs { get; set; }
         public string Namethaics { get; set; }
         public string Subdescs { get; set; }
+        public string Credits { get; set; }
 
 
         public int Coursetra { get; set; }
@@ -27,5 +28,6 @@ namespace ProjectFinal1.Models
         public string Codesubtra { get; set; }
         public string Namethaitra { get; set; }
         public string Subdestra { get; set; }
+        public string Credittra { get; set; }
     }
 }
