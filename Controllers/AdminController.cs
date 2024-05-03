@@ -11,6 +11,7 @@ using System.IO;
 using System.Collections;
 using Microsoft.CodeAnalysis.Differencing;
 using System.Data.Entity;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ProjectFinal1.Controllers
 {
@@ -34,7 +35,7 @@ namespace ProjectFinal1.Controllers
             foreach (var item in allTransfer)
             {
 
-                if (_db.V_User_Tranfer_Courses.Any(a => a.GradeTra != null && a.GradeTra != ""
+                if (_db.V_User_Tranfer_Courses.Any(a => a.GradeTra.HasValue
                 && a.UserName == item.UserName && a.CourseCsId == item.CourseCsId && a.Codecoursetra == item.Codecoursetra))
                 {
                     item.HaveTranfer = true;
@@ -43,10 +44,10 @@ namespace ProjectFinal1.Controllers
             return View(allTransfer);
         }
         [HttpGet]
-        public FileContentResult PdfView(string fileName,string userName)
+        public FileContentResult PdfView(string fileName, string userName)
         {
-            var user =_db.Users.FirstOrDefault(a => a.UserName == userName);
-            if(user.FileName== fileName)
+            var user = _db.Users.FirstOrDefault(a => a.UserName == userName);
+            if (user.FileName == fileName)
             {
                 return new FileContentResult(user.FileContent, "application/pdf");
             }
@@ -54,7 +55,7 @@ namespace ProjectFinal1.Controllers
             {
                 return new FileContentResult(user.FileContent2, "application/pdf");
             }
-            
+
         }
         public IActionResult DeleteUser(string id)
         {
@@ -63,13 +64,13 @@ namespace ProjectFinal1.Controllers
                 return NotFound();
             }
             //ค้นหาข้อมูล
-            var obje = _db.DataUsers.FirstOrDefault(a=>a.Id==id);
+            var obje = _db.DataUsers.FirstOrDefault(a => a.Id == id);
             if (obje == null)
             {
                 return NotFound();
             }
             var tranfer = _db.TableTransfer.Where(a => a.UserId == id).ToList();
-            if(tranfer!=null && tranfer.Any())
+            if (tranfer != null && tranfer.Any())
             {
                 foreach (var item in tranfer)
                 {
@@ -303,18 +304,36 @@ namespace ProjectFinal1.Controllers
             IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra;
             return View(allTransfer);
         }
+
         public IActionResult TransferSub(int Id)
         {
             if (Id == null || Id == 0)
             {
                 return NotFound();
             }
-            var obj = _db.V_TransferSub.Where(a => a.CodeCoursetran == Id).ToList();
-            if (obj == null)
+
+            return View(getTranferSubById(Id));
+        }
+        TranferSubPageDTO getTranferSubById(int id)
+        {
+            TranferSubPageDTO tranferSubPageDTO = new TranferSubPageDTO();
+            tranferSubPageDTO.Id = id;
+            tranferSubPageDTO.DataTable = _db.V_TransferSub.Where(a => a.CodeCoursetran == id).ToList();
+            V_TransferSub firstRow = tranferSubPageDTO.DataTable[0];
+            var cs = _db.CsCourseStruc.Where(a => a.Codecoursecs == firstRow.Coursecs).ToList();
+            var tran = _db.TraSub.Where(a => a.Codecourse == firstRow.Coursetra).ToList();
+            tranferSubPageDTO.CsCourseStruc = cs.Select(a => new SelectListItem()
             {
-                return NotFound();
-            }
-            return View(obj);
+                Text = $"{a.Codesubcs}({a.Namethaics})",
+                Value = $"{a.Codecssub}"
+            }).ToList();
+            tranferSubPageDTO.TraSub = tran.Select(a => new SelectListItem()
+            {
+                Text = $"{a.Codesubtra}({a.Namethaitra})",
+                Value = $"{a.Codetrasub}"
+            }).ToList();
+
+            return tranferSubPageDTO;
         }
         public IActionResult DetailSubCsTra(int Id)
         {
@@ -364,12 +383,12 @@ namespace ProjectFinal1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PairCourse(PaireCoursePageDTO obje)
         {
- 
-                _db.TransferCourse.Add(obje.Data);
-                _db.SaveChanges();
-                return RedirectToAction("TransferCourse");
 
-           
+            _db.TransferCourse.Add(obje.Data);
+            _db.SaveChanges();
+            return RedirectToAction("TransferCourse");
+
+
         }
         public IActionResult DeleteCourse(int? id)
         {
@@ -398,6 +417,22 @@ namespace ProjectFinal1.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult StudyResult(string id, string command, List<V_User_Tranfer_Course> saveData)
         {
+            if (!ModelState.IsValid)
+            {
+                var user_tranfer_courseOld = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
+                ViewBag.id = id;
+                foreach (var item in user_tranfer_courseOld)
+                {
+                    var saveDataUpdate = saveData.FirstOrDefault(a => a.TransReCode == item.TransReCode);
+                    if (saveDataUpdate != null)
+                    {
+                        saveDataUpdate.GradeTra = item.GradeTra;
+                    }
+                }
+
+                return View(user_tranfer_courseOld);
+            }
+            var user = _db.DataUsers.FirstOrDefault(a => a.Id == id);
             if (command == "reset")
             {
                 var resetData = _db.TableTransfer.Where(a => a.UserId == id && a.IsHide == true).ToList();
@@ -413,10 +448,17 @@ namespace ProjectFinal1.Controllers
             else if (saveData != null && saveData.Any())
             {
                 int lastId = _db.TableTransfer.Any() ? _db.TableTransfer.Max(a => a.TransReCode) : 0;
+                user.Credit = 0;
                 foreach (var item in saveData)
                 {
 
-
+                    int tranferCredit = 0;
+                    if (!string.IsNullOrWhiteSpace(item.Credits) && item.GradeTra.GetValueOrDefault(0) >= 2)
+                    {
+                        string credit = item.Credits.Split('(')[0];
+                        int.TryParse(credit, out tranferCredit);
+                        user.Credit += tranferCredit;
+                    }
                     var tableTransfer = _db.TableTransfer.FirstOrDefault(x => x.TransReCode == item.TransReCode);
                     if (tableTransfer != null)
                     {
@@ -441,22 +483,26 @@ namespace ProjectFinal1.Controllers
             ModelState.Clear();
             var user_tranfer_course = _db.V_User_Tranfer_Courses.Where(x => x.Id == id).ToList();
             ViewBag.id = id;
-            return View(user_tranfer_course); ;
+            return View(user_tranfer_course);
         }
 
 
 
-        public IActionResult PairSub()
+        public IActionResult PairSub(int Coursecs, int Coursetra)
         {
-            return View(getPairePageModel());
+            return View(getPairePageModel(Coursecs, Coursetra));
         }
-        PaireSubPageDTO getPairePageModel()
+        PaireSubPageDTO getPairePageModel(int Coursecs, int Coursetra)
         {
 
-            PaireSubPageDTO pageModel = new PaireSubPageDTO();
+            PaireSubPageDTO pageModel = new PaireSubPageDTO()
+            {
+                Coursecs = Coursecs,
+                Coursetra = Coursetra
+            };
             IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra.ToList();
-            var cs = _db.CsCourseStruc.ToList();
-            var tran = _db.TraSub.ToList();
+            var cs = _db.CsCourseStruc.Where(a => a.Codecoursecs == Coursecs).ToList();
+            var tran = _db.TraSub.Where(a => a.Codecourse == Coursetra).ToList();
             pageModel.TransferCourse = allTransfer.Select(a => new SelectListItem()
             {
                 Text = $"{a.Namecoursecs}-({a.Namecoursetra})"
@@ -473,16 +519,17 @@ namespace ProjectFinal1.Controllers
                 Text = $"{a.Codesubtra}({a.Namethaitra})",
                 Value = $"{a.Codetrasub}"
             }).ToList();
-            
+            pageModel.Data = new TransferSub();
+            pageModel.Data.CodeCoursetran = Coursecs;
             return pageModel;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult PairSub(PaireSubPageDTO obje)
+        public IActionResult PairSub(int Coursecs, int Coursetra, PaireSubPageDTO obje)
         {
-                _db.TransferSub.Add(obje.Data);
-                _db.SaveChanges();
-                return RedirectToAction("PairSub");
+            _db.TransferSub.Add(obje.Data);
+            _db.SaveChanges();
+            return RedirectToAction("PairSub", new { Coursecs = Coursecs, Coursetra = Coursetra });
         }
 
         //public IActionResult EditUser(string id)

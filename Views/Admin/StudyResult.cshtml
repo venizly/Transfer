@@ -57,7 +57,7 @@
             <h4>ชื่อ : @Model.FirstOrDefault()?.FirstName @Model.FirstOrDefault()?.LastName</h4>
             <h4>หลักสูตรปวส. : @Model.FirstOrDefault()?.Namecoursetra</h4>
             <h4>เรียนต่อหลักสูตร : @Model.FirstOrDefault()?.CourseCs</h4>
-            <h4>เพิ่มจำนวนหน่วยกิตที่เทียบโอนได้ :  หน่วยกิต</h4>
+            <h4>เพิ่มจำนวนหน่วยกิตที่เทียบโอนได้ :@String.Format("{0:0.00}", Model.FirstOrDefault().TranferCredit) หน่วยกิต</h4>
 
             <button type="submit" name="command" value="save" class="btn btn-primary my-3">บันทึก</button>
             <button type="submit" name="command" value="reset" class="btn btn-danger my-3">Reset</button>
@@ -71,6 +71,7 @@
                         <th>วิชาวิทย์คอม</th>
                         <th>รหัสวิชาปวส.</th>
                         <th>วิชาปวส.</th>
+                        <th>หน่วยกิจ</th>
                         <th>เกรดปวส.</th>
                         <th>ลบ</th>
 
@@ -86,11 +87,17 @@
                             <td>@Model[i].Namethaics</td>
                             <td>@Model[i].Codesubtra</td>
                             <td>@Model[i].Namethaitra</td>
+                            <td>@Model[i].Credits</td>
                             <td>
-                                @Html.TextBoxFor(modelItem => modelItem[i].GradeTra)
+                                @Html.EditorFor(modelItem => modelItem[i].GradeTra)<br />
+                                @Html.ValidationMessageFor(m => m[i].GradeTra, "", new
+                                    {
+                                        @class = "text-danger"
+                                    })
                                 @Html.HiddenFor(x => x[i].Id)
                                 @Html.HiddenFor(x => x[i].CodeSubtrans)
                                 @Html.HiddenFor(x => x[i].TransReCode)
+                                @Html.HiddenFor(x => x[i].Credits)
                             </td>
                             <td>
                                 @Html.CheckBoxFor(x => x[i].IsHide)
@@ -117,6 +124,14 @@
         $('#example').DataTable();
         forTestNaja();
     });
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
 
     // Open and close the sidebar on medium and small screens
     function w3_open() {

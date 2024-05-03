@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProjectFinal1.Models.V_TransferSub>;
+﻿@using ProjectFinal1.DTOs
+@model TranferSubPageDTO;
 @{
     ViewData["Title"] = "TransferSub";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -51,8 +52,9 @@
     <div class="w3-main" style="margin-left:250px;">
 
         <header class="w3-container" style="padding:26px 32px">
-            <Center><h1 class="w3-xxxlarge">การเทียบโอนของ @Model.FirstOrDefault()?.Namecoursecs - @Model.FirstOrDefault()?.Namecoursetra</h1></Center>
+            <Center><h1 class="w3-xxxlarge">การเทียบโอนของ @Model.DataTable.FirstOrDefault()?.Namecoursecs - @Model.DataTable.FirstOrDefault()?.Namecoursetra</h1></Center>
         </header>
+        
         <table id="example" class="display">
             <thead>
                 <tr>
@@ -68,7 +70,7 @@
             </thead>
 
             <tbody>
-                @foreach (var TraCs in Model)
+                @foreach (var TraCs in Model.DataTable)
                 {
                     <tr>
                         <td>@TraCs.CodeSubtrans</td>
