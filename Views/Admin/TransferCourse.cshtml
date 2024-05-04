@@ -43,7 +43,7 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button" href="@Url.Action("Index","Admin")">หน้าหลัก</a>
+        <a class="w3-bar-item w3-button" href="@Url.Action("Index","Home")">หน้าหลัก</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button w3-pale-blue">เทียบโอนหลักสูตร</a>
@@ -66,11 +66,12 @@
             <table id="example" class="display">
                 <thead>
                     <tr>
-                        <th>รหัสเทียบหลักสูตร</th>
+                       @*  <th>รหัสเทียบหลักสูตร</th> *@
                         <th>ชื่อหลักสูตรวิทย์คอม</th>
                         <th>ชื่อหลักสูตรปวส.</th>
 
                         <th>รายละเอียด</th>
+                        <th>เพิ่ม</th>
                         <th>ลบ</th>
                     </tr>
                 </thead>
@@ -79,14 +80,22 @@
                     @foreach (var TraCs in Model)
                     {
                         <tr>
-                            <td>@TraCs.CodeCoursetrans</td>
+                            @* <td>@TraCs.CodeCoursetrans</td> *@
                             <td>@TraCs.Namecoursecs</td>
                             <td>@TraCs.Namecoursetra</td>
 
-                        <td><a class="btn btn-warning" asp-controller="Admin" asp-action="TransferSub" asp-route-id="@TraCs.CodeCoursetrans">ดูข้อมูล</a>&nbsp;
-                            <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-route-CodeCoursetrans="@TraCs.CodeCoursetrans" asp-route-Coursecs="@TraCs.CourseCs" asp-route-Coursetra="@TraCs.CourseTra" asp-action="PairSub"><span style="color:white;">+ เพิ่มการจับคู่วิชา</span></a>
+                        <td> 
+                            <a class="btn btn-warning" asp-controller="Admin" asp-action="TransferSub" asp-route-id="@TraCs.CodeCoursetrans">ดูข้อมูล</a>&nbsp;
                         </td>
-                        <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCourseTrans" asp-route-id="@TraCs.CodeCoursetrans" onclick="return confirm('คุณต้องการลบ @TraCs.Namecoursecs-@TraCs.Namecoursetra หรือไม่')">ลบ</a></td>
+
+                        <td>
+                            <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-route-CodeCoursetrans="@TraCs.CodeCoursetrans" asp-route-Coursecs="@TraCs.CourseCs" asp-route-Coursetra="@TraCs.CourseTra" asp-action="PairSub"><span style="color:white;">เพิ่มจับคู่วิชา</span></a>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCourseTrans" asp-route-id="@TraCs.CodeCoursetrans" onclick="return confirm('คุณต้องการลบ @TraCs.Namecoursecs-@TraCs.Namecoursetra หรือไม่')">ลบ</a>
+                        </td>
+
                         </tr>
                     }
                 </tbody>

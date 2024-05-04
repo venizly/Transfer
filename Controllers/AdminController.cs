@@ -553,8 +553,7 @@ namespace ProjectFinal1.Controllers
             var tran = _db.TraSub.Where(a => a.Codecourse == Coursetra).ToList();
             pageModel.TransferCourse = allTransfer.Select(a => new SelectListItem()
             {
-                Text = $"{a.Namecoursecs}-({a.Namecoursetra})"
-            ,
+                Text = $"{a.Namecoursecs}-({a.Namecoursetra})",
                 Value = $"{a.CodeCoursetrans}"
             }).ToList();
             pageModel.CsCourseStruc = cs.Select(a => new SelectListItem()
