@@ -55,25 +55,10 @@
             <center><h1 class="w3-xxxlarge">เพิ่มการจับคู่วิชา</h1></center>
         </header>
 
-        <form method="POST" asp-controller="Admin" asp-action="PairSub">
+        <form method="POST" asp-controller="Admin" asp-action="PairSub" asp-route-Coursecs="@Model.Coursecs" asp-route-Coursetra="@Model.Coursetra">
             <div class="row">
 
-                <div class="col-lg-3">
-                    <label asp-for="Data.CodeCoursetran">รหัสเทียบหลักสูตร</label>
-                    @* <input type="text" asp-for="CodeCoursetran" class="form-control" required> *@
-                    <select asp-for="Data.CodeCoursetran" class="form-control" aria-required="true" placeholder="รหัสเทียบหลักสูตร">
-                        <option hidden value=""></option>
-                        @foreach (var item in Model.TransferCourse)
-                        {
-                            <option value="@item.Value">
-                                @item.Text
-                            </option>
-                        }
-
-
-                    </select>
-                    <span asp-validation-for="Data.CodeCoursetran" class="text-danger"></span>
-                </div>
+                @Html.HiddenFor(x => x.Data.CodeCoursetran)
 
                 <div class="col-lg-3">
                     <label asp-for="Data.Codecs">รหัสรายวิชาวิทย์คอม</label>

@@ -3,13 +3,13 @@ using ProjectFinal1.Models;
 
 namespace ProjectFinal1.DTOs
 {
-    public class PaireSubPageDTO
+    public class TranferSubPageDTO
     {
-        public int Coursecs { get; set; }
-        public int Coursetra { get; set; }
-        public List<SelectListItem> TransferCourse { get; set; }
+        public int Id { get; set; }
+        public int Codecs { get; set; }
+        public int Codetra { get; set; }
         public List<SelectListItem> CsCourseStruc { get; set; }
         public List<SelectListItem> TraSub { get; set; }
-        public TransferSub Data { get; set; }
+        public List<V_TransferSub> DataTable { get; set; }
     }
 }
