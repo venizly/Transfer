@@ -210,7 +210,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 //user.CourseCs = Input.CourseCs;
                 user.CourseCsId = Input.CourseCsId;
                 user.Facebook = "";
-                user.Status = "ไม่มี";
+                user.Status = "";
 
                 await _userStore.SetUserNameAsync(user, Input.Transcode, CancellationToken.None);
                 //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

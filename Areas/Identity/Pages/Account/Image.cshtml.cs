@@ -62,7 +62,7 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 return RedirectToPage();
             }
             var updateUser = _context.Users.FirstOrDefault(a => a.UserName == user.UserName);
-            
+                    
             if (Request.Form.Files != null && Request.Form.Files.Count == 1)
             {
                 using (var memoryStream = new MemoryStream())

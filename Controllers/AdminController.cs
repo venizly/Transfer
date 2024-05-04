@@ -536,11 +536,11 @@ namespace ProjectFinal1.Controllers
 
 
 
-        public IActionResult PairSub(int Coursecs, int Coursetra)
+        public IActionResult PairSub(int Coursecs, int Coursetra, int CodeCoursetrans)
         {
-            return View(getPairePageModel(Coursecs, Coursetra));
+            return View(getPairePageModel(Coursecs, Coursetra, CodeCoursetrans));
         }
-        PaireSubPageDTO getPairePageModel(int Coursecs, int Coursetra)
+        PaireSubPageDTO getPairePageModel(int Coursecs, int Coursetra ,int CodeCoursetrans)
         {
 
             PaireSubPageDTO pageModel = new PaireSubPageDTO()
@@ -568,16 +568,16 @@ namespace ProjectFinal1.Controllers
                 Value = $"{a.Codetrasub}"
             }).ToList();
             pageModel.Data = new TransferSub();
-            pageModel.Data.CodeCoursetran = Coursecs;
+            pageModel.Data.CodeCoursetran = CodeCoursetrans;
             return pageModel;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult PairSub(int Coursecs, int Coursetra, PaireSubPageDTO obje)
+        public IActionResult PairSub(int Coursecs, int Coursetra, int CodeCoursetrans, PaireSubPageDTO obje)
         {
             _db.TransferSub.Add(obje.Data);
             _db.SaveChanges();
-            return RedirectToAction("PairSub", new { Coursecs = Coursecs, Coursetra = Coursetra });
+            return RedirectToAction("PairSub", new { Coursecs = Coursecs, Coursetra = Coursetra , CodeCoursetrans = CodeCoursetrans });
         }
 
         //public IActionResult EditUser(string id)

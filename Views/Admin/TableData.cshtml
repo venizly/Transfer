@@ -75,7 +75,7 @@
                     <th>รหัสนักศึกษา</th>
                     <th>ชื่อ</th>
                     <th>อีเมล</th>
-                    <th>สถานะรูป</th>
+                    @* <th>สถานะรูป</th> *@
                     <th>ทรานสคริปต์-เล่มหลักสูตร</th>
                     @* <th>เล่มหลักสูตร</th> *@
 
@@ -91,7 +91,7 @@
                         <td>@DataUser.Transcode</td>
                         <td>@DataUser.FirstName     @DataUser.LastName</td>
                         <td>@DataUser.Email</td>
-                        <td>@DataUser.Status</td>
+                        @* <td>@DataUser.Status</td> *@
                         <td>
                             <center>
                             @if (DataUser.FileContent != null && DataUser.FileContent.Length > 0)

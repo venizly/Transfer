@@ -66,7 +66,7 @@
             <table id="example" class="display">
                 <thead>
                     <tr>
-                        @* <th>รหัสเทียบหลักสูตร</th> *@
+                        <th>รหัสเทียบหลักสูตร</th>
                         <th>ชื่อหลักสูตรวิทย์คอม</th>
                         <th>ชื่อหลักสูตรปวส.</th>
 
@@ -79,12 +79,12 @@
                     @foreach (var TraCs in Model)
                     {
                         <tr>
-                            @* <td>@TraCs.CodeCoursetrans</td>  *@
+                            <td>@TraCs.CodeCoursetrans</td>
                             <td>@TraCs.Namecoursecs</td>
                             <td>@TraCs.Namecoursetra</td>
 
                         <td><a class="btn btn-warning" asp-controller="Admin" asp-action="TransferSub" asp-route-id="@TraCs.CodeCoursetrans">ดูข้อมูล</a>&nbsp;
-                            <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-route-Coursecs="@TraCs.CourseCs" asp-route-Coursetra="@TraCs.CourseTra"  asp-action="PairSub"><span style="color:white;">+ เพิ่มการจับคู่วิชา</span></a>
+                            <a class="btn btn-group" style="background-color:Green;" asp-controller="Admin" asp-route-CodeCoursetrans="@TraCs.CodeCoursetrans" asp-route-Coursecs="@TraCs.CourseCs" asp-route-Coursetra="@TraCs.CourseTra" asp-action="PairSub"><span style="color:white;">+ เพิ่มการจับคู่วิชา</span></a>
                         </td>
                         <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCourseTrans" asp-route-id="@TraCs.CodeCoursetrans" onclick="return confirm('คุณต้องการลบ @TraCs.Namecoursecs-@TraCs.Namecoursetra หรือไม่')">ลบ</a></td>
                         </tr>

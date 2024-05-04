@@ -55,7 +55,7 @@
             <center><h1 class="w3-xxxlarge">เพิ่มการจับคู่วิชา</h1></center>
         </header>
 
-        <form method="POST" asp-controller="Admin" asp-action="PairSub" asp-route-Coursecs="@Model.Coursecs" asp-route-Coursetra="@Model.Coursetra">
+        <form method="POST" asp-controller="Admin" asp-action="PairSub" asp-route-Coursecs="@Model.Coursecs" asp-route-Coursetra="@Model.Coursetra" asp-route-CodeCoursetrans="@Model.Data.CodeCoursetran">
             <div class="row">
 
                 @Html.HiddenFor(x => x.Data.CodeCoursetran)
