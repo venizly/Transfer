@@ -57,7 +57,7 @@
             <h4>ชื่อ : @Model.FirstOrDefault()?.FirstName @Model.FirstOrDefault()?.LastName</h4>
             <h4>หลักสูตรปวส. : @Model.FirstOrDefault()?.Namecoursetra</h4>
             <h4>เรียนต่อหลักสูตร : @Model.FirstOrDefault()?.CourseCs</h4>
-            <h4>เพิ่มจำนวนหน่วยกิตที่เทียบโอนได้ :@String.Format("{0:0.00}", Model.FirstOrDefault().TranferCredit) หน่วยกิต</h4>
+            <h4>เพิ่มจำนวนหน่วยกิตที่เทียบโอนได้ :@String.Format("{0:0}", Model.FirstOrDefault().TranferCredit) หน่วยกิต</h4>
 
             <button type="submit" name="command" value="save" class="btn btn-primary my-3">บันทึก</button>
             <button type="submit" name="command" value="reset" class="btn btn-danger my-3">Reset</button>

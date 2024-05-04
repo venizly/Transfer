@@ -63,7 +63,7 @@
 
             <thead>
                 <tr>
-                    <th>รหัสรายวิชา</th>
+                    @* <th>รหัสรายวิชา</th> *@
                     <th>รหัสวิชา</th>
                     <th>ชื่อวิชาไทย</th>
                     <th>ชื่อวิชาอังกฤษ</th>
@@ -72,6 +72,7 @@
 
 
                     <th>คำอธิบายรายวิชา</th>
+                    <th>ลบ</th>
 
 
                 </tr>
@@ -80,7 +81,7 @@
                 @foreach (var CourseTra in Model)
                 {
                     <tr>
-                        <td>@CourseTra.Codetrasub</td>
+                        @* <td>@CourseTra.Codetrasub</td> *@
                         <td>@CourseTra.Codesubtra</td>
                         <td>@CourseTra.Namethaitra</td>
                         <td>@CourseTra.Nameengtra</td>
@@ -95,6 +96,11 @@
                             </center>
                         </td>
 
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Admin"
+                               asp-action="DeleteSubTra"
+                               asp-route-id="@CourseTra.Codetrasub" onclick="return confirm('คุณต้องการจะลบ @CourseTra.Namethaitra')">ลบ</a>
+                        </td>
                     </tr>
                 }
             </tbody>

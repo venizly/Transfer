@@ -54,5 +54,7 @@ public class AppilcationUser : IdentityUser
     public string? FileName2 { get; set; }
     [PersonalData]
     public byte[]? FileContent2 { get; set; }
+    [PersonalData]
+    public int? Credit { get; set; }
 }
 
