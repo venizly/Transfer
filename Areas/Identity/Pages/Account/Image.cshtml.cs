@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using ProjectFinal1.Areas.Identity.Data;
 using ProjectFinal1.Models;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 
 namespace ProjectFinal1.Areas.Identity.Pages.Account
 {
@@ -46,8 +47,8 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
             return Page();
         }
 
-      
- 
+
+
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -62,72 +63,36 @@ namespace ProjectFinal1.Areas.Identity.Pages.Account
                 return RedirectToPage();
             }
             var updateUser = _context.Users.FirstOrDefault(a => a.UserName == user.UserName);
-            
-            if (Request.Form.Files != null && Request.Form.Files.Count == 1)
+            if (Request.Form.Files != null)
             {
-                using (var memoryStream = new MemoryStream())
+                foreach (var item in Request.Form.Files)
                 {
-
-                    await Request.Form.Files[0].CopyToAsync(memoryStream);
-                    if (memoryStream.Length < 10495849)
+                    using (var memoryStream = new MemoryStream())
                     {
+                        await item.CopyToAsync(memoryStream);
+                        if (item.Name == "file1")
+                        {
 
-                        updateUser.FileName = Request.Form.Files[0].FileName;
-                        updateUser.FileContent = memoryStream.ToArray();
+                            updateUser.FileName = item.FileName;
+                            updateUser.FileContent = memoryStream.ToArray();
+                        }
+                        if (item.Name == "file2")
+                        {
+                            updateUser.FileName2 = item.FileName;
+                            updateUser.FileContent2 = memoryStream.ToArray();
+                        }
+                    }
 
-                    }
-                    else
-                    {
-                        StatusMessage = "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»";
-                        ModelState.AddModelError("File", "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»");
-                        return RedirectToPage();
-                    }
 
 
 
                 }
+                _context.Entry(updateUser).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                StatusMessage = "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»";
             }
-           
-
-
-            if (Request.Form.Files != null && Request.Form.Files.Count == 2)
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-
-                    await Request.Form.Files[0].CopyToAsync(memoryStream);
-                    if (memoryStream.Length < 10495849)
-                    {
-                        updateUser.FileName = Request.Form.Files[0].FileName;
-                        updateUser.FileContent = memoryStream.ToArray();
-
-                    }
-
-                    await Request.Form.Files[1].CopyToAsync(memoryStream);
-                    //var id = new Random().Next(0, 1000000);
-                    if (memoryStream.Length < 10495849)
-                    {
-                       
-                        updateUser.FileName2 = Request.Form.Files[1].FileName;
-                        updateUser.FileContent2 = memoryStream.ToArray();
-
-                    }
-                    else
-                    {
-                        StatusMessage = "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»";
-                        ModelState.AddModelError("File", "¢¹Ò´ä¿ÅìãË­èà¡Ô¹ä»");
-                        return RedirectToPage();
-                    }
-
-
-
-                }
-            }
-             
-
-            _context.Entry(updateUser).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        //    StatusMessage = "¤Ø³ä´éÊè§ä¿ÅìÃÙ»ÀÒ¾ÊÓàÃç¨";
+       
+            //    StatusMessage = "¤Ø³ä´éÊè§ä¿ÅìÃÙ»ÀÒ¾ÊÓàÃç¨";
             return RedirectToPage();
         }
     }
