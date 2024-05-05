@@ -30,6 +30,7 @@ namespace ProjectFinal1.Models
         public string? Codesubcs { get; set; }
         public string? Codesubtra { get; set; }
         public string? Credits { get; set; }
+        public string? Credittra { get; set; }
         public int? TranferCredit { get; set; }
 
     }

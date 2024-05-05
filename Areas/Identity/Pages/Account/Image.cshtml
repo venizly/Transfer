@@ -64,7 +64,6 @@
                 <form method="post" enctype="multipart/form-data">
 
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <label style="color:red;">สำหรับนักศึกษาที่ไม่มีหลักสูตรตอนลงทะเบียน ให้อัปโหลดไฟล์เล่มหลักสูตรพร้อมกับไฟล์ทรานสคริปต์</label>
                     @if (!string.IsNullOrEmpty(Model.FileName1))
                     {
                         <a class="form-control" href="/admin/PdfView?fileName=@Model.FileName1&userName=@Model.Username" target="_blank">ทรานสคริปต์: @Model.FileName1</a>

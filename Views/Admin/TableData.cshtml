@@ -76,7 +76,7 @@
                     <th>ชื่อ</th>
                     <th>อีเมล</th>
                     @* <th>สถานะรูป</th> *@
-                    <th>ทรานสคริปต์-เล่มหลักสูตร</th>
+                    <th>ดาวน์โหลดไฟล์</th>
                     @* <th>เล่มหลักสูตร</th> *@
 
                     <th>เทียบโอนวิชา</th>
@@ -96,14 +96,14 @@
                             <center>
                             @if (DataUser.FileContent != null && DataUser.FileContent.Length > 0)
                             {
-                                <a href="/admin/PdfView?fileName=@DataUser.FileName&userName=@DataUser.UserName" target="_blank">ดาวน์โหลดไฟล์</a>
+                                <a href="/admin/PdfView?fileName=@DataUser.FileName&userName=@DataUser.UserName" target="_blank">ทรานสคริปต์</a>
 
                                 <br />
 
                             }
                             @if (DataUser.FileContent2 != null && DataUser.FileContent2.Length > 0)
                             {
-                                <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">ดาวน์โหลดไฟล์</a>
+                                <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">เล่มหลักสูตร</a>
 
                             }
                             </center>
