@@ -46,7 +46,7 @@
 
                 <div class="col-lg-3">
                     <label asp-for="Data.Codecoursecs">หลักสูตรวิทย์คอม</label>
-                    <select asp-for="Data.Codecoursecs" class="form-control" aria-required="true" placeholder="รหัสเทียบหลักสูตร">
+                    <select asp-for="Data.Codecoursecs" class="form-control" aria-required="true" >
                         <option hidden value=""></option>
                         @foreach (var item in Model.CsCourse)
                         {
@@ -60,7 +60,7 @@
 
                 <div class="col-lg-3">
                     <label asp-for="Data.Codesubgroup">กลุ่มวิชาวิทย์คอม</label>
-                    <select asp-for="Data.Codesubgroup" class="form-control" aria-required="true" placeholder="รหัสเทียบหลักสูตร">
+                    <select asp-for="Data.Codesubgroup" class="form-control" aria-required="true" >
                         <option hidden value=""></option>
                         @foreach (var item in Model.CsSubgroup)
                         {
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="col-lg-3">
-                    <label asp-for="Data.Credits">หน่วยกิต</label>
+                    <label asp-for="Data.Credits">หน่วยกิต <label style="color:red;"> 3(3-0-6), 3(2-2-5)</label></label>
                     <input type="text" asp-for="Data.Credits" class="form-control">
                     <span asp-validation-for="Data.Credits" class="text-danger"></span>
                 </div>
