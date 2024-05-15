@@ -548,15 +548,17 @@ namespace ProjectFinal1.Controllers
                 Coursecs = Coursecs,
                 Coursetra = Coursetra
             };
-            IEnumerable<V_CourseCsTra> allTransfer = _db.V_CourseCsTra.ToList();
+
+            V_CourseCsTra allTransfer = _db.V_CourseCsTra.FirstOrDefault(x => x.CourseCs == Coursecs && x.CourseTra == Coursetra);
             var cs = _db.CsCourseStruc.Where(a => a.Codecoursecs == Coursecs).ToList();
             var tran = _db.TraSub.Where(a => a.Codecourse == Coursetra).ToList();
-            pageModel.TransferCourse = allTransfer.Select(a => new SelectListItem()
-            {
-                Text = $"{a.Namecoursecs}-({a.Namecoursetra})"
-            ,
-                Value = $"{a.CodeCoursetrans}"
-            }).ToList();
+
+            //pageModel.TransferCourse = allTransfer.Select(a => new SelectListItem()
+            //{
+            //    Text = $"{a.Namecoursecs}-({a.Namecoursetra})",
+            //    Value = $"{a.CodeCoursetrans}"
+            //}).ToList();
+
             pageModel.CsCourseStruc = cs.Select(a => new SelectListItem()
             {
                 Text = $"{a.Codesubcs}({a.Namethaics})",
@@ -569,6 +571,10 @@ namespace ProjectFinal1.Controllers
             }).ToList();
             pageModel.Data = new TransferSub();
             pageModel.Data.CodeCoursetran = CodeCoursetrans;
+
+            ViewBag.Namecoursecs = allTransfer.Namecoursecs;
+            ViewBag.Namecoursetra = allTransfer.Namecoursetra;
+
             return pageModel;
         }
         [HttpPost]

@@ -57,7 +57,7 @@
             <h4>ชื่อ : @Model.FirstOrDefault()?.FirstName @Model.FirstOrDefault()?.LastName</h4>
             <h4>หลักสูตรปวส. : @Model.FirstOrDefault()?.Namecoursetra</h4>
             <h4>เรียนต่อหลักสูตร : @Model.FirstOrDefault()?.CourseCs</h4>
-            <h4>เพิ่มจำนวนหน่วยกิตที่เทียบโอนได้ :@String.Format("{0:0}", Model.FirstOrDefault().TranferCredit) หน่วยกิต</h4>
+            <h4>จำนวนหน่วยกิตที่เทียบโอนได้ : @String.Format("{0:0}", Model.FirstOrDefault().TranferCredit) หน่วยกิต</h4>
 
             <button type="submit" name="command" value="save" class="btn btn-primary my-3">บันทึก</button>
             <button type="submit" name="command" value="reset" class="btn btn-danger my-3">Reset</button>
@@ -66,12 +66,13 @@
                 <thead>
                     <tr>
                        
-                        <th>รหัสเทียบวิชา</th>
+                        @* <th>รหัสเทียบวิชา</th> *@
                         <th>รหัสวิชาวิทย์คอม</th>
                         <th>วิชาวิทย์คอม</th>
+                        <th>หน่วยกิต</th>
                         <th>รหัสวิชาปวส.</th>
                         <th>วิชาปวส.</th>
-                        <th>หน่วยกิจ</th>
+                        <th>หน่วยกิต</th>
                         <th>เกรดปวส.</th>
                         <th>ลบ</th>
 
@@ -82,12 +83,14 @@
                     {
                         <tr>
                            
-                            <td>@Model[i].CodeSubtrans</td>
+                            @* <td>@Model[i].CodeSubtrans</td> *@
                             <td>@Model[i].Codesubcs</td>
                             <td>@Model[i].Namethaics</td>
+                            <td>@Model[i].Credits</td>
                             <td>@Model[i].Codesubtra</td>
                             <td>@Model[i].Namethaitra</td>
-                            <td>@Model[i].Credits</td>
+                            <td>@Model[i].Credittra</td>
+                            
                             <td>
                                 @Html.EditorFor(modelItem => modelItem[i].GradeTra)<br />
                                 @Html.ValidationMessageFor(m => m[i].GradeTra, "", new

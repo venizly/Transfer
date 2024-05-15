@@ -54,7 +54,7 @@
         <span class="w3-bar-item w3-border-bottom w3-large">Admin</span>
         <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 
-        <a class="w3-bar-item w3-button" href="@Url.Action("Index","Admin")">หน้าหลัก</a>
+        <a class="w3-bar-item w3-button" href="@Url.Action("Index","Home")">หน้าหลัก</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseCsAdmin","Admin")">หลักสูตรวิทย์คอม</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("CourseTraAdmin","Admin")">หลักสูตรปวส.</a>
         <a class="w3-bar-item w3-button" href="@Url.Action("TransferCourse","Admin")">เทียบโอนหลักสูตร</a>
@@ -76,7 +76,7 @@
                     <th>ชื่อ</th>
                     <th>อีเมล</th>
                     @* <th>สถานะรูป</th> *@
-                    <th>ทรานสคริปต์-เล่มหลักสูตร</th>
+                    <th>ดาวน์โหลดไฟล์</th>
                     @* <th>เล่มหลักสูตร</th> *@
 
                     <th>เทียบโอนวิชา</th>
@@ -96,14 +96,14 @@
                             <center>
                             @if (DataUser.FileContent != null && DataUser.FileContent.Length > 0)
                             {
-                                <a href="/admin/PdfView?fileName=@DataUser.FileName&userName=@DataUser.UserName" target="_blank">ดาวน์โหลดไฟล์</a>
+                                <a href="/admin/PdfView?fileName=@DataUser.FileName&userName=@DataUser.UserName" target="_blank">ทรานสคริปต์</a>
 
                                 <br />
 
                             }
                             @if (DataUser.FileContent2 != null && DataUser.FileContent2.Length > 0)
                             {
-                                <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">ดาวน์โหลดไฟล์</a>
+                                <a href="/admin/PdfView?fileName=@DataUser.FileName2&userName=@DataUser.UserName" target="_blank">เล่มหลักสูตร</a>
 
                             }
                             </center>
