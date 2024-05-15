@@ -20,7 +20,7 @@ namespace ProjectFinal1.Models
         public int? Codecoursecs { get; set; }
         public int? TransReCode { get; set; }
         
-        [Range(2, 4, ErrorMessage = "เกรดต้องอยู่ระหว่าง 2.00 - 4.00")]
+        [Range(2.00, 4.00, ErrorMessage = "เกรดต้องอยู่ระหว่าง 2.00 - 4.00")]
         [DisplayFormat(DataFormatString = "{0:0.00}", ApplyFormatInEditMode = true)]
         public decimal? GradeTra { get; set; }
         public int? CodeSubtrans { get; set; }
